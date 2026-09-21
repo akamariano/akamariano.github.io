@@ -16,9 +16,10 @@ async function loadConfig() {
       exclude: new Set(parsed.exclude ?? []),
       pinned: parsed.pinned ?? [],
       descriptions: parsed.descriptions ?? {},
+      extraTech: parsed.extraTech ?? {},
     };
   } catch {
-    return { exclude: new Set(), pinned: [], descriptions: {} };
+    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {} };
   }
 }
 
@@ -62,14 +63,15 @@ async function fetchRepos() {
   return res.json();
 }
 
-async function toCard(repo, descriptions) {
+async function toCard(repo, { descriptions, extraTech }) {
+  const extra = extraTech[repo.name] ?? [];
   return {
     name: repo.name,
     description: descriptions[repo.name] || repo.description,
     url: repo.html_url,
     homepage: repo.homepage || null,
     language: repo.language,
-    tech: await fetchTech(repo.name),
+    tech: [...extra, ...(await fetchTech(repo.name))],
     stars: repo.stargazers_count,
     topics: repo.topics ?? [],
     updatedAt: repo.updated_at,
@@ -94,7 +96,7 @@ async function main() {
 
   const payload = {
     generatedAt: new Date().toISOString(),
-    projects: await Promise.all(visible.map((repo) => toCard(repo, config.descriptions))),
+    projects: await Promise.all(visible.map((repo) => toCard(repo, config))),
   };
 
   await mkdir(OUTPUT_DIR, { recursive: true });

@@ -31,10 +31,14 @@
     "ACE2_2S23_G2",
     "P1_OLCA_202101149"
   ],
+  "extraTech": {
+    "MIA_1S2026_P2_2022101149": ["AWS EC2", "AWS S3"],
+    "MIA_1S2026_P1_202101149": ["AWS EC2", "AWS S3"]
+  },
   "descriptions": {
     "OLC2_1S2026_P1_202101149": "Intérprete del lenguaje Golampi para el curso de Organización de Lenguajes y Compiladores 2: análisis léxico, sintáctico y semántico.",
-    "MIA_1S2026_P2_2022101149": "Implementación de un sistema de archivos (ExtreamFS) en C++, con build system basado en CMake y Makefile.",
-    "MIA_1S2026_P1_202101149": "Primera fase del proyecto de sistema de archivos ExtreamFS, en C++ con CMake.",
+    "MIA_1S2026_P2_2022101149": "Implementación de un sistema de archivos (ExtreamFS) en C++, desplegado en instancias de AWS EC2 con S3 como backend de almacenamiento, usando CMake y Makefile.",
+    "MIA_1S2026_P1_202101149": "Primera fase del proyecto de sistema de archivos ExtreamFS, en C++ con CMake, desplegado sobre AWS EC2 y S3.",
     "EDD_1S2023_PY_202101149": "Implementación de estructuras de datos para el curso de Estructuras de Datos, con visualización web en JavaScript.",
     "ACE2_2S23_G2": "Proyecto del curso de Arquitectura de Computadoras y Ensambladores 2: simulación visual construida en C++ y Processing.",
     "P1_OLCA_202101149": "Proyecto del curso de Organización de Lenguajes y Compiladores A, en Java."

@@ -1,4 +1,34 @@
 {
-  "exclude": ["Spiderman", "MytianTicas", "prueba", "prueba-2", "INARK", "akamariano.github.io"],
-  "pinned": []
+  "exclude": [
+    "Spiderman",
+    "MytianTicas",
+    "prueba",
+    "prueba-2",
+    "INARK",
+    "akamariano.github.io",
+    "kristel",
+    "centro-jas-naranjo",
+    "IPC1-Practica1_202101149",
+    "IPC1-Practica2_202101149",
+    "IPC1-Proyecto1_202101149",
+    "IPC1-Proyecto2_202101149",
+    "IPC1-ExamenFinal-202101149",
+    "-IPC1-Tarea2_202101149",
+    "IPC2_Proyecto1_202101149",
+    "IPC2_Proyecto2_202101149",
+    "Mariano-Roberto-Rac-Noguera-202101149",
+    "ACE1-23VJ0778202101149PRA2",
+    "ACE1-23VJ0778202101149PROY2",
+    "P1_OLC2B_202101149",
+    "P1_MIAC_202101149",
+    "P2_OLCA_202101149"
+  ],
+  "pinned": [
+    "OLC2_1S2026_P1_202101149",
+    "MIA_1S2026_P2_2022101149",
+    "MIA_1S2026_P1_202101149",
+    "EDD_1S2023_PY_202101149",
+    "ACE2_2S23_G2",
+    "P1_OLCA_202101149"
+  ]
 }

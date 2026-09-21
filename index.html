@@ -23,9 +23,9 @@
     <ul class="nav-links">
       <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
       <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
-      <li><a href="#certificaciones" data-i18n="nav.badges">Certificaciones</a></li>
-      <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+      <li><a href="#certificaciones" data-i18n="nav.badges">Certificaciones</a></li>
       <li><a href="#curriculum" data-i18n="nav.resume">Currículum</a></li>
       <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
     </ul>
@@ -46,9 +46,9 @@
   <ul class="nav-links nav-links-mobile" id="nav-links-mobile" hidden>
     <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
     <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
-    <li><a href="#certificaciones" data-i18n="nav.badges">Certificaciones</a></li>
-    <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
     <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+    <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+    <li><a href="#certificaciones" data-i18n="nav.badges">Certificaciones</a></li>
     <li><a href="#curriculum" data-i18n="nav.resume">Currículum</a></li>
     <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
   </ul>
@@ -100,11 +100,6 @@
         diversos y multiculturales, y mi meta es aportar conocimiento técnico a equipos de desarrollo
         donde pueda aprender de mentores experimentados y crecer junto a nuevos retos.
       </p>
-    </div>
-
-    <div class="about-gallery">
-      <img src="assets/img/about-lake.jpg" alt="Mariano frente al lago de Atitlán" loading="lazy" />
-      <img src="assets/img/about-cap.jpg" alt="Mariano en un momento casual" loading="lazy" />
     </div>
 
     <div class="about-grid">
@@ -190,67 +185,23 @@
     </div>
   </section>
 
-  <!-- Certificaciones -->
-  <section id="certificaciones" class="container reveal">
+  <!-- Proyectos -->
+  <section id="proyectos" class="container reveal">
     <div class="section-head">
-      <span class="eyebrow eyebrow-2" data-i18n="badges.eyebrow">Credenciales</span>
-      <h2 data-i18n="badges.title">Certificaciones e insignias</h2>
-      <p data-i18n="badges.subtitle">
-        Insignias digitales verificadas (Open Badges), emitidas por Missionary Training (MTC) como
-        parte de mi desarrollo como Mentor.
+      <span class="eyebrow eyebrow-2" data-i18n="projects.eyebrow">GitHub</span>
+      <h2 data-i18n="projects.title">Proyectos</h2>
+      <p data-i18n="projects.subtitle">
+        Se generan automáticamente desde mis repositorios públicos en cada despliegue — sin edición manual.
       </p>
     </div>
 
-    <div class="badges-grid">
-      <a class="card badge-card" href="https://badgr.com/public/assertions/EtylCq_VSCSarV9KXV7I-w" target="_blank" rel="noopener">
-        <img class="badge-image" src="https://badges.parchment.com/public/assertions/EtylCq_VSCSarV9KXV7I-w/image" alt="Learner-Focused Development" loading="lazy" />
-        <div class="badge-body">
-          <h3>Learner-Focused Development</h3>
-          <div class="badge-meta" data-i18n="badges.learnerMeta">Missionary Training (MTC) · Emitida en septiembre 2026</div>
-          <p data-i18n="badges.learnerDesc">
-            Reconoce la promoción del compromiso activo y el crecimiento personal de cada persona a la
-            que se instruye, generando confianza, altas expectativas y un entorno que habilita el aprendizaje.
-          </p>
-        </div>
-      </a>
+    <div id="projects-status" class="projects-status" data-i18n="projects.loading">Cargando proyectos…</div>
+    <div id="projects-grid" class="projects-grid" hidden></div>
 
-      <a class="card badge-card" href="https://badgr.com/public/assertions/A3C1miVhTxycQ68KG88r4Q" target="_blank" rel="noopener">
-        <img class="badge-image" src="https://badges.parchment.com/public/assertions/A3C1miVhTxycQ68KG88r4Q/image" alt="Vision and Alignment" loading="lazy" />
-        <div class="badge-body">
-          <h3>Vision and Alignment</h3>
-          <div class="badge-meta" data-i18n="badges.visionMeta">Missionary Training (MTC) · Emitida en junio 2026</div>
-          <p data-i18n="badges.visionDesc">
-            Reconoce la capacidad de guiar a otros hacia sus metas alineando la instrucción con los
-            objetivos de la organización, conectando cada sesión con su propósito y misión.
-          </p>
-        </div>
-      </a>
-    </div>
-
-    <h3 class="certs-subtitle" data-i18n="badges.certsTitle">Certificados</h3>
-    <div class="certs-grid">
-      <a class="card cert-card" href="assets/img/certs/mos1.jpg" target="_blank" rel="noopener">
-        <img class="cert-image" src="assets/img/certs/mos1.jpg" alt="Microsoft Office Specialist — PowerPoint 2019" loading="lazy" />
-        <div class="cert-body">
-          <h4>Microsoft Office Specialist</h4>
-          <div class="cert-meta" data-i18n="badges.mos1Meta">PowerPoint 2019 Associate · Microsoft · Agosto 2020</div>
-        </div>
-      </a>
-
-      <a class="card cert-card" href="assets/img/certs/mos2.jpg" target="_blank" rel="noopener">
-        <img class="cert-image" src="assets/img/certs/mos2.jpg" alt="Microsoft Office Specialist — Word 2016" loading="lazy" />
-        <div class="cert-body">
-          <h4>Microsoft Office Specialist</h4>
-          <div class="cert-meta" data-i18n="badges.mos2Meta">Word 2016 · Microsoft · Septiembre 2019</div>
-        </div>
-      </a>
-
-      <a class="card cert-card" href="assets/img/certs/ingles.jpg" target="_blank" rel="noopener">
-        <img class="cert-image" src="assets/img/certs/ingles.jpg" alt="Certificate of Language Ability — English B2-C1" loading="lazy" />
-        <div class="cert-body">
-          <h4 data-i18n="badges.englishTitle">Certificate of Language Ability — Inglés</h4>
-          <div class="cert-meta" data-i18n="badges.englishMeta">Nivel B2–C1 (TrueNorth 8.0) · Rosetta Stone · Febrero 2025</div>
-        </div>
+    <div class="projects-footer">
+      <a class="btn btn-secondary" href="https://github.com/akamariano" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.35-3.87-1.35-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+        <span data-i18n="projects.viewAll">Ver todos en GitHub</span>
       </a>
     </div>
   </section>
@@ -319,23 +270,67 @@
     </div>
   </section>
 
-  <!-- Proyectos -->
-  <section id="proyectos" class="container reveal">
+  <!-- Certificaciones -->
+  <section id="certificaciones" class="container reveal">
     <div class="section-head">
-      <span class="eyebrow eyebrow-2" data-i18n="projects.eyebrow">GitHub</span>
-      <h2 data-i18n="projects.title">Proyectos</h2>
-      <p data-i18n="projects.subtitle">
-        Se generan automáticamente desde mis repositorios públicos en cada despliegue — sin edición manual.
+      <span class="eyebrow eyebrow-2" data-i18n="badges.eyebrow">Credenciales</span>
+      <h2 data-i18n="badges.title">Certificaciones e insignias</h2>
+      <p data-i18n="badges.subtitle">
+        Insignias digitales verificadas (Open Badges), emitidas por Missionary Training (MTC) como
+        parte de mi desarrollo como Mentor.
       </p>
     </div>
 
-    <div id="projects-status" class="projects-status" data-i18n="projects.loading">Cargando proyectos…</div>
-    <div id="projects-grid" class="projects-grid" hidden></div>
+    <div class="badges-grid">
+      <a class="card badge-card" href="https://badgr.com/public/assertions/EtylCq_VSCSarV9KXV7I-w" target="_blank" rel="noopener">
+        <img class="badge-image" src="https://badges.parchment.com/public/assertions/EtylCq_VSCSarV9KXV7I-w/image" alt="Learner-Focused Development" loading="lazy" />
+        <div class="badge-body">
+          <h3>Learner-Focused Development</h3>
+          <div class="badge-meta" data-i18n="badges.learnerMeta">Missionary Training (MTC) · Emitida en septiembre 2026</div>
+          <p data-i18n="badges.learnerDesc">
+            Reconoce la promoción del compromiso activo y el crecimiento personal de cada persona a la
+            que se instruye, generando confianza, altas expectativas y un entorno que habilita el aprendizaje.
+          </p>
+        </div>
+      </a>
 
-    <div class="projects-footer">
-      <a class="btn btn-secondary" href="https://github.com/akamariano" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.35-3.87-1.35-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
-        <span data-i18n="projects.viewAll">Ver todos en GitHub</span>
+      <a class="card badge-card" href="https://badgr.com/public/assertions/A3C1miVhTxycQ68KG88r4Q" target="_blank" rel="noopener">
+        <img class="badge-image" src="https://badges.parchment.com/public/assertions/A3C1miVhTxycQ68KG88r4Q/image" alt="Vision and Alignment" loading="lazy" />
+        <div class="badge-body">
+          <h3>Vision and Alignment</h3>
+          <div class="badge-meta" data-i18n="badges.visionMeta">Missionary Training (MTC) · Emitida en junio 2026</div>
+          <p data-i18n="badges.visionDesc">
+            Reconoce la capacidad de guiar a otros hacia sus metas alineando la instrucción con los
+            objetivos de la organización, conectando cada sesión con su propósito y misión.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <h3 class="certs-subtitle" data-i18n="badges.certsTitle">Certificados</h3>
+    <div class="certs-grid">
+      <a class="card cert-card" href="assets/img/certs/mos1.jpg" target="_blank" rel="noopener">
+        <img class="cert-image" src="assets/img/certs/mos1.jpg" alt="Microsoft Office Specialist — PowerPoint 2019" loading="lazy" />
+        <div class="cert-body">
+          <h4>Microsoft Office Specialist</h4>
+          <div class="cert-meta" data-i18n="badges.mos1Meta">PowerPoint 2019 Associate · Microsoft · Agosto 2020</div>
+        </div>
+      </a>
+
+      <a class="card cert-card" href="assets/img/certs/mos2.jpg" target="_blank" rel="noopener">
+        <img class="cert-image" src="assets/img/certs/mos2.jpg" alt="Microsoft Office Specialist — Word 2016" loading="lazy" />
+        <div class="cert-body">
+          <h4>Microsoft Office Specialist</h4>
+          <div class="cert-meta" data-i18n="badges.mos2Meta">Word 2016 · Microsoft · Septiembre 2019</div>
+        </div>
+      </a>
+
+      <a class="card cert-card" href="assets/img/certs/ingles.jpg" target="_blank" rel="noopener">
+        <img class="cert-image" src="assets/img/certs/ingles.jpg" alt="Certificate of Language Ability — English B2-C1" loading="lazy" />
+        <div class="cert-body">
+          <h4 data-i18n="badges.englishTitle">Certificate of Language Ability — Inglés</h4>
+          <div class="cert-meta" data-i18n="badges.englishMeta">Nivel B2–C1 (TrueNorth 8.0) · Rosetta Stone · Febrero 2025</div>
+        </div>
       </a>
     </div>
   </section>
@@ -347,24 +342,17 @@
       <h2 data-i18n="resume.title">Formación y descarga</h2>
     </div>
 
-    <div class="card resume-card">
-      <div>
-        <h3 data-i18n="resume.cardTitle">CV completo en PDF</h3>
-        <p data-i18n="resume.cardBody">Descarga mi currículum con el detalle completo de mi formación y experiencia.</p>
-      </div>
-      <a class="btn btn-primary" href="assets/cv.pdf" download>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
-        <span data-i18n="resume.download">Descargar CV (PDF)</span>
-      </a>
-    </div>
-
     <div class="resume-summary">
-      <div>
-        <h3 data-i18n="resume.eduTitle">Educación</h3>
+      <div class="resume-education">
+        <h3 class="resume-edu-title" data-i18n="resume.eduTitle">Educación</h3>
         <ul>
           <li data-i18n="resume.edu1">Universidad de San Carlos de Guatemala — Ingeniería en Ciencias y Sistemas, 7mo semestre (en curso)</li>
           <li data-i18n="resume.edu2">Colegio Jesús Rey de Gloria — Bachillerato en Computación (2020)</li>
         </ul>
+        <a class="btn btn-primary" href="assets/cv.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
+          <span data-i18n="resume.download">Descargar CV (PDF)</span>
+        </a>
       </div>
       <div>
         <h3 data-i18n="resume.langTitle">Idiomas</h3>
@@ -414,30 +402,6 @@
         <div>
           <div class="contact-label">GitHub</div>
           <div class="contact-value">akamariano</div>
-        </div>
-      </a>
-
-      <a class="card contact-card" href="https://hub.docker.com/u/mracnoguera" target="_blank" rel="noopener">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.6 9.5c-.4-.3-1.3-.5-2.2-.4-.1-.7-.5-1.3-1.2-1.9l-.4-.3-.3.4c-.4.5-.6 1.3-.5 2 .1.4.2.8.5 1.1-.2.1-.5.2-.7.3H2.4c-.2.9-.2 3.7 1.6 5.8 1.4 1.6 3.5 2.4 6.2 2.4 5.9 0 10.3-2.7 12.3-7.7 1.4 0 2.5-.4 3.1-1.2l.2-.3-.3-.2Zm-14 .5H6.8v1.9h1.8V10Zm2.6 0h-1.8v1.9h1.8V10Zm2.6 0h-1.8v1.9h1.8V10Zm2.7 0h-1.8v1.9h1.8V10Zm-8-2.5H6.8v1.9h1.8V7.5Zm2.6 0h-1.8v1.9h1.8V7.5Zm2.6 0h-1.8v1.9h1.8V7.5Zm-5.2-2.5H6.8v1.9h1.8V5Zm2.6 0h-1.8v1.9h1.8V5Z"/></svg></div>
-        <div>
-          <div class="contact-label">Docker Hub</div>
-          <div class="contact-value">mracnoguera</div>
-        </div>
-      </a>
-
-      <a class="card contact-card" href="https://instagram.com/rrnoguera" target="_blank" rel="noopener">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></div>
-        <div>
-          <div class="contact-label">Instagram</div>
-          <div class="contact-value">Mariano Rac Noguera</div>
-        </div>
-      </a>
-
-      <a class="card contact-card" href="https://facebook.com/rrnoguera" target="_blank" rel="noopener">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.25-1.5 1.55-1.5H17V3.7c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8.1V13h2.7v8h2.7Z"/></svg></div>
-        <div>
-          <div class="contact-label">Facebook</div>
-          <div class="contact-value">Mariano Rac Noguera</div>
         </div>
       </a>
     </div>

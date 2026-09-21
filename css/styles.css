@@ -522,35 +522,6 @@ p {
 /* ==========================================================================
    About / roles
    ========================================================================== */
-.about-gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.about-gallery img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  transition: transform 300ms var(--spring);
-}
-
-.about-gallery img:hover {
-  transform: scale(1.015);
-}
-
-@media (max-width: 560px) {
-  .about-gallery {
-    grid-template-columns: 1fr;
-  }
-  .about-gallery img {
-    height: 220px;
-  }
-}
-
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -778,19 +749,10 @@ p {
 /* ==========================================================================
    Resume / CV section
    ========================================================================== */
-.resume-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
 .resume-summary {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin-top: 32px;
 }
 
 @media (max-width: 640px) {
@@ -811,6 +773,17 @@ p {
 
 .resume-summary li {
   margin-bottom: 6px;
+}
+
+.resume-edu-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 16px;
+}
+
+.resume-education .btn {
+  margin-top: 24px;
 }
 
 /* ==========================================================================

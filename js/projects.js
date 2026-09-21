@@ -37,12 +37,13 @@
     const updated = project.updatedAt
       ? (dateFormatters[lang] || dateFormatters.es).format(new Date(project.updatedAt))
       : "";
+    const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
 
     card.innerHTML = `
       <div class="project-name">${repoIconSvg()}${project.name}</div>
       <p>${description}</p>
+      ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
       <div class="project-meta">
-        ${project.language ? `<span><span class="lang-dot"></span>${project.language}</span>` : ""}
         ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}
         ${updated ? `<span>${t("projects.updated")} ${updated}</span>` : ""}
       </div>

@@ -88,7 +88,7 @@ const translations = {
 
     "projects.eyebrow": "GitHub",
     "projects.title": "Proyectos",
-    "projects.subtitle": "Se generan automáticamente desde mis repositorios públicos en cada despliegue — sin edición manual.",
+    "projects.subtitle": "Se generan automáticamente desde mis repositorios públicos en cada despliegue.",
     "projects.loading": "Cargando proyectos…",
     "projects.error": "No se pudieron cargar los proyectos automáticamente. Visítalos directo en GitHub.",
     "projects.empty": "Aún no hay proyectos públicos para mostrar.",
@@ -202,7 +202,7 @@ const translations = {
 
     "projects.eyebrow": "GitHub",
     "projects.title": "Projects",
-    "projects.subtitle": "Generated automatically from my public repositories on every deploy — no manual editing.",
+    "projects.subtitle": "Generated automatically from my public repositories on every deploy.",
     "projects.loading": "Loading projects…",
     "projects.error": "Projects couldn't be loaded automatically. Check them out directly on GitHub.",
     "projects.empty": "No public projects to show yet.",

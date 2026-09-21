@@ -15,21 +15,44 @@ async function loadConfig() {
     return {
       exclude: new Set(parsed.exclude ?? []),
       pinned: parsed.pinned ?? [],
+      descriptions: parsed.descriptions ?? {},
     };
   } catch {
-    return { exclude: new Set(), pinned: [] };
+    return { exclude: new Set(), pinned: [], descriptions: {} };
   }
 }
 
-async function fetchRepos() {
+function authHeaders() {
   const headers = { Accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
   }
+  return headers;
+}
 
+async function fetchTech(repoName) {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${GITHUB_USER}/${repoName}/languages`,
+      { headers: authHeaders() }
+    );
+    if (!res.ok) return [];
+    const langs = await res.json();
+    const total = Object.values(langs).reduce((sum, v) => sum + v, 0) || 1;
+    return Object.entries(langs)
+      .sort((a, b) => b[1] - a[1])
+      .filter(([, bytes]) => bytes / total >= 0.03)
+      .slice(0, 5)
+      .map(([name]) => name);
+  } catch {
+    return [];
+  }
+}
+
+async function fetchRepos() {
   const res = await fetch(
     `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&sort=updated`,
-    { headers }
+    { headers: authHeaders() }
   );
 
   if (!res.ok) {
@@ -39,13 +62,14 @@ async function fetchRepos() {
   return res.json();
 }
 
-function toCard(repo) {
+async function toCard(repo, descriptions) {
   return {
     name: repo.name,
-    description: repo.description,
+    description: descriptions[repo.name] || repo.description,
     url: repo.html_url,
     homepage: repo.homepage || null,
     language: repo.language,
+    tech: await fetchTech(repo.name),
     stars: repo.stargazers_count,
     topics: repo.topics ?? [],
     updatedAt: repo.updated_at,
@@ -70,7 +94,7 @@ async function main() {
 
   const payload = {
     generatedAt: new Date().toISOString(),
-    projects: visible.map(toCard),
+    projects: await Promise.all(visible.map((repo) => toCard(repo, config.descriptions))),
   };
 
   await mkdir(OUTPUT_DIR, { recursive: true });

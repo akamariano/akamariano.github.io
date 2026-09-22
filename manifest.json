@@ -1,0 +1,23 @@
+{
+  "name": "Mariano Rac — Desarrollador de Software",
+  "short_name": "Mariano Rac",
+  "description": "Portafolio personal de Mariano Roberto Rac Noguera: proyectos, experiencia y certificaciones.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f2f5ef",
+  "theme_color": "#0071e3",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -102,8 +102,8 @@ p.lede {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 28px;
-  margin-bottom: 24px;
+  padding: 32px;
+  margin-bottom: 28px;
 }
 
 .field {

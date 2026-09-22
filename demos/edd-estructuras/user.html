@@ -86,6 +86,7 @@
       var current = JSON.parse(localStorage.getItem("currentuser"));
       if (badge && current) badge.textContent = "Sesión activa: " + current.valor;
     } catch (e) { /* sin sesión guardada */ }
+    if (typeof sembrarCarpetasDemo === "function") sembrarCarpetasDemo();
   })();
 </script>
 </body>

@@ -162,7 +162,8 @@ a {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 24px;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 section {
@@ -564,7 +565,7 @@ p {
   background: var(--surface-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  padding: 28px;
+  padding: 32px;
   box-shadow: var(--shadow-sm);
   transition: transform 220ms var(--spring), box-shadow 220ms var(--spring);
 }
@@ -613,7 +614,7 @@ p {
 }
 
 .role-card .role-meta {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
 }
 
@@ -669,9 +670,9 @@ p {
 }
 
 .timeline-item .meta {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .timeline-item h3 {
@@ -717,10 +718,10 @@ p {
 }
 
 .badge-meta {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--accent-2);
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .badge-body p {
@@ -772,7 +773,7 @@ p {
 }
 
 .cert-meta {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-secondary);
 }
 
@@ -794,11 +795,11 @@ p {
 }
 
 .chip {
-  padding: 8px 16px;
+  padding: 9px 17px;
   border-radius: 999px;
   background: var(--chip-bg);
   border: 1px solid var(--border);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
 }
 

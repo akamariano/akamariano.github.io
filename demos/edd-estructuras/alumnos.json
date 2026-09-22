@@ -11,26 +11,53 @@
 			"carnet": 67890,
 			"password": "def4568",
 			"Carpeta_Raiz": "/"
-		}
-		,
+		},
 		{
 			"nombre": "Mora",
 			"carnet": 123123123,
 			"password": "def45677",
 			"Carpeta_Raiz": "/"
-		}
-		,
+		},
 		{
 			"nombre": "Bad Bunny",
 			"carnet": 123123,
 			"password": "def4567",
 			"Carpeta_Raiz": "/"
-		}
-		,
+		},
 		{
 			"nombre": "FERXXO",
 			"carnet": 19,
 			"password": "def456",
+			"Carpeta_Raiz": "/"
+		},
+		{
+			"nombre": "Lucía Ramírez",
+			"carnet": 20145,
+			"password": "luc2025",
+			"Carpeta_Raiz": "/"
+		},
+		{
+			"nombre": "Diego Morales",
+			"carnet": 20876,
+			"password": "dgo2025",
+			"Carpeta_Raiz": "/"
+		},
+		{
+			"nombre": "Ana Sofía López",
+			"carnet": 21042,
+			"password": "asl2025",
+			"Carpeta_Raiz": "/"
+		},
+		{
+			"nombre": "Carlos Xitumul",
+			"carnet": 21398,
+			"password": "cxi2025",
+			"Carpeta_Raiz": "/"
+		},
+		{
+			"nombre": "Valeria Us",
+			"carnet": 22017,
+			"password": "vus2025",
 			"Carpeta_Raiz": "/"
 		}
 	]

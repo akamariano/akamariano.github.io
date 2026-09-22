@@ -791,3 +791,23 @@ function mostrarTexto(texto) {
     const badge = document.getElementById('sessionBadge');
     if (badge) badge.innerText = "Sesión activa: " + texto;
   }
+
+// Si el estudiante que inició sesión todavía no tiene carpetas propias,
+// crea unas de ejemplo para que se vea el flujo completo (árbol N-ario,
+// gráfico e historial) sin tener que armarlo a mano primero.
+function sembrarCarpetasDemo() {
+  try {
+    const arbol = cargarArbolNADesdeLocalStorage();
+    if (!arbol || arbol.raiz.primero !== null) return;
+    arbol.insertarValor("/", "Documentos");
+    arbol.insertarValor("/", "Fotos");
+    arbol.insertarValor("/Documentos", "Tareas");
+    arbolnario = arbol;
+    guardarArbolNAEnLocalStorage(arbolnario);
+    actualizarNodo(getcurrentuserid(), arbolnario);
+    hacerhtml();
+    refrescarArbol();
+  } catch (e) {
+    console.log("No se pudieron sembrar carpetas de ejemplo:", e);
+  }
+}

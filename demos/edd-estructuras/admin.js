@@ -564,3 +564,22 @@ if (btnLogoutAdmin) {
     window.location.href = "index.html";
   });
 }
+
+// Auto-carga: en cuanto se abre el panel de administración, trae
+// alumnos.json y construye el árbol automáticamente, para que el flujo
+// completo (tabla, árbol, recorridos) se vea sin tener que hacer clic en
+// "Cargar archivo" primero. El botón sigue disponible por si se quiere
+// cargar un archivo distinto.
+if (loadFileBtn) {
+  fetch('alumnos.json')
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      alumnos = data.alumnos;
+      updateTable(data);
+      addprint();
+      recorridosAVL();
+    })
+    .catch(function (err) {
+      console.log('No se pudo auto-cargar alumnos.json:', err);
+    });
+}

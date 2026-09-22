@@ -94,6 +94,7 @@ const translations = {
     "projects.empty": "Aún no hay proyectos públicos para mostrar.",
     "projects.viewAll": "Ver todos en GitHub",
     "projects.viewDemo": "Ver demo en vivo",
+    "projects.howTo": "Cómo probarlo",
     "projects.updated": "Actualizado",
     "projects.noDescription": "Sin descripción todavía.",
 
@@ -228,6 +229,7 @@ const translations = {
     "projects.empty": "No public projects to show yet.",
     "projects.viewAll": "View all on GitHub",
     "projects.viewDemo": "View live demo",
+    "projects.howTo": "How to try it",
     "projects.updated": "Updated",
     "projects.noDescription": "No description yet.",
 

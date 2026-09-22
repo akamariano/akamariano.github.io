@@ -40,6 +40,10 @@
     "EDD_1S2023_PY_202101149": "demos/edd-estructuras/index.html",
     "centro-jas-naranjo": "https://akamariano.github.io/centro-jas-naranjo/"
   },
+  "howTo": {
+    "EDD_1S2023_PY_202101149": "Admin: admin / admin → carga alumnos.json → construye el árbol AVL. Estudiante: carnet 12345, contraseña abc1239 → crea carpetas y asigna permisos.",
+    "centro-jas-naranjo": "Regístrate con cualquier dato para generar tu carnet con QR, o entra como Administrador (modo de prueba) para ver el check-in."
+  },
   "screenshot": {
     "centro-jas-naranjo": "assets/img/projects/centro-jas-naranjo.jpg",
     "OLC2_1S2026_P1_202101149": "assets/img/projects/olc2.jpg",

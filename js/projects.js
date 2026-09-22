@@ -55,6 +55,9 @@
             ${demoIconSvg()}<span>${t("projects.viewDemo")}</span>
           </a>
         ` : ""}
+        ${project.howTo ? `
+          <p class="project-howto"><strong>${t("projects.howTo")}:</strong> ${project.howTo}</p>
+        ` : ""}
       </div>
     `;
     return card;

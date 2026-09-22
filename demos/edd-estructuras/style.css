@@ -6,6 +6,7 @@
   --border: rgba(0, 0, 0, 0.1);
   --accent: #0071e3;
   --accent-2: #7b5cff;
+  --btn-gradient-2: #6a3fe0;
   --success: #1a9d5c;
   --danger: #d63838;
   --radius: 14px;
@@ -92,7 +93,8 @@ h2 {
 p.lede {
   color: var(--text-secondary);
   margin: 0 0 28px;
-  font-size: 0.9375rem;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .card {
@@ -133,17 +135,21 @@ p.lede {
 }
 
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 18px;
+  gap: 9px;
+  padding: 13px 22px;
   border-radius: 999px;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 600;
+  letter-spacing: -0.005em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 120ms ease, background 150ms ease, box-shadow 150ms ease;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1), background 280ms ease;
   font-family: inherit;
 }
 
@@ -151,24 +157,54 @@ p.lede {
   transform: scale(0.96);
 }
 
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.45) 50%, transparent 65%);
+  transform: translateX(-70%);
+  opacity: 0;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.btn:hover::before {
+  transform: translateX(70%);
+  opacity: 1;
+}
+
+.btn > * {
+  position: relative;
+  z-index: 2;
+}
+
 .btn-primary {
-  background: var(--accent);
+  background: linear-gradient(150deg, var(--accent) 0%, var(--btn-gradient-2) 100%);
   color: #fff;
   width: 100%;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 16px rgba(0, 113, 227, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 113, 227, 0.35), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.96);
 }
 
 .btn-secondary {
   background: var(--bg);
   color: var(--text);
   border-color: var(--border);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
 }
 
 .btn-secondary:hover {
   background: #e8e8ed;
+  transform: translateY(-1px);
 }
 
 .btn-danger {
@@ -184,8 +220,14 @@ p.lede {
 .btn-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin: 20px 0 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::before {
+    display: none;
+  }
 }
 
 .hint {

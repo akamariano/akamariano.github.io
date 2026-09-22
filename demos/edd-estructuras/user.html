@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+	<style>
+        body {
+          background-image: url('https://eltutor.files.wordpress.com/2008/06/usacwalls-001-1600x1200.jpg');
+        }
+        #image3 {
+      /* Opciones de posicionamiento */
+      position: absolute; /* Permite posicionar el elemento utilizando las propiedades top, right, bottom y left */
+      top: 1600px; /* Posición desde la parte superior de la ventana */
+      left: 500px; /* Posición desde la parte izquierda de la ventana */
+
+      /* Otras opciones de estilo */
+      width: 450px; /* Ancho de la imagen */
+      height: auto; /* Altura proporcional al ancho de la imagen */
+      /* border: 2px solid black; Borde de la imagen */
+    }
+    .carpeta {
+            display: inline-block;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .carpeta-icon {
+            font-size: 70px;
+            color: #228b4e;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .archivo-icon {
+            font-size: 70px;
+            color: #0000FF;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        #arbol {
+  background-color: white;
+}
+#benus {
+  background-color: white;
+}
+    </style>
+</head>
+<body>
+	<!-- <div id="texto"></div> -->
+    <nav class="navbar navbar-dark bg-primary" style="background-color: #265f70;">
+        <div class="container-fluid">
+            <a class="navbar-brand"  href="#">Bienvenido usuario</a>
+        </div>
+		<button id="btnLogout" type="button" class="btn btn-secondary ms-auto btn-danger">Cerrar sesión</button>
+    </nav>
+    <div id="arbol" ></div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div id="benus" >
+                <h2 class="mb-4"></h2>
+            </div>
+                
+                
+                <div class="input-group mb-3">
+                    <input type="text" id="ruta" class="form-control" placeholder="Ej. /" aria-label="Ruta de la carpeta">
+                    <input type="text" id="carpeta" class="form-control" placeholder="Ej. Carpeta1" aria-label="Nombre de la carpeta">
+                    <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" onclick="agregarVarios()">Agregar Carpeta</button>
+                    <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" onclick="eliminarVarios()">Eliminar Carpeta</button>
+                    <button class="btn btn-outline-secondary" style="background-color:  #228b4e; color: azure;" type="button" onclick="Muestraico()">Mostrar Carpetas</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img id="image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="user.js"></script>
+	<script src="admin.js"></script>
+    
+    
+    <div class="container">
+        <div class="input-group mb-3">
+            <input type="text" id="ruta2" class="form-control" placeholder="Ej. /" aria-label="Ruta de la carpeta">
+            <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" id="button-addon1" onclick="cargarArchivo()">Cargar Archivo</button>
+            <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" id="button-addon1" onclick="reporteMatriz()">Mostrar Reporte Matriz</button>
+            <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" id="button-addon1" onclick="asignarPermisos()">Asignar Permisos</button>
+            <input type="text" id="permiso" class="form-control" placeholder="Ej. arhivo.png-201700918-rw" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        </div>
+        <div>
+            <input type="file" id="input" multiple />
+        </div>
+        <div class="container">
+            <img id="image2">
+            
+            <iframe id="pdf" width=100% height=600></iframe>
+            <script src="dispersa.js">
+            </script>
+        </div>
+    </div>
+    <img id="image3">
+    </div>
+    <img id="image4">
+</body>
+</html>

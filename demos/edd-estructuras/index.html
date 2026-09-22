@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Iniciar sesión</title>
+	<!-- Importar CSS de Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+          background-image: url('https://eltutor.files.wordpress.com/2008/06/usacwalls-001-1600x1200.jpg');
+        }
+    </style>
+</head>
+<body>
+    
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<h1 class="text-center mb-4">Iniciar sesión</h1>
+				<form id="loginForm">
+					<div class="form-group">
+						<label for="username">Carnet</label>
+						<input type="text" class="form-control" id="username" name="username" required>
+					</div>
+					<div class="form-group">
+						<label for="password">Contraseña</label>
+						<input type="password" class="form-control" id="password" name="password" required>
+					</div>
+					<div id="errorMessage"c class="text-danger mb-3" style="display:none;">Usuario o contraseña incorrectos.</div>
+					<button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Importar JS de Bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="index.js"></script>
+	<script src="admin.js"></script>
+	<script src="user.js"></script>
+</body>
+</html>

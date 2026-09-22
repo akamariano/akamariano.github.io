@@ -35,6 +35,9 @@
     "MIA_1S2026_P2_2022101149": ["AWS EC2", "AWS S3"],
     "MIA_1S2026_P1_202101149": ["AWS EC2", "AWS S3"]
   },
+  "demoUrl": {
+    "EDD_1S2023_PY_202101149": "demos/edd-estructuras/index.html"
+  },
   "descriptions": {
     "OLC2_1S2026_P1_202101149": "Intérprete del lenguaje Golampi para el curso de Organización de Lenguajes y Compiladores 2: análisis léxico, sintáctico y semántico.",
     "MIA_1S2026_P2_2022101149": "Implementación de un sistema de archivos (ExtreamFS) en C++, desplegado en instancias de AWS EC2 con S3 como backend de almacenamiento, usando CMake y Makefile.",

@@ -93,6 +93,7 @@ const translations = {
     "projects.error": "No se pudieron cargar los proyectos automáticamente. Visítalos directo en GitHub.",
     "projects.empty": "Aún no hay proyectos públicos para mostrar.",
     "projects.viewAll": "Ver todos en GitHub",
+    "projects.viewDemo": "Ver demo en vivo",
     "projects.updated": "Actualizado",
     "projects.noDescription": "Sin descripción todavía.",
 
@@ -226,6 +227,7 @@ const translations = {
     "projects.error": "Projects couldn't be loaded automatically. Check them out directly on GitHub.",
     "projects.empty": "No public projects to show yet.",
     "projects.viewAll": "View all on GitHub",
+    "projects.viewDemo": "View live demo",
     "projects.updated": "Updated",
     "projects.noDescription": "No description yet.",
 

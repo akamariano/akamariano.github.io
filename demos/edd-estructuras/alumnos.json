@@ -1,0 +1,37 @@
+{
+	"alumnos": [
+		{
+			"nombre": "Juan Pérez",
+			"carnet": 12345,
+			"password": "abc1239",
+			"Carpeta_Raiz": "/"
+		},
+		{
+			"nombre": "María García",
+			"carnet": 67890,
+			"password": "def4568",
+			"Carpeta_Raiz": "/"
+		}
+		,
+		{
+			"nombre": "Mora",
+			"carnet": 123123123,
+			"password": "def45677",
+			"Carpeta_Raiz": "/"
+		}
+		,
+		{
+			"nombre": "Bad Bunny",
+			"carnet": 123123,
+			"password": "def4567",
+			"Carpeta_Raiz": "/"
+		}
+		,
+		{
+			"nombre": "FERXXO",
+			"carnet": 19,
+			"password": "def456",
+			"Carpeta_Raiz": "/"
+		}
+	]
+}

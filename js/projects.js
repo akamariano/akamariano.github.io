@@ -25,13 +25,14 @@
     return '<svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" style="margin-right:4px"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7L12 2Z"/></svg>';
   }
 
+  function demoIconSvg() {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v18l15-9L5 3Z"/></svg>';
+  }
+
   function renderProject(project) {
     const lang = window.currentLang || "es";
-    const card = document.createElement("a");
+    const card = document.createElement("div");
     card.className = "card project-card";
-    card.href = project.url;
-    card.target = "_blank";
-    card.rel = "noopener";
 
     const description = project.description || t("projects.noDescription");
     const updated = project.updatedAt
@@ -40,13 +41,18 @@
     const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
 
     card.innerHTML = `
-      <div class="project-name">${repoIconSvg()}${project.name}</div>
+      <a class="project-name" href="${project.url}" target="_blank" rel="noopener">${repoIconSvg()}${project.name}</a>
       <p>${description}</p>
       ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
       <div class="project-meta">
         ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}
         ${updated ? `<span>${t("projects.updated")} ${updated}</span>` : ""}
       </div>
+      ${project.demoUrl ? `
+        <a class="btn btn-primary project-demo-btn" href="${project.demoUrl}" target="_blank" rel="noopener">
+          ${demoIconSvg()}<span>${t("projects.viewDemo")}</span>
+        </a>
+      ` : ""}
     `;
     return card;
   }

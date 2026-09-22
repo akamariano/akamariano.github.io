@@ -17,9 +17,10 @@ async function loadConfig() {
       pinned: parsed.pinned ?? [],
       descriptions: parsed.descriptions ?? {},
       extraTech: parsed.extraTech ?? {},
+      demoUrl: parsed.demoUrl ?? {},
     };
   } catch {
-    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {} };
+    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {}, demoUrl: {} };
   }
 }
 
@@ -63,13 +64,14 @@ async function fetchRepos() {
   return res.json();
 }
 
-async function toCard(repo, { descriptions, extraTech }) {
+async function toCard(repo, { descriptions, extraTech, demoUrl }) {
   const extra = extraTech[repo.name] ?? [];
   return {
     name: repo.name,
     description: descriptions[repo.name] || repo.description,
     url: repo.html_url,
     homepage: repo.homepage || null,
+    demoUrl: demoUrl[repo.name] ?? null,
     language: repo.language,
     tech: [...extra, ...(await fetchTech(repo.name))],
     stars: repo.stargazers_count,

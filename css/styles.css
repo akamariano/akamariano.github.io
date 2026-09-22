@@ -789,6 +789,10 @@ p {
 /* ==========================================================================
    Projects
    ========================================================================== */
+.projects-grid[hidden] {
+  display: none;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1047,5 +1051,162 @@ footer p {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ==========================================================================
+   404 / Debug Snake
+   ========================================================================== */
+.notfound-hero {
+  padding: 100px 0 40px;
+  max-width: 640px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.notfound-hero .eyebrow {
+  display: block;
+}
+
+.notfound-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 16px;
+}
+
+.notfound-hero p {
+  margin: 0 auto 28px;
+}
+
+.notfound-hero code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  background: var(--chip-bg);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.notfound-hero .btn {
+  display: inline-flex;
+}
+
+.game-section {
+  padding: 0 0 96px;
+  display: flex;
+  justify-content: center;
+}
+
+.game-card {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.game-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.game-header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.game-scores {
+  display: flex;
+  gap: 16px;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.game-board-wrap {
+  position: relative;
+  align-self: center;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+#game-canvas {
+  display: block;
+  touch-action: none;
+}
+
+.game-overlay[hidden] {
+  display: none;
+}
+
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 24px;
+  background: color-mix(in srgb, var(--surface-solid) 78%, transparent);
+  backdrop-filter: blur(6px);
+}
+
+.game-overlay-title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.game-overlay-text {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  max-width: 30ch;
+  margin: 0 0 6px;
+}
+
+.game-dpad {
+  align-self: center;
+  display: grid;
+  grid-template-columns: repeat(3, 52px);
+  grid-template-rows: repeat(3, 52px);
+  gap: 6px;
+}
+
+.dpad-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 120ms var(--spring-snappy), background 200ms var(--spring);
+}
+
+.dpad-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dpad-btn:hover {
+  background: var(--chip-bg);
+}
+
+.dpad-btn:active {
+  transform: scale(0.92);
+}
+
+.dpad-up { grid-column: 2; grid-row: 1; }
+.dpad-left { grid-column: 1; grid-row: 2; }
+.dpad-down { grid-column: 2; grid-row: 3; }
+.dpad-right { grid-column: 3; grid-row: 2; }
+
+@media (min-width: 640px) {
+  .game-dpad {
+    display: none;
   }
 }

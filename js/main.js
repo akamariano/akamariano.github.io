@@ -96,18 +96,20 @@
   const navToggle = document.getElementById("nav-toggle");
   const navLinksMobile = document.getElementById("nav-links-mobile");
 
-  navToggle.addEventListener("click", () => {
-    const isOpen = !navLinksMobile.hidden;
-    navLinksMobile.hidden = isOpen;
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-  });
-
-  navLinksMobile.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      navLinksMobile.hidden = true;
-      navToggle.setAttribute("aria-expanded", "false");
+  if (navToggle && navLinksMobile) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = !navLinksMobile.hidden;
+      navLinksMobile.hidden = isOpen;
+      navToggle.setAttribute("aria-expanded", String(!isOpen));
     });
-  });
+
+    navLinksMobile.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinksMobile.hidden = true;
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
 
   /* ---------------- Reveal on scroll ---------------- */
   const revealTargets = document.querySelectorAll(".reveal");
@@ -135,6 +137,7 @@
   /* ---------------- Barra de progreso de scroll ---------------- */
   const progressBar = document.getElementById("scroll-progress");
   function updateProgress() {
+    if (!progressBar) return;
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
@@ -145,6 +148,7 @@
   const whatsappFab = document.getElementById("whatsapp-fab");
   const heroSection = document.getElementById("top");
   function updateFab() {
+    if (!whatsappFab) return;
     const heroBottom = heroSection ? heroSection.getBoundingClientRect().bottom : 0;
     whatsappFab.classList.toggle("is-visible", heroBottom < 0);
   }

@@ -114,6 +114,24 @@ const translations = {
     "contact.title": "Contacto y redes",
     "contact.email": "Correo",
     "contact.whatsappCta": "Escríbeme por WhatsApp",
+
+    "notfound.eyebrow": "Error 404",
+    "notfound.title": "Esta ruta no compiló",
+    "notfound.body": "La página que buscas no existe, se movió, o nunca hizo commit. Mientras lo resolvemos, recoge los \";\" con la serpiente antes de que truene con un segfault.",
+    "notfound.back": "Volver al inicio",
+
+    "game.title": "Debug Snake",
+    "game.score": "Puntaje",
+    "game.best": "Mejor",
+    "game.startTitle": "Debug Snake",
+    "game.startText": "Usa las flechas o WASD. Recoge los \";\" para crecer y sumar puntos.",
+    "game.play": "Jugar",
+    "game.again": "Jugar de nuevo",
+    "game.overTitle": "Segfault 💥",
+    "game.overText": "Chocaste con tu propio código.",
+    "game.newBest": "¡Nuevo mejor puntaje!",
+    "game.pausedTitle": "Pausado",
+    "game.pausedText": "Presiona una flecha o toca un botón para seguir.",
   },
 
   en: {
@@ -229,6 +247,24 @@ const translations = {
     "contact.title": "Contact & socials",
     "contact.email": "Email",
     "contact.whatsappCta": "Message me on WhatsApp",
+
+    "notfound.eyebrow": "404 error",
+    "notfound.title": "This route failed to compile",
+    "notfound.body": "The page you're looking for doesn't exist, got moved, or never got committed. While we sort it out, grab the \";\" with the snake before you hit a segfault.",
+    "notfound.back": "Back to home",
+
+    "game.title": "Debug Snake",
+    "game.score": "Score",
+    "game.best": "Best",
+    "game.startTitle": "Debug Snake",
+    "game.startText": "Use the arrow keys or WASD. Grab the \";\" to grow and score.",
+    "game.play": "Play",
+    "game.again": "Play again",
+    "game.overTitle": "Segfault 💥",
+    "game.overText": "You crashed into your own code.",
+    "game.newBest": "New best score!",
+    "game.pausedTitle": "Paused",
+    "game.pausedText": "Press an arrow key or tap a button to continue.",
   },
 };
 

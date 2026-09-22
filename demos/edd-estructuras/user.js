@@ -15,12 +15,7 @@ return carnet1
 function showAlert(message) {
     alert(message);
     user=message
-    
-  }
-  function mostrarTextoEnH2(texto) {
-    const elementoH2 = document.getElementById("texto-bienvenida");
-    elementoH2.innerText = texto;
-    nuser=texto;
+
   }
   
   class nodoArbol{
@@ -93,7 +88,7 @@ class ArbolNArio{
         }
         let url = 'https://quickchart.io/graphviz?graph=';
         let body = carpeta.matriz.reporte();
-        $("#image2").attr("src",url+body)
+        document.getElementById("image2").src = url + body;
     }
     else{
         console.log("ENTRO AL ELSE");
@@ -573,8 +568,8 @@ class ArbolNArio{
             localStorage.setItem('miMatriz', p);
                 let url = 'https://quickchart.io/graphviz?graph=';
                 let body = carpeta.matriz.reporte();
-                $("#image2").attr("src", url + body);
-                
+                document.getElementById("image2").src = url + body;
+
             }
         }
     }
@@ -623,23 +618,18 @@ async function graficarListaCircular(listaCircular) {
   
     const codigoGraphviz = generarCodigoGraphviz(listaCircular);
     const urlQuickChart = `https://quickchart.io/graphviz?graph=${encodeURIComponent(codigoGraphviz)}`;
-    const response = await fetch(urlQuickChart);
-    const blob = await response.blob();
-    const objectURL = URL.createObjectURL(blob);
-  
-    // Establecer la URL de objeto como el atributo src del elemento <img> con id "image3"
     const imagen = document.getElementById("image3");
-    imagen.src = objectURL;
+    try {
+      const response = await fetch(urlQuickChart);
+      const blob = await response.blob();
+      const objectURL = URL.createObjectURL(blob);
+      if (imagen) imagen.src = objectURL;
+    } catch (e) {
+      console.log("No se pudo generar el gráfico del historial:", e);
+    }
   }
 function agregarVarios(){
-    
-    arbolnario= cargarArbolNADesdeLocalStorage();
-    
-    // console.log("CIRCULAR"+cargarListaCircularDesdeLocalStorage())
-    //  lcircle=cargarListaCircularDesdeLocalStorage();
-    
-    //  console.log("Circular")
-    //  lcircle.imprimir();
+    arbolnario = cargarArbolNADesdeLocalStorage();
     let ruta = document.getElementById("ruta").value;
     let carpeta = document.getElementById("carpeta").value;
     try{
@@ -721,7 +711,7 @@ class NodoCircular {
 function refrescarArbol(){
     let url = 'https://quickchart.io/graphviz?graph=';
     let body = arbolnario.grafica_arbol();
-    $("#image").attr("src", url + body);
+    document.getElementById("image").src = url + body;
     document.getElementById("carpeta").value = "";
 }
 
@@ -730,9 +720,12 @@ function mostraCarpetas(){
     arbolnario.mostrarCarpetasActuales(ruta)
 }
 
-document.getElementById("btnLogout").addEventListener("click", function() {
+var btnLogoutUser = document.getElementById("btnLogout");
+if (btnLogoutUser) {
+  btnLogoutUser.addEventListener("click", function () {
     window.location.href = "index.html";
   });
+}
   function generarArbolHtml(nodo, contenedor) {
     if (!nodo) {
         return;
@@ -795,6 +788,6 @@ ar = cargarArbolNADesdeLocalStorage();
 generarArbolHtml(ar.raiz, arbolContenedor1);
 }
 function mostrarTexto(texto) {
-    const elementoH2 = document.querySelector('h2'); // o usa document.getElementById('id-del-h2')
-  elementoH2.innerText = "Se encuentra en sesión "+texto;
+    const badge = document.getElementById('sessionBadge');
+    if (badge) badge.innerText = "Sesión activa: " + texto;
   }

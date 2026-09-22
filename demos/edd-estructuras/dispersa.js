@@ -1,5 +1,5 @@
 const inputElement = document.getElementById("input");
-inputElement.addEventListener("change", onChange, false);
+if (inputElement) inputElement.addEventListener("change", onChange, false);
 let nombreArchivo = ""
 let base64String = ""
 function onChange(event) {
@@ -351,12 +351,12 @@ function reporteMatriz(){
     }
     let url = 'https://quickchart.io/graphviz?graph=';
     let body = matriz.reporte();
-    $("#image2").attr("src",url+body)
+    document.getElementById("image2").src = url + body;
 }
 function reporteMatriz2(matriz){
     let url = 'https://quickchart.io/graphviz?graph=';
     let body = matriz.reporte();
-    $("#image4").attr("src",url+body)
+    document.getElementById("image4").src = url + body;
 }
 function cargarArchivo(){
    
@@ -374,19 +374,9 @@ function cargarArchivo(){
     listaCircularDesdeLocalStorage.imprimir();
     graficarListaCircular(listaCircularDesdeLocalStorage);
    actualizarNodoCircu(getcurrentuserid(), convertirListaCircularAArregloLineal(listaCircularDesdeLocalStorage));
-//    console.log("RAIZ"+getcurrentuser().raiz.matriz);
-//    arbito = new ArbolNArio();
-//    arbito.
-//    arbito=getcurrentuser();
-//    arbito
-//    arbito.BuscarCarpetaV2Matriz("/");
 arbolnario1.modificarMatriz(ruta, matriz.toJSON())
 guardarArbolNAEnLocalStorage(arbolnario1);
 actualizarNodo(getcurrentuserid(), arbolnario1);
-  
-//    console.log("/")
-//    arb = new ArbolNArio();
-//    console.log(arb.BuscarCarpetaV2("/").matriz);
     reporteMatriz();
     recargarPagina();
 }

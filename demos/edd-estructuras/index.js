@@ -1,23 +1,23 @@
 function checkLogin(event) {
-	imprimirArbolDesdeLocalStorage();
-	console.log(cargarArbolDesdeLocalStorage());
 	event.preventDefault();
-	
-	// Obtener los valores de entrada de usuario y contraseña
+
 	var username = document.getElementById("username").value;
 	var password = document.getElementById("password").value;
+	var errorMessage = document.getElementById("errorMessage");
+	if (errorMessage) errorMessage.style.display = "none";
 
-	// Verificar si el usuario y la contraseña son correctos
 	if (username === "admin" && password === "admin") {
-		// Redirigir al usuario a la página de admin
 		window.location.replace("admin.html");
-	} else {
-		// Mostrar un mensaje de error
-		iniciarSesion(username,password);
-		
-		
+		return;
+	}
+
+	var ok = iniciarSesion(username, password);
+	if (!ok && errorMessage) {
+		errorMessage.style.display = "block";
 	}
 }
 
 var loginForm = document.getElementById("loginForm");
-loginForm.addEventListener("submit", checkLogin);
+if (loginForm) {
+	loginForm.addEventListener("submit", checkLogin);
+}

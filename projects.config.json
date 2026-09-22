@@ -7,7 +7,6 @@
     "INARK",
     "akamariano.github.io",
     "kristel",
-    "centro-jas-naranjo",
     "IPC1-Practica1_202101149",
     "IPC1-Practica2_202101149",
     "IPC1-Proyecto1_202101149",
@@ -24,6 +23,7 @@
     "P2_OLCA_202101149"
   ],
   "pinned": [
+    "centro-jas-naranjo",
     "OLC2_1S2026_P1_202101149",
     "MIA_1S2026_P2_2022101149",
     "MIA_1S2026_P1_202101149",
@@ -33,18 +33,22 @@
   ],
   "extraTech": {
     "MIA_1S2026_P2_2022101149": ["AWS EC2", "AWS S3"],
-    "MIA_1S2026_P1_202101149": ["AWS EC2", "AWS S3"]
+    "MIA_1S2026_P1_202101149": ["AWS EC2", "AWS S3"],
+    "centro-jas-naranjo": ["React", "PostgreSQL", "Express", "Tailwind"]
   },
   "demoUrl": {
-    "EDD_1S2023_PY_202101149": "demos/edd-estructuras/index.html"
+    "EDD_1S2023_PY_202101149": "demos/edd-estructuras/index.html",
+    "centro-jas-naranjo": "https://akamariano.github.io/centro-jas-naranjo/"
   },
   "screenshot": {
+    "centro-jas-naranjo": "assets/img/projects/centro-jas-naranjo.jpg",
     "OLC2_1S2026_P1_202101149": "assets/img/projects/olc2.jpg",
     "MIA_1S2026_P2_2022101149": "assets/img/projects/mia-p2.jpg",
     "MIA_1S2026_P1_202101149": "assets/img/projects/mia-p1.jpg",
     "ACE2_2S23_G2": "assets/img/projects/ace2.jpg"
   },
   "descriptions": {
+    "centro-jas-naranjo": "Plataforma de registro de asistentes con carnet/QR descargable y check-in híbrido (cámara o búsqueda manual) para un centro comunitario. Demo en modo de prueba: los datos se guardan solo en el navegador.",
     "OLC2_1S2026_P1_202101149": "Intérprete del lenguaje Golampi para el curso de Organización de Lenguajes y Compiladores 2: análisis léxico, sintáctico y semántico.",
     "MIA_1S2026_P2_2022101149": "Implementación de un sistema de archivos (ExtreamFS) en C++, desplegado en instancias de AWS EC2 con S3 como backend de almacenamiento, usando CMake y Makefile.",
     "MIA_1S2026_P1_202101149": "Primera fase del proyecto de sistema de archivos ExtreamFS, en C++ con CMake, desplegado sobre AWS EC2 y S3.",

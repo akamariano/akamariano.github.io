@@ -77,52 +77,29 @@ class NodoAVL {
 	}
   
 	// Función auxiliar para realizar una rotación hacia la izquierda
+	// (reenlaza los nodos en vez de copiar sus campos uno por uno, que era
+	// la causa de que se perdieran o duplicaran estudiantes al balancear)
 	rotacionIzquierda(nodo) {
-	  const nodoDerecho = nodo.derecho;
-	  const nodoIzquierdoSubArbolDerecho = nodoDerecho.izquierdo;
-  
-	  nodoDerecho.izquierdo = nodo;
-	  nodoDerecho.nombre = nodo.nombre;
-	  nodoDerecho.valor = nodo.valor;
-	  nodoDerecho.contraseña = nodo.contraseña;
-	  nodoDerecho.nario = nodo.nario;
-	  nodoDerecho.click=nodo.circular;
-	  if (nodoIzquierdoSubArbolDerecho !== null) {
-		nodo.nombre = nodoIzquierdoSubArbolDerecho.nombre;
-		nodo.valor = nodoIzquierdoSubArbolDerecho.valor;
-		nodo.contraseña = nodoIzquierdoSubArbolDerecho.contraseña;
-		nodo.nario = nodoIzquierdoSubArbolDerecho.nario;
-		nodo.circular = nodoIzquierdoSubArbolDerecho.circular;
-	  }
-	  nodo.derecho = nodoIzquierdoSubArbolDerecho;
+	  const nuevaRaiz = nodo.derecho;
+	  nodo.derecho = nuevaRaiz.izquierdo;
+	  nuevaRaiz.izquierdo = nodo;
 
 	  nodo.altura = Math.max(this.altura(nodo.izquierdo), this.altura(nodo.derecho)) + 1;
-	  nodoDerecho.altura = Math.max(this.altura(nodoDerecho.izquierdo), this.altura(nodoDerecho.derecho)) + 1;
-  
-	  return nodoDerecho;
+	  nuevaRaiz.altura = Math.max(this.altura(nuevaRaiz.izquierdo), this.altura(nuevaRaiz.derecho)) + 1;
+
+	  return nuevaRaiz;
 	}
   
 	// Función auxiliar para realizar una rotación hacia la derecha
 	rotacionDerecha(nodo) {
-	  const nodoIzquierdo = nodo.izquierdo;
-	  const nodoDerechoSubArbolIzquierdo = nodoIzquierdo.derecho;
-	  nodoIzquierdo.derecho = nodo;
-	  nodoIzquierdo.nombre = nodo.nombre;
-	  nodoIzquierdo.valor = nodo.valor;
-	  nodoIzquierdo.contraseña = nodo.contraseña;
-	  nodoIzquierdo.nario=nodo.nario;
-	  nodoIzquierdo.circular=nodo.circular;
-	  if (nodoDerechoSubArbolIzquierdo !== null) {
-		nodo.nombre = nodoDerechoSubArbolIzquierdo.nombre;
-		nodo.valor = nodoDerechoSubArbolIzquierdo.valor;
-		nodo.contraseña = nodoDerechoSubArbolIzquierdo.contraseña;
-		nodo.nario = nodoDerechoSubArbolIzquierdo.nario;
-		nodo.circular = nodoDerechoSubArbolIzquierdo.circular;
-	  }
+	  const nuevaRaiz = nodo.izquierdo;
+	  nodo.izquierdo = nuevaRaiz.derecho;
+	  nuevaRaiz.derecho = nodo;
+
 	  nodo.altura = Math.max(this.altura(nodo.izquierdo), this.altura(nodo.derecho)) + 1;
-	  nodoIzquierdo.altura = Math.max(this.altura(nodoIzquierdo.izquierdo), this.altura(nodoIzquierdo.derecho)) + 1;
-  
-	  return nodoIzquierdo;
+	  nuevaRaiz.altura = Math.max(this.altura(nuevaRaiz.izquierdo), this.altura(nuevaRaiz.derecho)) + 1;
+
+	  return nuevaRaiz;
 	}
   
 	// Función para insertar un nodo en el árbol AVL
@@ -211,13 +188,6 @@ imprimir() {
 	  graph += this.imprimirNodo1(nodo.izquierdo);
 	  graph += this.imprimirNodo1(nodo.derecho);
 	}
-	// const miParrafo = document.getElementById("miParrafo");
-	// miParrafo.textContent = graph;
-	// const image = Viz(graph, { format: "svg" });
-	// const graphDiv = document.getElementById("graph");
-	// Insertar la imagen SVG en el div
-	// graphDiv.innerHTML = image;
-	
 	return graph;
   }
 	
@@ -271,15 +241,32 @@ imprimirArbolDesdeLocalStorage();
 }
 
 function graficar_binario(){
-// console.log("PROBANDOOOOO"+graphText)
-// arbolAVL.imprimirpos()
-// arbolAVL.imprimirpre()
-d3.select("#"+"lienzo").graphviz()
-	.width(3000)
-	.height(1000)
-	.renderDot(graphText);
-	console.log("ALUM"+alumnos.nario);
+	const lienzo = document.getElementById("lienzo");
+	try {
+		d3.select("#lienzo").graphviz()
+			.width(3000)
+			.height(1000)
+			.onerror(function () { mostrarErrorGrafico(); })
+			.renderDot(graphText);
+		// Si la librería externa (WASM en un Web Worker) no logra cargar,
+		// no siempre dispara onerror — verificamos tras un momento.
+		setTimeout(function () {
+			if (lienzo && !lienzo.querySelector("svg")) {
+				mostrarErrorGrafico();
+			}
+		}, 4000);
+	} catch (e) {
+		mostrarErrorGrafico();
+	}
 
+}
+function mostrarErrorGrafico(){
+	const lienzo = document.getElementById("lienzo");
+	if (lienzo && !lienzo.querySelector("svg")) {
+		lienzo.innerHTML = '<p style="color:#6e6e73;font-size:0.875rem;margin:0;">' +
+			'No se pudo cargar el visualizador gráfico (librería externa). ' +
+			'Los datos del árbol siguen disponibles en los recorridos de arriba.</p>';
+	}
 }
 // Función para guardar el árbol AVL en LocalStorage
 function guardarArbolEnLocalStorage(arbol) {
@@ -462,12 +449,9 @@ function iniciarSesion(carnet, contraseña) {
 		guardarArbolNAEnLocalStorage(nodoEncontrado.nario);
 		getcurrentuser();
 		
-		showAlert("Bienvenido "+carnet); 
+		showAlert("Bienvenido "+carnet);
 		window.location.assign("user.html");
-		
-	  
-	//   mostrarTextoEnH2(carnet);
-	  
+
 	  return true
 	} else {
 	  console.log("Carnet o contraseña incorrectos");
@@ -523,26 +507,6 @@ function iniciarSesion(carnet, contraseña) {
 	  const arbolObj = JSON.parse(arbolSerializadoNa);
 	  const arbolNario = Object.assign(new ArbolNArio(), arbolObj);
 	  arbolNario.raiz = Object.assign(new nodoArbol(), arbolObj.raiz);
-	//   const changeNestedMatrix = (nodo) => {
-	// 	if (nodo) {
-	// 	  if (node.matrix) {
-	// 		const matrixConverted =  arbolNario.deserializeMatrix(nodo.matriz);
-	// 		console.log(matrixConverted )
-	// 		nodo.matriz = matrixConverted;
-	// 	  }
-	// 	  if (nodo.primero) {
-	// 		changeNestedMatrix(nodo.primero);
-	// 	  }
-	// 	  if (nodo.primero) {
-	// 		changeNestedMatrix(nodo.siguiente);
-	// 	  }
-	// 	}
-	//   };
-	//   changeNestedMatrix(arbolNario.raiz.primero);
-	  // Aquí podrías agregar más lógica para reconstruir correctamente el árbol si es necesario
-	  // parsear cada matriz
-
-	  console.log(arbolNario)
 	  return arbolNario;
 	} else {
 	  return null;
@@ -582,13 +546,21 @@ return usuariocur.valor
   }
   
 //////////////////////////
-// Evento para cargar el archivo al hacer clic en el botón correspondiente
+// Cableado de botones: solo corre si el elemento existe en la página actual
+// (admin.js se carga también en index.html porque el login depende de sus
+// funciones de árbol AVL, así que estos botones no siempre están presentes).
 var loadFileBtn = document.getElementById('loadFileBtn');
-loadFileBtn.addEventListener('click', loadFile);
+if (loadFileBtn) loadFileBtn.addEventListener('click', loadFile);
+
 var reload = document.getElementById('btnreload');
-reload.addEventListener('click', recorridosAVL);
+if (reload) reload.addEventListener('click', recorridosAVL);
+
 var avlvar = document.getElementById('avlload');
-avlvar.addEventListener('click', addprint);
-document.getElementById("btnLogout").addEventListener("click", function() {
-  window.location.href = "index.html";
-});
+if (avlvar) avlvar.addEventListener('click', addprint);
+
+var btnLogoutAdmin = document.getElementById("btnLogout");
+if (btnLogoutAdmin) {
+  btnLogoutAdmin.addEventListener("click", function () {
+    window.location.href = "index.html";
+  });
+}

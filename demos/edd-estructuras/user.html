@@ -1,107 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuario</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-	<style>
-        body {
-          background-image: url('https://eltutor.files.wordpress.com/2008/06/usacwalls-001-1600x1200.jpg');
-        }
-        #image3 {
-      /* Opciones de posicionamiento */
-      position: absolute; /* Permite posicionar el elemento utilizando las propiedades top, right, bottom y left */
-      top: 1600px; /* Posición desde la parte superior de la ventana */
-      left: 500px; /* Posición desde la parte izquierda de la ventana */
-
-      /* Otras opciones de estilo */
-      width: 450px; /* Ancho de la imagen */
-      height: auto; /* Altura proporcional al ancho de la imagen */
-      /* border: 2px solid black; Borde de la imagen */
-    }
-    .carpeta {
-            display: inline-block;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-        .carpeta-icon {
-            font-size: 70px;
-            color: #228b4e;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-        .archivo-icon {
-            font-size: 70px;
-            color: #0000FF;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-        #arbol {
-  background-color: white;
-}
-#benus {
-  background-color: white;
-}
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Panel de estudiante · EDD</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	<!-- <div id="texto"></div> -->
-    <nav class="navbar navbar-dark bg-primary" style="background-color: #265f70;">
-        <div class="container-fluid">
-            <a class="navbar-brand"  href="#">Bienvenido usuario</a>
+
+<header class="topbar">
+  <span class="topbar-brand">EDD · Panel de estudiante</span>
+  <div class="topbar-actions">
+    <button id="btnLogout" type="button" class="btn btn-danger">Cerrar sesión</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="session-badge" id="sessionBadge"></p>
+  <h1>Sistema de carpetas y permisos</h1>
+  <p class="lede">
+    Cada carpeta vive en un árbol N-ario. Los archivos y sus permisos por carnet se
+    guardan en una matriz dispersa (nodos enlazados por fila y columna). Cada acción
+    queda registrada en una lista circular de actividad.
+  </p>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <h2>Carpetas</h2>
+        <div class="input-row">
+          <input type="text" id="ruta" placeholder="Ruta, ej. /" />
+          <input type="text" id="carpeta" placeholder="Nombre de carpeta" />
         </div>
-		<button id="btnLogout" type="button" class="btn btn-secondary ms-auto btn-danger">Cerrar sesión</button>
-    </nav>
-    <div id="arbol" ></div>
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-md-6">
-                <div id="benus" >
-                <h2 class="mb-4"></h2>
-            </div>
-                
-                
-                <div class="input-group mb-3">
-                    <input type="text" id="ruta" class="form-control" placeholder="Ej. /" aria-label="Ruta de la carpeta">
-                    <input type="text" id="carpeta" class="form-control" placeholder="Ej. Carpeta1" aria-label="Nombre de la carpeta">
-                    <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" onclick="agregarVarios()">Agregar Carpeta</button>
-                    <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" onclick="eliminarVarios()">Eliminar Carpeta</button>
-                    <button class="btn btn-outline-secondary" style="background-color:  #228b4e; color: azure;" type="button" onclick="Muestraico()">Mostrar Carpetas</button>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <img id="image" class="img-fluid">
-            </div>
+        <div class="btn-row" style="margin-bottom:0;">
+          <button class="btn btn-secondary" type="button" onclick="agregarVarios()">+ Agregar</button>
+          <button class="btn btn-secondary" type="button" onclick="eliminarVarios()">− Eliminar</button>
+          <button class="btn btn-secondary" type="button" onclick="Muestraico()">Mostrar carpetas</button>
         </div>
+      </div>
+
+      <div class="tree-view" id="arbol"></div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="user.js"></script>
-	<script src="admin.js"></script>
-    
-    
-    <div class="container">
-        <div class="input-group mb-3">
-            <input type="text" id="ruta2" class="form-control" placeholder="Ej. /" aria-label="Ruta de la carpeta">
-            <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" id="button-addon1" onclick="cargarArchivo()">Cargar Archivo</button>
-            <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" id="button-addon1" onclick="reporteMatriz()">Mostrar Reporte Matriz</button>
-            <button class="btn btn-outline-secondary" style="background-color: #228b4e; color: azure;" type="button" id="button-addon1" onclick="asignarPermisos()">Asignar Permisos</button>
-            <input type="text" id="permiso" class="form-control" placeholder="Ej. arhivo.png-201700918-rw" aria-label="Example text with button addon" aria-describedby="button-addon1">
-        </div>
-        <div>
-            <input type="file" id="input" multiple />
-        </div>
-        <div class="container">
-            <img id="image2">
-            
-            <iframe id="pdf" width=100% height=600></iframe>
-            <script src="dispersa.js">
-            </script>
-        </div>
+
+    <div>
+      <div class="card">
+        <h2>Archivo activo</h2>
+        <img id="image" class="report-img" alt="Árbol de carpetas graficado" />
+      </div>
     </div>
-    <img id="image3">
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <h2>Archivos y permisos (matriz dispersa)</h2>
+    <div class="input-row">
+      <input type="text" id="ruta2" placeholder="Ruta de la carpeta, ej. /" />
+      <input type="file" id="input" />
     </div>
-    <img id="image4">
+    <div class="btn-row" style="margin-bottom:0;">
+      <button class="btn btn-secondary" type="button" onclick="cargarArchivo()">Cargar archivo</button>
+      <button class="btn btn-secondary" type="button" onclick="reporteMatriz()">Mostrar reporte</button>
+    </div>
+    <div class="input-row" style="margin-top:16px;">
+      <input type="text" id="permiso" placeholder="Ej. archivo.png-202101149-rw" />
+      <button class="btn btn-secondary" type="button" onclick="asignarPermisos()">Asignar permiso</button>
+    </div>
+    <img id="image2" class="report-img" alt="Reporte de la matriz de permisos" />
+  </div>
+
+  <div class="card" style="margin-top:24px;">
+    <h2>Historial de actividad (lista circular)</h2>
+    <img id="image3" class="report-img" alt="Historial de actividad" />
+  </div>
+
+  <img id="image4" class="report-img" alt="Reporte de matriz cargada" style="display:none;" />
+</main>
+
+<script src="user.js"></script>
+<script src="admin.js"></script>
+<script src="dispersa.js"></script>
+<script>
+  (function () {
+    var badge = document.getElementById("sessionBadge");
+    try {
+      var current = JSON.parse(localStorage.getItem("currentuser"));
+      if (badge && current) badge.textContent = "Sesión activa: " + current.valor;
+    } catch (e) { /* sin sesión guardada */ }
+  })();
+</script>
 </body>
 </html>

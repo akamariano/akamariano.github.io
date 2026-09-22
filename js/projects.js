@@ -32,7 +32,7 @@
   function renderProject(project) {
     const lang = window.currentLang || "es";
     const card = document.createElement("div");
-    card.className = "card project-card";
+    card.className = "card project-card" + (project.screenshot ? " has-thumb" : "");
 
     const description = project.description || t("projects.noDescription");
     const updated = project.updatedAt
@@ -41,18 +41,21 @@
     const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
 
     card.innerHTML = `
-      <a class="project-name" href="${project.url}" target="_blank" rel="noopener">${repoIconSvg()}${project.name}</a>
-      <p>${description}</p>
-      ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
-      <div class="project-meta">
-        ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}
-        ${updated ? `<span>${t("projects.updated")} ${updated}</span>` : ""}
+      ${project.screenshot ? `<img class="project-thumb" src="${project.screenshot}" alt="${project.name}" loading="lazy" />` : ""}
+      <div class="project-card-body">
+        <a class="project-name" href="${project.url}" target="_blank" rel="noopener">${repoIconSvg()}${project.name}</a>
+        <p>${description}</p>
+        ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
+        <div class="project-meta">
+          ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}
+          ${updated ? `<span>${t("projects.updated")} ${updated}</span>` : ""}
+        </div>
+        ${project.demoUrl ? `
+          <a class="btn btn-primary project-demo-btn" href="${project.demoUrl}" target="_blank" rel="noopener">
+            ${demoIconSvg()}<span>${t("projects.viewDemo")}</span>
+          </a>
+        ` : ""}
       </div>
-      ${project.demoUrl ? `
-        <a class="btn btn-primary project-demo-btn" href="${project.demoUrl}" target="_blank" rel="noopener">
-          ${demoIconSvg()}<span>${t("projects.viewDemo")}</span>
-        </a>
-      ` : ""}
     `;
     return card;
   }

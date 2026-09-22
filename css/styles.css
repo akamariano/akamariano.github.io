@@ -805,6 +805,30 @@ p {
   height: 100%;
 }
 
+.project-card.has-thumb {
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  background: var(--chip-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.has-thumb .project-card-body {
+  padding: 24px 28px 28px;
+}
+
 .project-card .project-name {
   font-weight: 700;
   font-size: 1.0625rem;

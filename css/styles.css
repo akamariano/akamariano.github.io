@@ -167,12 +167,18 @@ a {
 }
 
 section {
-  padding: 96px 0;
+  padding: 64px 0;
+}
+
+@media (max-width: 640px) {
+  section {
+    padding: 48px 0;
+  }
 }
 
 .eyebrow {
   display: block;
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   text-transform: uppercase;
@@ -207,7 +213,7 @@ p {
 }
 
 .section-head {
-  margin-bottom: 48px;
+  margin-bottom: 36px;
 }
 
 .section-head p {
@@ -718,7 +724,7 @@ p {
 }
 
 .badge-meta {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--accent-2);
   font-weight: 600;
   margin-bottom: 10px;
@@ -773,7 +779,7 @@ p {
 }
 
 .cert-meta {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   color: var(--text-secondary);
 }
 
@@ -819,7 +825,7 @@ p {
 }
 
 .resume-summary h3 {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .resume-summary ul {
@@ -829,11 +835,13 @@ p {
 }
 
 .resume-summary li {
-  margin-bottom: 6px;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
 }
 
 .resume-edu-title {
-  font-size: 2.25rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 18px;

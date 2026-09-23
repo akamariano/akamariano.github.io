@@ -114,6 +114,8 @@
   /* ---------------- Reveal on scroll ---------------- */
   const revealTargets = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && revealTargets.length) {
+    // threshold 0 + rootMargin: un umbral proporcional (p. ej. 0.15) nunca se
+    // alcanza en secciones más altas que ~7 pantallas y quedaban invisibles.
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -123,9 +125,20 @@
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: "0px 0px -10% 0px" }
     );
     revealTargets.forEach((el) => observer.observe(el));
+
+    // Al navegar por ancla (nav, botón "Ver proyectos"), mostrar la sección destino de inmediato
+    const revealHashTarget = () => {
+      const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (target && target.classList.contains("reveal")) {
+        target.classList.add("is-visible");
+        observer.unobserve(target);
+      }
+    };
+    window.addEventListener("hashchange", revealHashTarget);
+    revealHashTarget();
   } else {
     revealTargets.forEach((el) => el.classList.add("is-visible"));
   }

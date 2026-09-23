@@ -21,8 +21,9 @@
   let lastFrame = 0;
   let frozen = false;
   let lightWash = null; // gradiente que reemplaza el blanco plano en modo claro
+  let lightWashSettled = null; // mismo gradiente opaco: el color final ya "asentado"
 
-  function buildLightWash() {
+  function buildLightWash(opaque) {
     // Malla suave verde-ferxxo / celeste / morado en vez de un fondo blanco plano.
     // Nota: al repintarse cada frame, el color final "asentado" es el de estos stops
     // (el alpha solo controla qué tan rápido converge, no qué tan pálido queda) —
@@ -31,10 +32,10 @@
       width * 0.18, height * 0.12, 0,
       width * 0.5, height * 0.55, Math.max(width, height) * 0.95
     );
-    g.addColorStop(0, "rgba(228,250,176,0.16)"); // verde ferxxo pastel
-    g.addColorStop(0.35, "rgba(201,239,255,0.15)"); // celeste pastel
-    g.addColorStop(0.68, "rgba(227,217,255,0.14)"); // morado pastel
-    g.addColorStop(1, "rgba(242,245,239,0.22)"); // base pálida (no blanco puro)
+    g.addColorStop(0, `rgba(228,250,176,${opaque ? 1 : 0.16})`); // verde ferxxo pastel
+    g.addColorStop(0.35, `rgba(201,239,255,${opaque ? 1 : 0.15})`); // celeste pastel
+    g.addColorStop(0.68, `rgba(227,217,255,${opaque ? 1 : 0.14})`); // morado pastel
+    g.addColorStop(1, `rgba(242,245,239,${opaque ? 1 : 0.22})`); // base pálida (no blanco puro)
     return g;
   }
 
@@ -55,7 +56,8 @@
     canvas.style.height = height + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    lightWash = buildLightWash();
+    lightWash = buildLightWash(false);
+    lightWashSettled = buildLightWash(true);
 
     fontSize = width < 700 ? 19 : 25;
     const colCount = Math.floor(width / fontSize);
@@ -134,12 +136,10 @@
   function drawStaticFrame() {
     const dark = isDark();
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = dark ? "#000000" : "#f2f5ef";
+    // Un solo pase del gradiente translúcido queda casi blanco; en estático se
+    // pinta directo el color al que converge la animación.
+    ctx.fillStyle = dark ? "#000000" : lightWashSettled;
     ctx.fillRect(0, 0, width, height);
-    if (!dark) {
-      ctx.fillStyle = lightWash;
-      ctx.fillRect(0, 0, width, height);
-    }
     ctx.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
     ctx.textBaseline = "top";
     columns.forEach((col, i) => {

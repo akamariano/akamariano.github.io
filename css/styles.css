@@ -123,6 +123,54 @@ button:disabled {
   cursor: url("../assets/cursor.svg") 0 0, not-allowed;
 }
 
+/* Varita mágica cerca de los enlaces de WhatsApp (clase puesta por js/cursor-trail.js). */
+html.wand-mode,
+html.wand-mode * {
+  cursor: url("../assets/cursor-wand.svg") 7 6, pointer !important;
+}
+
+.yes-bubble {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  padding: 5px 10px;
+  font: 700 0.875rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: 0.02em;
+  color: #0f1a00;
+  background: #3dd332;
+  border: 2px solid #0f1a00;
+  box-shadow: 3px 3px 0 #0f1a00;
+  white-space: nowrap;
+  transform-origin: 0 100%;
+  animation: yes-pop 1300ms steps(1, end) forwards, yes-rise 1300ms ease-out forwards;
+}
+
+/* Colita del globo de diálogo, en escalones de pixel */
+.yes-bubble::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  bottom: -8px;
+  width: 6px;
+  height: 6px;
+  background: #3dd332;
+  border: 2px solid #0f1a00;
+  border-top: 0;
+  box-shadow: 3px 3px 0 #0f1a00;
+}
+
+@keyframes yes-pop {
+  0% { scale: 0.4; }
+  8% { scale: 1.2; }
+  16% { scale: 1; }
+}
+
+@keyframes yes-rise {
+  0% { translate: 0 0; opacity: 1; }
+  70% { opacity: 1; }
+  100% { translate: 0 -36px; opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

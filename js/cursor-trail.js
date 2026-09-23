@@ -10,7 +10,7 @@
   const PIXEL = 3; // tamaño base de cada destello (px CSS)
   const MAX_SPARKS = 160;
   const MIN_DIST = 6; // distancia mínima recorrida entre tandas de destellos
-  const WAND_RADIUS = 110; // px desde el borde de un enlace de WhatsApp para activar la varita
+  const WAND_RADIUS = 143; // px desde el borde de un enlace de WhatsApp para activar la varita
   const WAND_COLORS = [COLOR, "#1f9e1a", "#b6ff5c", "#fff27a"];
   const BUBBLE_EVERY = 480; // ms entre globos "Yes!"
   const MAX_BUBBLES = 4;
@@ -188,7 +188,7 @@
     if (!rafId) rafId = requestAnimationFrame(draw);
   }, { passive: true });
 
-  // El botón flotante aparece/desaparece al hacer scroll aunque el mouse no se mueva
+  // Al hacer scroll los enlaces se mueven bajo el mouse aunque este no se mueva
   window.addEventListener("scroll", () => {
     if (lastX !== null) update(lastX, lastY);
   }, { passive: true });

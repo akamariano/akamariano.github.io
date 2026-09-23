@@ -144,13 +144,11 @@
     progressBar.style.width = pct + "%";
   }
 
-  /* ---------------- WhatsApp FAB: aparece tras pasar el hero ---------------- */
+  /* ---------------- WhatsApp FAB: visible desde que entra a la página ---------------- */
   const whatsappFab = document.getElementById("whatsapp-fab");
-  const heroSection = document.getElementById("top");
-  function updateFab() {
-    if (!whatsappFab) return;
-    const heroBottom = heroSection ? heroSection.getBoundingClientRect().bottom : 0;
-    whatsappFab.classList.toggle("is-visible", heroBottom < 0);
+  if (whatsappFab) {
+    // Se agrega un frame después para que se vea la animación de entrada
+    requestAnimationFrame(() => whatsappFab.classList.add("is-visible"));
   }
 
   /* ---------------- Nav: resalta la sección activa ---------------- */
@@ -183,7 +181,6 @@
       scrollTicking = true;
       requestAnimationFrame(() => {
         updateProgress();
-        updateFab();
         scrollTicking = false;
       });
     },
@@ -191,5 +188,4 @@
   );
 
   updateProgress();
-  updateFab();
 })();

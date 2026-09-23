@@ -96,6 +96,33 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Cursor pixel art verde ferxxo (2x del tamaño normal). */
+html {
+  cursor: url("../assets/cursor.svg") 0 0, auto;
+}
+
+a[href],
+button,
+[role="button"],
+label[for],
+summary,
+select,
+input[type="checkbox"],
+input[type="radio"],
+input[type="submit"],
+input[type="button"] {
+  cursor: url("../assets/cursor-pointer.svg") 11 1, pointer;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+textarea {
+  cursor: text;
+}
+
+button:disabled {
+  cursor: url("../assets/cursor.svg") 0 0, not-allowed;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -307,7 +334,7 @@ p {
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text);
-  cursor: pointer;
+  cursor: url("../assets/cursor-pointer.svg") 11 1, pointer;
   transition: transform 150ms var(--spring-snappy), background 200ms var(--spring);
 }
 
@@ -479,7 +506,7 @@ p {
   font-weight: 600;
   letter-spacing: -0.005em;
   border: 1px solid transparent;
-  cursor: pointer;
+  cursor: url("../assets/cursor-pointer.svg") 11 1, pointer;
   isolation: isolate;
   overflow: hidden;
   transition: transform 320ms var(--spring), box-shadow 320ms var(--spring), background 320ms var(--spring);
@@ -1306,7 +1333,7 @@ footer p {
   border: 1px solid var(--border);
   background: var(--surface-raised);
   color: var(--text);
-  cursor: pointer;
+  cursor: url("../assets/cursor-pointer.svg") 11 1, pointer;
   transition: transform 120ms var(--spring-snappy), background 200ms var(--spring);
 }
 

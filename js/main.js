@@ -143,6 +143,59 @@
     revealTargets.forEach((el) => el.classList.add("is-visible"));
   }
 
+  /* ---------------- Hero: rol que se escribe solo ---------------- */
+  const typedEl = document.getElementById("typed-role");
+  if (typedEl) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let typedTimer = null;
+
+    function rolesFor(lang) {
+      const dict = window.translations[lang] || window.translations.es;
+      return (dict["hero.typed"] || "").split("|").filter(Boolean);
+    }
+
+    function startTyping() {
+      clearTimeout(typedTimer);
+      const roles = rolesFor(window.currentLang || "es");
+      if (!roles.length) return;
+      let roleIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      if (reduceMotion) {
+        // Sin animación de tecleo: solo cambia el rol completo cada pocos segundos
+        const swap = () => {
+          typedEl.textContent = roles[roleIndex];
+          roleIndex = (roleIndex + 1) % roles.length;
+          typedTimer = setTimeout(swap, 3200);
+        };
+        swap();
+        return;
+      }
+
+      const tick = () => {
+        const role = roles[roleIndex];
+        charIndex += deleting ? -1 : 1;
+        typedEl.textContent = role.slice(0, charIndex);
+
+        let delay = deleting ? 35 : 70;
+        if (!deleting && charIndex === role.length) {
+          deleting = true;
+          delay = 1800;
+        } else if (deleting && charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          delay = 350;
+        }
+        typedTimer = setTimeout(tick, delay);
+      };
+      tick();
+    }
+
+    document.addEventListener("langchange", startTyping);
+    startTyping();
+  }
+
   /* ---------------- Año del footer ---------------- */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());

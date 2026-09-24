@@ -43,10 +43,13 @@
     const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
 
     card.innerHTML = `
-      ${project.screenshot ? `<img class="project-thumb" src="${project.screenshot}" alt="${title}" loading="lazy" />` : ""}
+      ${project.screenshot ? `<div class="project-thumb-wrap"><img class="project-thumb" src="${project.screenshot}" alt="${title}" loading="lazy" /></div>` : ""}
       <div class="project-card-body">
         <a class="project-name" href="${project.url}" target="_blank" rel="noopener" title="${project.name}">${repoIconSvg()}${title}</a>
-        <p>${description}</p>
+        <div class="project-desc-wrap">
+          <p class="project-desc is-clamped">${description}</p>
+          <button class="project-more" type="button" aria-expanded="false" hidden>${t("projects.more")}</button>
+        </div>
         ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
         <div class="project-meta">
           ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}
@@ -62,7 +65,47 @@
         ` : ""}
       </div>
     `;
+    const desc = card.querySelector(".project-desc");
+    const moreBtn = card.querySelector(".project-more");
+    moreBtn.addEventListener("click", () => {
+      const expanded = desc.classList.toggle("is-clamped") === false;
+      moreBtn.textContent = t(expanded ? "projects.less" : "projects.more");
+      moreBtn.setAttribute("aria-expanded", String(expanded));
+    });
+
+    if (canTilt) addTilt(card);
     return card;
+  }
+
+  // Muestra "Ver más" solo en las descripciones que realmente quedan cortadas
+  function updateMoreButtons() {
+    gridEl.querySelectorAll(".project-card").forEach((card) => {
+      const desc = card.querySelector(".project-desc");
+      const moreBtn = card.querySelector(".project-more");
+      if (!desc.classList.contains("is-clamped")) return;
+      moreBtn.hidden = desc.scrollHeight <= desc.clientHeight + 1;
+    });
+  }
+
+  /* Inclinación 3D suave siguiendo el mouse (solo con mouse y sin "reducir movimiento") */
+  const canTilt =
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const MAX_TILT = 5; // grados
+
+  function addTilt(card) {
+    card.addEventListener("pointermove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.classList.add("is-tilting");
+      card.style.transform =
+        `perspective(900px) rotateX(${(-y * MAX_TILT).toFixed(2)}deg) rotateY(${(x * MAX_TILT).toFixed(2)}deg) translateY(-4px)`;
+    });
+    card.addEventListener("pointerleave", () => {
+      card.classList.remove("is-tilting");
+      card.style.transform = "";
+    });
   }
 
   function render() {
@@ -91,7 +134,14 @@
     gridEl.hidden = false;
     gridEl.innerHTML = "";
     cachedProjects.forEach((project) => gridEl.appendChild(renderProject(project)));
+    updateMoreButtons();
   }
+
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateMoreButtons, 150);
+  });
 
   fetch("data/projects.json")
     .then((res) => {

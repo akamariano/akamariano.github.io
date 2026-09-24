@@ -17,6 +17,8 @@ const translations = {
     "hero.role1": "Desarrollador & Ventas — TechnoMaya",
     "hero.role2": "Mentor — The Church of Jesus Christ of Latter-day Saints",
     "hero.role3": "Estudiante de Ingeniería en Sistemas — USAC",
+    "hero.available": "Disponible para proyectos",
+    "hero.typed": "Desarrollador de software|Ventas de software a medida|Estudiante de Sistemas|Mentor",
 
     "about.eyebrow": "Sobre mí",
     "about.title": "Un poco de contexto",
@@ -97,6 +99,12 @@ const translations = {
     "projects.howTo": "Cómo probarlo",
     "projects.updated": "Actualizado",
     "projects.noDescription": "Sin descripción todavía.",
+    "projects.more": "Ver más",
+    "projects.less": "Ver menos",
+    "cta.title": "¿Tienes un proyecto en mente?",
+    "cta.body": "Cuéntame tu idea y te ayudo a convertirla en software que funcione para tu negocio.",
+    "cta.whatsapp": "Escríbeme por WhatsApp",
+    "cta.email": "Enviar un correo",
 
     "resume.eyebrow": "Currículum",
     "resume.title": "Formación y descarga",
@@ -152,6 +160,8 @@ const translations = {
     "hero.role1": "Developer & Sales — TechnoMaya",
     "hero.role2": "Mentor — The Church of Jesus Christ of Latter-day Saints",
     "hero.role3": "Systems Engineering Student — USAC",
+    "hero.available": "Open to projects",
+    "hero.typed": "Software developer|Custom software sales|Systems Engineering student|Mentor",
 
     "about.eyebrow": "About me",
     "about.title": "A bit of context",
@@ -232,6 +242,12 @@ const translations = {
     "projects.howTo": "How to try it",
     "projects.updated": "Updated",
     "projects.noDescription": "No description yet.",
+    "projects.more": "Show more",
+    "projects.less": "Show less",
+    "cta.title": "Have a project in mind?",
+    "cta.body": "Tell me your idea and I'll help turn it into software that works for your business.",
+    "cta.whatsapp": "Message me on WhatsApp",
+    "cta.email": "Send an email",
 
     "resume.eyebrow": "Résumé",
     "resume.title": "Education & download",

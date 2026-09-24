@@ -16,6 +16,7 @@
   --whatsapp: #25d366;
   --ferxxo: #cbff3d;
   --celeste: #4fc8ff;
+  --num-green: #1f8f33; /* verde de los números de sección, legible sobre fondo claro */
   --btn-gradient-2: #6a3fe0; /* violeta con suficiente contraste contra texto blanco en ambos temas */
   --chip-bg: rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.03);
@@ -45,6 +46,7 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+  --num-green: #3dd332;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -64,6 +66,7 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
     --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+    --num-green: #3dd332;
   }
 }
 
@@ -292,6 +295,29 @@ p {
   margin-bottom: 36px;
 }
 
+/* Numeración "01 /" en el eyebrow de cada sección */
+main {
+  counter-reset: section;
+}
+
+.section-head .eyebrow::before {
+  counter-increment: section;
+  content: counter(section, decimal-leading-zero) " / ";
+  color: var(--num-green);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 700;
+}
+
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+}
+
 .section-head p {
   max-width: 56ch;
 }
@@ -482,6 +508,11 @@ p {
     padding-top: 64px;
     text-align: center;
   }
+  /* En celular la foto va primero y más pequeña */
+  .hero .hero-portrait-wrap {
+    order: -1;
+    --portrait-size: 150px;
+  }
   .hero p {
     margin-inline: auto;
   }
@@ -495,6 +526,35 @@ p {
 
 .hero-lede {
   font-size: 1.4375rem;
+}
+
+.hero-typed {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text);
+  min-height: 1.5em; /* evita saltos mientras el texto se escribe y se borra */
+  margin: -4px 0 20px;
+}
+
+.typed-prompt {
+  color: var(--num-green);
+}
+
+.typed-caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.18em;
+  background: var(--accent-2);
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
 }
 
 .hero-actions {
@@ -523,10 +583,91 @@ p {
   color: var(--text-secondary);
 }
 
-.hero-portrait {
+/* Aro con degradado girando detrás de la foto + etiqueta de disponible */
+.hero-portrait-wrap {
+  --portrait-size: 220px;
+  position: relative;
   justify-self: center;
-  width: 220px;
-  height: 220px;
+  width: var(--portrait-size);
+  height: var(--portrait-size);
+  margin-bottom: 18px;
+}
+
+.hero-portrait-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--num-green), var(--accent));
+  animation: ring-spin 8s linear infinite;
+  filter: drop-shadow(0 0 14px rgba(123, 92, 255, 0.35));
+}
+
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.status-badge {
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: var(--surface-solid);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+.status-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--whatsapp);
+}
+
+.status-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--whatsapp);
+  animation: status-pulse 1.8s ease-out infinite;
+}
+
+@keyframes status-pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait-wrap::before,
+  .status-dot::after,
+  .typed-caret {
+    animation: none;
+  }
+}
+
+.hero-portrait {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   overflow: hidden;
   background: linear-gradient(150deg, var(--accent), #7b5cff);
@@ -883,6 +1024,31 @@ p {
   border: 1px solid var(--border);
   font-size: 0.9375rem;
   font-weight: 500;
+  transition: transform 220ms var(--spring), box-shadow 220ms var(--spring), border-color 220ms var(--spring);
+}
+
+.chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.chip-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 12px;
+  background: var(--surface-raised);
+}
+
+.chip-logo img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.chip-logo img + img {
+  margin-left: -4px;
 }
 
 /* ==========================================================================
@@ -951,13 +1117,37 @@ p {
   overflow: hidden;
 }
 
+.project-thumb-wrap {
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
 .project-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
   object-position: top;
   background: var(--chip-bg);
-  border-bottom: 1px solid var(--border);
+  transition: transform 600ms var(--spring);
+}
+
+.project-card:hover .project-thumb {
+  transform: scale(1.06);
+}
+
+/* Mientras sigue al mouse, la inclinación responde sin retraso */
+.project-card.is-tilting {
+  transition: transform 80ms linear, box-shadow 220ms var(--spring);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-thumb {
+    transition: none;
+  }
+  .project-card:hover .project-thumb {
+    transform: none;
+  }
 }
 
 .project-card-body {
@@ -1020,10 +1210,39 @@ p {
   color: var(--text-secondary);
 }
 
-.project-card p {
-  font-size: 1.3125rem;
-  line-height: 1.5;
+.project-desc-wrap {
   flex-grow: 1;
+}
+
+.project-card .project-desc {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  margin-bottom: 6px;
+}
+
+.project-desc.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-more {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.project-more:hover {
+  text-decoration: underline;
+}
+
+.project-more[hidden] {
+  display: none;
 }
 
 .project-tech {
@@ -1214,6 +1433,85 @@ p {
     bottom: 16px;
     width: 52px;
     height: 52px;
+  }
+}
+
+/* ==========================================================================
+   Llamado a la acción final
+   ========================================================================== */
+.cta-section {
+  padding-bottom: 56px;
+}
+
+.cta-card {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 40px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--btn-gradient-2) 60%, #0c6e86 100%);
+  box-shadow: var(--shadow-lg);
+}
+
+/* brillo suave en la esquina */
+.cta-card::before {
+  content: "";
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  top: -190px;
+  right: -120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.28), transparent 70%);
+  pointer-events: none;
+}
+
+.cta-card h2 {
+  position: relative;
+  color: #ffffff;
+}
+
+.cta-card p {
+  position: relative;
+  margin: 0 auto 28px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.cta-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-light {
+  background: #ffffff;
+  color: #1d1d1f;
+}
+
+.btn-light:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-light {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cta-actions .btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 640px) {
+  .cta-card {
+    padding: 40px 22px;
   }
 }
 

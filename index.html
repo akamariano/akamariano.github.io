@@ -106,6 +106,7 @@
     <div>
       <span class="eyebrow" data-i18n="hero.eyebrow">Ingeniería en Sistemas · USAC</span>
       <h1>Mariano Roberto<br /><span class="gradient-text">Rac Noguera</span></h1>
+      <p class="hero-typed" aria-hidden="true"><span class="typed-prompt">&gt;</span> <span id="typed-role"></span><span class="typed-caret"></span></p>
       <p class="hero-lede" data-i18n="hero.lede">
         Entusiasta de la tecnología con una base académica sólida y dominio avanzado del inglés.
         Desarrollo software y colaboro en la venta de proyectos a medida, con foco en aprender de
@@ -129,8 +130,11 @@
       </div>
     </div>
 
-    <div class="hero-portrait">
-      <img src="assets/img/profile-formal.jpg" alt="Mariano Roberto Rac Noguera" width="220" height="220" />
+    <div class="hero-portrait-wrap">
+      <div class="hero-portrait">
+        <img src="assets/img/profile-formal.jpg" alt="Mariano Roberto Rac Noguera" width="220" height="220" />
+      </div>
+      <span class="status-badge"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hero.available">Disponible para proyectos</span></span>
     </div>
   </section>
 
@@ -240,15 +244,15 @@
     <div class="skills-group">
       <h3 data-i18n="skills.langTitle">Lenguajes &amp; herramientas</h3>
       <div class="chip-row">
-        <span class="chip">Python</span>
-        <span class="chip">Java</span>
-        <span class="chip">JavaScript / TypeScript</span>
-        <span class="chip">C++</span>
-        <span class="chip">PHP</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/python.svg" alt="" width="18" height="18" loading="lazy" />Python</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/java.svg" alt="" width="18" height="18" loading="lazy" />Java</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/javascript.svg" alt="" width="18" height="18" loading="lazy" /><img src="assets/img/skills/typescript.svg" alt="" width="18" height="18" loading="lazy" />JavaScript / TypeScript</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/cplusplus.svg" alt="" width="18" height="18" loading="lazy" />C++</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/php.svg" alt="" width="18" height="18" loading="lazy" />PHP</span>
         <span class="chip" data-i18n="skills.assembly">Ensamblador (x86)</span>
-        <span class="chip">HTML &amp; CSS</span>
-        <span class="chip">Git &amp; GitHub</span>
-        <span class="chip">Docker</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/html5.svg" alt="" width="18" height="18" loading="lazy" /><img src="assets/img/skills/css3.svg" alt="" width="18" height="18" loading="lazy" />HTML &amp; CSS</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/git.svg" alt="" width="18" height="18" loading="lazy" />Git &amp; GitHub</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/docker.svg" alt="" width="18" height="18" loading="lazy" />Docker</span>
       </div>
     </div>
 
@@ -269,10 +273,10 @@
       <h3 data-i18n="skills.dbTitle">Bases de datos</h3>
       <div class="chip-row">
         <span class="chip">SQL</span>
-        <span class="chip" data-i18n="skills.relationalDb">Bases de datos relacionales</span>
-        <span class="chip" data-i18n="skills.nonRelationalDb">Bases de datos no relacionales</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/postgresql.svg" alt="" width="18" height="18" loading="lazy" /><span data-i18n="skills.relationalDb">Bases de datos relacionales</span></span>
+        <span class="chip chip-logo"><img src="assets/img/skills/mongodb.svg" alt="" width="18" height="18" loading="lazy" /><span data-i18n="skills.nonRelationalDb">Bases de datos no relacionales</span></span>
         <span class="chip">Oracle SQL Developer</span>
-        <span class="chip">DBeaver</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/dbeaver.svg" alt="" width="18" height="18" loading="lazy" />DBeaver</span>
       </div>
     </div>
 
@@ -429,6 +433,24 @@
           <div class="contact-value">akamariano</div>
         </div>
       </a>
+    </div>
+  </section>
+
+  <!-- Llamado a la acción final -->
+  <section class="container cta-section reveal">
+    <div class="cta-card">
+      <h2 data-i18n="cta.title">¿Tienes un proyecto en mente?</h2>
+      <p data-i18n="cta.body">Cuéntame tu idea y te ayudo a convertirla en software que funcione para tu negocio.</p>
+      <div class="cta-actions">
+        <a class="btn btn-light" href="https://wa.me/50247264846" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.93-.3-1.6-.59-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.05.98-2.33.26-.28.56-.35.75-.35h.53c.17 0 .4-.03.62.48.24.56.81 1.94.88 2.08.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg>
+          <span data-i18n="cta.whatsapp">Escríbeme por WhatsApp</span>
+        </a>
+        <a class="btn btn-outline-light" href="mailto:marianoracnoguera@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+          <span data-i18n="cta.email">Enviar un correo</span>
+        </a>
+      </div>
     </div>
   </section>
 

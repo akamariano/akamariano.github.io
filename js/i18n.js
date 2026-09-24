@@ -105,6 +105,8 @@ const translations = {
     "cta.body": "Cuéntame tu idea y te ayudo a convertirla en software que funcione para tu negocio.",
     "cta.whatsapp": "Escríbeme por WhatsApp",
     "cta.email": "Enviar un correo",
+    "footer.privacy": "Privacidad y cookies",
+    "footer.security": "Seguridad",
 
     "resume.eyebrow": "Currículum",
     "resume.title": "Formación y descarga",
@@ -248,6 +250,8 @@ const translations = {
     "cta.body": "Tell me your idea and I'll help turn it into software that works for your business.",
     "cta.whatsapp": "Message me on WhatsApp",
     "cta.email": "Send an email",
+    "footer.privacy": "Privacy & cookies",
+    "footer.security": "Security",
 
     "resume.eyebrow": "Résumé",
     "resume.title": "Education & download",

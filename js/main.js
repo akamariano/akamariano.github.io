@@ -196,6 +196,22 @@
     startTyping();
   }
 
+  /* ---------------- Página legal: anclas #es-… / #en-… según el idioma ---------------- */
+  if (document.querySelector(".legal")) {
+    const syncLegalHash = () => {
+      const match = location.hash.match(/^#(es|en)-(.+)$/);
+      if (!match) return;
+      const prefix = window.currentLang === "en" ? "en" : "es";
+      const target = document.getElementById(`${prefix}-${match[2]}`);
+      if (!target) return;
+      if (match[1] !== prefix) history.replaceState(null, "", `#${prefix}-${match[2]}`);
+      target.scrollIntoView();
+    };
+    document.addEventListener("langchange", syncLegalHash);
+    window.addEventListener("hashchange", syncLegalHash);
+    syncLegalHash();
+  }
+
   /* ---------------- Año del footer ---------------- */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());

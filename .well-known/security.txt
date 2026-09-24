@@ -1,0 +1,5 @@
+Contact: mailto:marianoracnoguera@gmail.com
+Expires: 2027-09-24T00:00:00.000Z
+Preferred-Languages: es, en
+Canonical: https://akamariano.github.io/.well-known/security.txt
+Policy: https://akamariano.github.io/privacidad.html#es-seguridad

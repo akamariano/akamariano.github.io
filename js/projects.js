@@ -38,12 +38,14 @@
     const updated = project.updatedAt
       ? (dateFormatters[lang] || dateFormatters.es).format(new Date(project.updatedAt))
       : "";
+    // Título legible por idioma (projects.config.json → "titles"); si no hay, se usa el nombre del repo
+    const title = (project.title && (project.title[lang] || project.title.es)) || project.name;
     const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
 
     card.innerHTML = `
-      ${project.screenshot ? `<img class="project-thumb" src="${project.screenshot}" alt="${project.name}" loading="lazy" />` : ""}
+      ${project.screenshot ? `<img class="project-thumb" src="${project.screenshot}" alt="${title}" loading="lazy" />` : ""}
       <div class="project-card-body">
-        <a class="project-name" href="${project.url}" target="_blank" rel="noopener">${repoIconSvg()}${project.name}</a>
+        <a class="project-name" href="${project.url}" target="_blank" rel="noopener" title="${project.name}">${repoIconSvg()}${title}</a>
         <p>${description}</p>
         ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
         <div class="project-meta">

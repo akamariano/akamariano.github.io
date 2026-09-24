@@ -51,6 +51,36 @@
     "MIA_1S2026_P1_202101149": "assets/img/projects/mia-p1.jpg",
     "ACE2_2S23_G2": "assets/img/projects/ace2.jpg"
   },
+  "titles": {
+    "centro-jas-naranjo": {
+      "es": "Centro JAS Naranjo: registro y check-in",
+      "en": "Centro JAS Naranjo: registration & check-in"
+    },
+    "OLC2_1S2026_P1_202101149": {
+      "es": "Intérprete del lenguaje Golampi",
+      "en": "Golampi language interpreter"
+    },
+    "MIA_1S2026_P2_2022101149": {
+      "es": "ExtreamFS en AWS (fase 2)",
+      "en": "ExtreamFS on AWS (phase 2)"
+    },
+    "MIA_1S2026_P1_202101149": {
+      "es": "ExtreamFS en C++ (fase 1)",
+      "en": "ExtreamFS in C++ (phase 1)"
+    },
+    "EDD_1S2023_PY_202101149": {
+      "es": "Visualizador de estructuras de datos",
+      "en": "Data structures visualizer"
+    },
+    "ACE2_2S23_G2": {
+      "es": "Simulación visual en C++ y Processing",
+      "en": "Visual simulation in C++ & Processing"
+    },
+    "P1_OLCA_202101149": {
+      "es": "Analizador de lenguajes en Java",
+      "en": "Language analyzer in Java"
+    }
+  },
   "descriptions": {
     "centro-jas-naranjo": "Plataforma de registro de asistentes con carnet/QR descargable y check-in híbrido (cámara o búsqueda manual) para un centro comunitario. Demo en modo de prueba: los datos se guardan solo en el navegador.",
     "OLC2_1S2026_P1_202101149": "Intérprete del lenguaje Golampi para el curso de Organización de Lenguajes y Compiladores 2: análisis léxico, sintáctico y semántico.",

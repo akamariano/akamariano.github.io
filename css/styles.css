@@ -97,6 +97,8 @@
 html {
   font: 100%/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
   scroll-behavior: smooth;
+  /* deja el título de cada sección visible debajo del menú fijo al navegar por anclas */
+  scroll-padding-top: 72px;
 }
 
 /* Cursor pixel art verde (1.4x del tamaño normal); estela en js/cursor-trail.js. */
@@ -512,6 +514,7 @@ main {
   .hero .hero-portrait-wrap {
     order: -1;
     --portrait-size: 180px;
+    margin-top: 32px; /* espacio para el globo "Click me!" */
   }
   .hero p {
     margin-inline: auto;
@@ -549,6 +552,12 @@ main {
   vertical-align: -0.18em;
   background: var(--accent-2);
   animation: caret-blink 1s steps(1) infinite;
+}
+
+@media (max-width: 400px) {
+  .hero-typed {
+    font-size: 0.9375rem; /* el rol más largo cabe en una línea en celulares de 320px */
+  }
 }
 
 @keyframes caret-blink {
@@ -723,6 +732,59 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .terminal-hint {
     animation: none;
+  }
+}
+
+/* Globo "Click me!" arriba de la foto */
+.click-bubble {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 16px);
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #0d1117;
+  color: #3dd332;
+  border: 1px solid rgba(61, 211, 50, 0.5);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  pointer-events: none;
+  animation: bubble-bob 2.4s ease-in-out infinite;
+  transition: opacity 300ms ease;
+}
+
+/* colita apuntando a la foto */
+.click-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -7px;
+  border: 7px solid transparent;
+  border-top-color: #0d1117;
+}
+
+@keyframes bubble-bob {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+/* Se oculta después de abrir la terminal por primera vez */
+.hero-portrait-wrap.terminal-seen .click-bubble {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .click-bubble {
+    animation: none;
+    transform: translateX(-50%);
   }
 }
 
@@ -1279,7 +1341,7 @@ main {
 }
 
 .project-more {
-  padding: 0;
+  padding: 6px 0; /* área táctil más cómoda sin cambiar el aspecto de enlace */
   border: 0;
   background: none;
   font: inherit;
@@ -1756,6 +1818,18 @@ main {
   .terminal-prompt {
     display: none;
   }
+  /* botones de comandos en una sola fila deslizable para dejar más espacio al texto */
+  .terminal-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .terminal-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .terminal-chip {
+    flex-shrink: 0;
+  }
   .terminal-input-row::before {
     content: "$";
     color: #9d84ff;
@@ -1766,7 +1840,7 @@ main {
    Llamado a la acción final
    ========================================================================== */
 .cta-section {
-  padding-bottom: 56px;
+  padding-bottom: 24px;
 }
 
 .cta-card {

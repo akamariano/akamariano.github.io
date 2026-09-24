@@ -305,6 +305,7 @@
   }
 
   openBtn.addEventListener("click", () => {
+    openBtn.parentElement.classList.add("terminal-seen");
     boot();
     dialog.showModal();
     // En celular no se enfoca el campo para no abrir el teclado de golpe; están los botones

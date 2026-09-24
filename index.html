@@ -69,6 +69,7 @@
 
     <ul class="nav-links">
       <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+      <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
       <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
       <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
@@ -92,6 +93,7 @@
   </div>
   <ul class="nav-links nav-links-mobile" id="nav-links-mobile" hidden>
     <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+    <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
     <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
     <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
     <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
@@ -133,9 +135,10 @@
     </div>
 
     <div class="hero-portrait-wrap">
-      <div class="hero-portrait">
+      <button class="hero-portrait" id="terminal-open" type="button" aria-haspopup="dialog" aria-label="Abrir terminal: conoce más sobre mí">
         <img src="assets/img/profile-formal.jpg" alt="Mariano Roberto Rac Noguera" width="220" height="220" />
-      </div>
+      </button>
+      <span class="terminal-hint" aria-hidden="true">&gt;_</span>
       <span class="status-badge"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hero.available">Disponible para proyectos</span></span>
     </div>
   </section>
@@ -181,6 +184,49 @@
           sesión en habilidades prácticas de enseñanza, el seguimiento de indicadores clave de
           conversión, y el crecimiento espiritual y profesional de cada misionero.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="servicios" class="container reveal">
+    <div class="section-head">
+      <span class="eyebrow eyebrow-3" data-i18n="services.eyebrow">Servicios</span>
+      <h2 data-i18n="services.title">¿En qué te puedo ayudar?</h2>
+      <p data-i18n="services.subtitle">
+        Soluciones a medida para negocios en Guatemala: desde tu primera página web hasta el sistema que organiza tu día a día.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="card service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3 data-i18n="services.webTitle">Sitios web para negocios</h3>
+        <p data-i18n="services.webBody">Páginas modernas, rápidas y adaptadas a celular para que tus clientes te encuentren y te escriban.</p>
+        <ul class="service-tags"><li data-i18n="services.webTag1">Diseño a medida</li><li data-i18n="services.webTag2">Optimizado para Google</li><li data-i18n="services.webTag3">Botón de WhatsApp</li></ul>
+        <a class="btn btn-primary service-btn" href="https://wa.me/50247264846?text=Hola%20Mariano%2C%20me%20interesa%20cotizar%20un%20sitio%20web%20para%20mi%20negocio." target="_blank" rel="noopener">
+          <span data-i18n="services.quote">Cotizar por WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="card service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></div>
+        <h3 data-i18n="services.sysTitle">Sistemas a medida</h3>
+        <p data-i18n="services.sysBody">Registro, inventario, citas o control de asistencia: software que automatiza el trabajo repetitivo de tu negocio.</p>
+        <ul class="service-tags"><li data-i18n="services.sysTag1">Base de datos</li><li data-i18n="services.sysTag2">Panel de administración</li><li data-i18n="services.sysTag3">Reportes</li></ul>
+        <a class="btn btn-primary service-btn" href="https://wa.me/50247264846?text=Hola%20Mariano%2C%20me%20interesa%20cotizar%20un%20sistema%20a%20medida." target="_blank" rel="noopener">
+          <span data-i18n="services.quote">Cotizar por WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="card service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
+        <h3 data-i18n="services.appTitle">Apps móviles</h3>
+        <p data-i18n="services.appBody">Aplicaciones para Android e iOS conectadas a tu sistema, pensadas para tus clientes o para tu equipo.</p>
+        <ul class="service-tags"><li data-i18n="services.appTag1">Android e iOS</li><li data-i18n="services.appTag2">Notificaciones</li><li data-i18n="services.appTag3">Conectada a tu sistema</li></ul>
+        <a class="btn btn-primary service-btn" href="https://wa.me/50247264846?text=Hola%20Mariano%2C%20me%20interesa%20cotizar%20una%20app%20m%C3%B3vil." target="_blank" rel="noopener">
+          <span data-i18n="services.quote">Cotizar por WhatsApp</span>
+        </a>
       </div>
     </div>
   </section>
@@ -465,6 +511,20 @@
   </div>
 </footer>
 
+<dialog class="terminal" id="terminal" aria-labelledby="terminal-title">
+  <div class="terminal-bar">
+    <span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="terminal-title" id="terminal-title">mariano@portfolio: ~</span>
+    <button class="terminal-close" id="terminal-close" type="button" aria-label="Cerrar terminal">✕</button>
+  </div>
+  <div class="terminal-body" id="terminal-body" aria-live="polite"></div>
+  <div class="terminal-chips" id="terminal-chips"></div>
+  <form class="terminal-input-row" id="terminal-form" autocomplete="off">
+    <label class="terminal-prompt" for="terminal-input">visitante@mariano:~$</label>
+    <input class="terminal-input" id="terminal-input" type="text" spellcheck="false" autocapitalize="off" enterkeyhint="send" />
+  </form>
+</dialog>
+
 <a id="whatsapp-fab" class="whatsapp-fab" href="https://wa.me/50247264846" target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.93-.3-1.6-.59-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.05.98-2.33.26-.28.56-.35.75-.35h.53c.17 0 .4-.03.62.48.24.56.81 1.94.88 2.08.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg>
   <span class="whatsapp-fab-pulse" aria-hidden="true"></span>
@@ -474,6 +534,7 @@
 <script src="js/main.js"></script>
 <script src="js/cursor-trail.js"></script>
 <script src="js/projects.js"></script>
+<script src="js/terminal.js"></script>
 <script src="js/background.js"></script>
 </body>
 </html>

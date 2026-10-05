@@ -73,7 +73,6 @@
       moreBtn.setAttribute("aria-expanded", String(expanded));
     });
 
-    if (canTilt) addTilt(card);
     return card;
   }
 
@@ -87,26 +86,7 @@
     });
   }
 
-  /* Inclinación 3D suave siguiendo el mouse (solo con mouse y sin "reducir movimiento") */
-  const canTilt =
-    window.matchMedia("(hover: hover) and (pointer: fine)").matches &&
-    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const MAX_TILT = 5; // grados
-
-  function addTilt(card) {
-    card.addEventListener("pointermove", (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.classList.add("is-tilting");
-      card.style.transform =
-        `perspective(900px) rotateX(${(-y * MAX_TILT).toFixed(2)}deg) rotateY(${(x * MAX_TILT).toFixed(2)}deg) translateY(-4px)`;
-    });
-    card.addEventListener("pointerleave", () => {
-      card.classList.remove("is-tilting");
-      card.style.transform = "";
-    });
-  }
+  /* La inclinación 3D y la entrada al hacer scroll las maneja js/cards3d.js */
 
   function render() {
     if (loadFailed) {

@@ -22,9 +22,11 @@
   let frozen = false;
   let lightWash = null; // gradiente que reemplaza el blanco plano en modo claro
   let lightWashSettled = null; // mismo gradiente opaco: el color final ya "asentado"
+  let aquaPatch = null; // mancha celeste aqua en el lado izquierdo, encima del gradiente
+  let aquaPatchSettled = null;
 
   function buildLightWash(opaque) {
-    // Malla suave verde-ferxxo / rosado / verde agua en vez de un fondo blanco plano.
+    // Malla suave verde-ferxxo / rosado / celeste / verde agua en vez de un fondo blanco plano.
     // Nota: al repintarse cada frame, el color final "asentado" es el de estos stops
     // (el alpha solo controla qué tan rápido converge, no qué tan pálido queda) —
     // por eso los stops ya son tonos pastel, no el neón puro.
@@ -33,10 +35,28 @@
       width * 0.5, height * 0.55, Math.max(width, height) * 0.95
     );
     g.addColorStop(0, `rgba(228,250,176,${opaque ? 1 : 0.16})`); // verde ferxxo pastel
-    g.addColorStop(0.35, `rgba(255,214,242,${opaque ? 1 : 0.15})`); // rosado pastel (fucsia suave)
-    g.addColorStop(0.68, `rgba(214,247,240,${opaque ? 1 : 0.14})`); // verde agua pastel
-    g.addColorStop(1, `rgba(246,240,244,${opaque ? 1 : 0.22})`); // base pálida rosada (no blanco puro)
+    g.addColorStop(0.3, `rgba(255,214,242,${opaque ? 1 : 0.15})`); // rosado pastel (fucsia suave)
+    g.addColorStop(0.55, `rgba(190,232,255,${opaque ? 1 : 0.15})`); // celeste pastel
+    g.addColorStop(0.8, `rgba(206,244,240,${opaque ? 1 : 0.14})`); // verde agua pastel
+    g.addColorStop(1, `rgba(236,244,250,${opaque ? 1 : 0.22})`); // base pálida celeste (no blanco puro)
     return g;
+  }
+
+  function buildAquaPatch(opaque) {
+    // Mancha celeste aqua a media altura del borde izquierdo; se desvanece a transparente.
+    const r = Math.max(width, height) * 0.5;
+    const g = ctx.createRadialGradient(width * 0.02, height * 0.62, 0, width * 0.02, height * 0.62, r);
+    g.addColorStop(0, `rgba(150,226,240,${opaque ? 0.9 : 0.14})`); // celeste aqua pastel
+    g.addColorStop(0.55, `rgba(170,232,244,${opaque ? 0.45 : 0.07})`);
+    g.addColorStop(1, "rgba(190,238,248,0)");
+    return g;
+  }
+
+  function paintLightWash(settled) {
+    ctx.fillStyle = settled ? lightWashSettled : lightWash;
+    ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = settled ? aquaPatchSettled : aquaPatch;
+    ctx.fillRect(0, 0, width, height);
   }
 
   function isDark() {
@@ -58,6 +78,8 @@
 
     lightWash = buildLightWash(false);
     lightWashSettled = buildLightWash(true);
+    aquaPatch = buildAquaPatch(false);
+    aquaPatchSettled = buildAquaPatch(true);
 
     fontSize = width < 700 ? 19 : 25;
     const colCount = Math.floor(width / fontSize);
@@ -95,8 +117,12 @@
     lastFrame = timestamp;
 
     const dark = isDark();
-    ctx.fillStyle = dark ? "rgba(0,0,0,0.16)" : lightWash;
-    ctx.fillRect(0, 0, width, height);
+    if (dark) {
+      ctx.fillStyle = "rgba(0,0,0,0.16)";
+      ctx.fillRect(0, 0, width, height);
+    } else {
+      paintLightWash(false);
+    }
 
     ctx.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
     ctx.textBaseline = "top";
@@ -138,8 +164,12 @@
     ctx.clearRect(0, 0, width, height);
     // Un solo pase del gradiente translúcido queda casi blanco; en estático se
     // pinta directo el color al que converge la animación.
-    ctx.fillStyle = dark ? "#000000" : lightWashSettled;
-    ctx.fillRect(0, 0, width, height);
+    if (dark) {
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(0, 0, width, height);
+    } else {
+      paintLightWash(true);
+    }
     ctx.font = `${fontSize}px ui-monospace, SFMono-Regular, Menlo, monospace`;
     ctx.textBaseline = "top";
     columns.forEach((col, i) => {

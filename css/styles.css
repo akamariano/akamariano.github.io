@@ -142,13 +142,13 @@ html.wand-mode * {
   position: fixed;
   z-index: 10000;
   pointer-events: none;
-  padding: 5px 10px;
-  font: 700 0.875rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  padding: 3.5px 7px;
+  font: 700 0.6125rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
   letter-spacing: 0.02em;
   color: #0f1a00;
   background: #3dd332;
-  border: 2px solid #0f1a00;
-  box-shadow: 3px 3px 0 #0f1a00;
+  border: 1.5px solid #0f1a00;
+  box-shadow: 2px 2px 0 #0f1a00;
   white-space: nowrap;
   transform-origin: 0 100%;
   animation: yes-pop 1300ms steps(1, end) forwards, yes-rise 1300ms ease-out forwards;
@@ -158,14 +158,14 @@ html.wand-mode * {
 .yes-bubble::after {
   content: "";
   position: absolute;
-  left: 8px;
-  bottom: -8px;
-  width: 6px;
-  height: 6px;
+  left: 6px;
+  bottom: -6px;
+  width: 4px;
+  height: 4px;
   background: #3dd332;
-  border: 2px solid #0f1a00;
+  border: 1.5px solid #0f1a00;
   border-top: 0;
-  box-shadow: 3px 3px 0 #0f1a00;
+  box-shadow: 2px 2px 0 #0f1a00;
 }
 
 @keyframes yes-pop {
@@ -991,7 +991,7 @@ main {
   content: "";
   position: absolute;
   left: -7px;
-  top: 4px;
+  top: 30px; /* alineado con la fecha dentro de la tarjeta */
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -1007,6 +1007,10 @@ main {
 .timeline-item:nth-child(3n+3)::before {
   background: var(--accent-3);
   box-shadow: 0 0 0 4px var(--bg), 0 0 12px 1px color-mix(in srgb, var(--accent-3) 60%, transparent);
+}
+
+.timeline-card {
+  padding: 24px 28px;
 }
 
 .timeline-item .meta {
@@ -1250,12 +1254,6 @@ main {
 
 .project-card:hover .project-thumb {
   transform: scale(1.06);
-}
-
-/* Mientras sigue al mouse, la inclinación responde sin retraso */
-.project-card.is-tilting {
-  transition: transform 80ms linear, box-shadow 220ms var(--spring);
-  box-shadow: var(--shadow-lg);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2068,6 +2066,515 @@ html:not([lang="en"]) .legal .lang-en {
 
 .legal-back {
   margin-top: 32px;
+}
+
+/* ==========================================================================
+   Tarjetas 3D (Contexto y Servicios) — js/cards3d.js mueve el transform
+   ========================================================================== */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.stage-3d {
+  perspective: 1400px;
+  perspective-origin: 50% 30%;
+}
+
+.card.card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  /* el transform lo maneja JS frame a frame; solo la sombra usa transición */
+  transition: box-shadow 300ms var(--spring);
+  --lift: 0;
+}
+
+.card.card-3d:hover {
+  transform: none; /* evita el translateY genérico de .card:hover */
+}
+
+.card.card-3d.is-hovered {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Capas en profundidad: el ícono flota más que el título, el título más que el texto */
+.card-3d .service-icon,
+.card-3d .role-icon {
+  transform: translateZ(calc(var(--lift) * 56px)) rotate(calc(var(--lift) * -6deg)) scale(calc(1 + var(--lift) * 0.12));
+}
+
+.card-3d h3 {
+  transform: translateZ(calc(var(--lift) * 30px));
+}
+
+.card-3d p,
+.card-3d .role-meta,
+.card-3d .service-tags {
+  transform: translateZ(calc(var(--lift) * 16px));
+}
+
+.card-3d .service-btn {
+  transform: translateZ(calc(var(--lift) * 40px));
+}
+
+.card-3d .service-btn:hover {
+  transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+}
+
+.card-3d .service-btn:active {
+  transform: translateZ(calc(var(--lift) * 40px)) scale(0.96);
+}
+
+/* Descripción del hero: un "vidrio" invisible que aparece al pasar el mouse o tocarla.
+   El padding se compensa con margen negativo para que el texto no se mueva. */
+.hero-lede.card-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  padding: 14px 18px;
+  margin: -14px -18px 2px;
+  max-width: calc(62ch + 36px);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background 300ms var(--spring), box-shadow 300ms var(--spring), border-color 300ms var(--spring);
+}
+
+.hero-lede.card-3d.is-hovered {
+  background: var(--surface-raised);
+  border-color: var(--border);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 860px) {
+  /* en celular el vidrio no sobresale del contenedor, para no tocar el borde de la pantalla */
+  .hero-lede.card-3d {
+    padding: 12px;
+    margin: -12px 8px 4px;
+    max-width: none;
+  }
+}
+
+.card-3d.timeline-card .meta,
+.card-3d.timeline-card .org,
+.card-3d.timeline-card p,
+.card-3d.resume-languages ul,
+.card-3d.resume-education ul {
+  transform: translateZ(calc(var(--lift) * 16px));
+}
+
+.card-3d.timeline-card h3,
+.card-3d.resume-languages h3,
+.card-3d.resume-education h3 {
+  transform: translateZ(calc(var(--lift) * 30px));
+}
+
+.card-3d.resume-education .btn {
+  transform: translateZ(calc(var(--lift) * 40px));
+}
+
+.card-3d.resume-education .btn:hover {
+  transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+}
+
+.card-3d.resume-education .btn:active {
+  transform: translateZ(calc(var(--lift) * 40px)) scale(0.96);
+}
+
+.card-3d.contact-card > div {
+  transform-style: preserve-3d;
+}
+
+.card-3d .contact-icon {
+  transform: translateZ(calc(var(--lift) * 50px)) rotate(calc(var(--lift) * -6deg)) scale(calc(1 + var(--lift) * 0.12));
+}
+
+.card-3d .contact-label {
+  transform: translateZ(calc(var(--lift) * 18px));
+}
+
+.card-3d .contact-value {
+  transform: translateZ(calc(var(--lift) * 30px));
+}
+
+/* overflow:hidden aplana el 3D: se quita de la tarjeta y se recorta solo la imagen */
+.card.card-3d.cert-card,
+.card.card-3d.project-card.has-thumb {
+  overflow: visible;
+}
+
+.card-3d .cert-image,
+.card-3d .project-thumb-wrap {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  transform: translateZ(calc(var(--lift) * 22px));
+}
+
+.card-3d .project-card-body,
+.card-3d .badge-body,
+.card-3d .cert-body {
+  transform-style: preserve-3d;
+}
+
+.card-3d .badge-body h3,
+.card-3d .cert-body h4,
+.card-3d .project-name {
+  transform: translateZ(calc(var(--lift) * 30px));
+}
+
+.card-3d .badge-meta,
+.card-3d .badge-body p,
+.card-3d .cert-meta,
+.card-3d .project-desc-wrap,
+.card-3d .project-tech,
+.card-3d .project-meta,
+.card-3d .project-howto {
+  transform: translateZ(calc(var(--lift) * 16px));
+}
+
+.card-3d .badge-image {
+  transform: translateZ(calc(var(--lift) * 56px)) rotate(calc(var(--lift) * -6deg)) scale(calc(1 + var(--lift) * 0.12));
+}
+
+.card-3d .project-demo-btn {
+  transform: translateZ(calc(var(--lift) * 40px));
+}
+
+.card-3d .project-demo-btn:hover {
+  transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+}
+
+.card-3d .project-demo-btn:active {
+  transform: translateZ(calc(var(--lift) * 40px)) scale(0.96);
+}
+
+/* Íconos: giro 3D + rebote al llegar la tarjeta (usa rotate/scale individuales para no
+   pisar el transform de profundidad); el trazo del SVG lo dibuja js/cards3d.js */
+.icon-3d:not(.is-popped) {
+  opacity: 0;
+}
+
+.icon-3d.is-popped:not(.is-settled) {
+  animation: icon-pop 900ms var(--spring) both;
+}
+
+/* Al pasar el mouse el ícono se balancea un poco */
+.card-3d.is-hovered .icon-3d.is-settled {
+  animation: icon-wobble 1.6s ease-in-out infinite;
+}
+
+@keyframes icon-pop {
+  0% {
+    rotate: y -180deg;
+    scale: 0.4;
+    opacity: 0;
+  }
+  55% {
+    rotate: y 20deg;
+    scale: 1.18;
+    opacity: 1;
+  }
+  80% {
+    rotate: y -6deg;
+    scale: 0.96;
+  }
+  100% {
+    rotate: y 0deg;
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes icon-wobble {
+  0%,
+  100% {
+    rotate: z 0deg;
+  }
+  25% {
+    rotate: z 7deg;
+  }
+  75% {
+    rotate: z -7deg;
+  }
+}
+
+/* Brillo que sigue el cursor */
+.card-3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0.12) 35%,
+    transparent 65%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 300ms var(--spring);
+  transform: translateZ(1px);
+}
+
+/* Borde degradado fucsia / celeste / verde que gira al pasar el mouse */
+.card-3d::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 2px;
+  pointer-events: none;
+  background: conic-gradient(
+    from var(--border-angle),
+    var(--fuchsia),
+    var(--celeste),
+    var(--accent-3),
+    #3dd332,
+    var(--fuchsia)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  opacity: 0;
+  transition: opacity 300ms var(--spring);
+  animation: border-spin 4s linear infinite paused;
+}
+
+.card-3d.is-hovered::after,
+.card-3d.is-hovered::before {
+  opacity: 1;
+}
+
+.card-3d.is-hovered::before {
+  animation-play-state: running;
+}
+
+@keyframes border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
+/* ==========================================================================
+   Skills: lluvia de ideas (js/skills-storm.js)
+   ========================================================================== */
+#habilidades {
+  position: relative;
+  overflow-x: clip; /* los destellos de las orillas no generan scroll horizontal */
+}
+
+#habilidades > :not(.skills-laptop) {
+  position: relative;
+  z-index: 1; /* el contenido va encima de la laptop */
+}
+
+/* Laptop 3D de fondo, inclinada. Mide 520px y se escala en pantallas pequeñas. */
+.skills-laptop {
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  width: 0;
+  height: 0;
+  z-index: 0;
+  pointer-events: none;
+  perspective: 1600px;
+  --laptop-scale: 1;
+}
+
+@media (max-width: 720px) {
+  .skills-laptop {
+    top: 40%;
+    --laptop-scale: 0.48;
+  }
+}
+
+.laptop-zoom {
+  position: absolute;
+  transform-style: preserve-3d;
+  opacity: 0.22; /* en reposo queda tenue, de fondo */
+  transform: scale(var(--laptop-scale));
+}
+
+.laptop {
+  position: absolute;
+  left: -260px;
+  top: -230px;
+  width: 520px;
+  height: 330px;
+  transform-style: preserve-3d;
+  /* de frente y con la parte de arriba inclinada hacia quien la ve (vista desde arriba) */
+  transform: rotateX(-24deg) rotateY(-7deg);
+}
+
+.laptop-lid {
+  position: absolute;
+  inset: 0;
+  padding: 14px 14px 18px;
+  border-radius: 18px 18px 6px 6px;
+  background: linear-gradient(160deg, #3a3a3e, #121214);
+  box-shadow: inset 0 0 0 2px #4a4a50;
+  transform-origin: 50% 100%;
+  transform: rotateX(8deg); /* abierta ~98° respecto al teclado */
+}
+
+.laptop-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgba(255, 43, 214, 0.35), transparent 60%),
+    radial-gradient(120% 90% at 100% 100%, rgba(79, 200, 255, 0.35), transparent 60%),
+    #0b1020;
+}
+
+.screen-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.screen-bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.screen-bar i:nth-child(2) {
+  background: #febc2e;
+}
+
+.screen-bar i:nth-child(3) {
+  background: #28c840;
+  margin-right: 10px;
+}
+
+.screen-tab {
+  width: 70px;
+  height: 14px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.screen-tab.is-active {
+  background: rgba(79, 200, 255, 0.28);
+}
+
+.screen-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.screen-side {
+  width: 22%;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.screen-side b {
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.screen-side b:nth-child(2) {
+  width: 70%;
+  background: rgba(255, 43, 214, 0.5);
+}
+
+.screen-side b:nth-child(4) {
+  width: 80%;
+}
+
+.screen-code {
+  flex: 1;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.code-line {
+  display: block;
+  height: 9px;
+  width: var(--w);
+  margin-left: calc(var(--i) * 3% - (var(--i) * var(--i) * 0.4%));
+  border-radius: 999px;
+  background: var(--c);
+  opacity: 0.85;
+  box-shadow: 0 0 10px var(--c);
+}
+
+.laptop-base {
+  position: absolute;
+  left: -5%;
+  top: 100%;
+  width: 110%;
+  height: 330px;
+  border-radius: 6px 6px 22px 22px;
+  background: linear-gradient(180deg, #d9dbe0, #a9adb5);
+  box-shadow: inset 0 0 0 2px #c4c7cd;
+  transform-origin: 50% 0;
+  transform: rotateX(90deg);
+  padding: 26px 34px;
+}
+
+.laptop-keys {
+  height: 52%;
+  border-radius: 8px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 6px, rgba(0, 0, 0, 0.25) 6px 8px),
+    repeating-linear-gradient(0deg, #2b2c30 0 14px, #1a1b1e 14px 18px);
+}
+
+.laptop-pad {
+  width: 36%;
+  height: 30%;
+  margin: 18px auto 0;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+/* Mientras la sección no ha llegado, las skills esperan ocultas para salir volando */
+#habilidades.storm-armed .chip {
+  opacity: 0;
+}
+
+#habilidades.laptop-armed .laptop-zoom {
+  opacity: 0;
+}
+
+.code-line {
+  transform-origin: 0 50%;
+}
+
+.sparkle {
+  position: absolute;
+  z-index: 3;
+  width: var(--size, 14px);
+  height: var(--size, 14px);
+  margin: calc(var(--size, 14px) / -2) 0 0 calc(var(--size, 14px) / -2);
+  pointer-events: none;
+  background: var(--spark, var(--fuchsia));
+  /* estrella de 4 puntas */
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+  filter: drop-shadow(0 0 6px var(--spark, var(--fuchsia)));
 }
 
 /* ==========================================================================

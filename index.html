@@ -241,23 +241,27 @@
 
     <div class="timeline">
       <div class="timeline-item">
-        <div class="meta" data-i18n="experience.item2Meta">Enero 2024 — Febrero 2026</div>
-        <h3 data-i18n="experience.item2Title">Executive Assistant, Team Lead &amp; Volunteer Mentor</h3>
-        <div class="org">The Church of Jesus Christ of Latter-day Saints</div>
-        <p data-i18n="experience.item2Body">
-          Liderazgo de operaciones para más de 150 colaboradores, mentoría e instrucción en talleres
-          de desarrollo profesional, resolución de conflictos y comunicación intercultural.
-        </p>
+        <div class="card timeline-card">
+          <div class="meta" data-i18n="experience.item2Meta">Enero 2024 — Febrero 2026</div>
+          <h3 data-i18n="experience.item2Title">Executive Assistant, Team Lead &amp; Volunteer Mentor</h3>
+          <div class="org">The Church of Jesus Christ of Latter-day Saints</div>
+          <p data-i18n="experience.item2Body">
+            Liderazgo de operaciones para más de 150 colaboradores, mentoría e instrucción en talleres
+            de desarrollo profesional, resolución de conflictos y comunicación intercultural.
+          </p>
+        </div>
       </div>
 
       <div class="timeline-item">
-        <div class="meta" data-i18n="experience.item3Meta">2023</div>
-        <h3 data-i18n="experience.item3Title">Educador de Matemática y Física</h3>
-        <div class="org">El Castaño Bilingual School</div>
-        <p data-i18n="experience.item3Body">
-          Instrucción académica para estudiantes de 6to grado a diversificado, diseñando currículos
-          enfocados en razonamiento lógico y resolución de problemas complejos.
-        </p>
+        <div class="card timeline-card">
+          <div class="meta" data-i18n="experience.item3Meta">2023</div>
+          <h3 data-i18n="experience.item3Title">Educador de Matemática y Física</h3>
+          <div class="org">El Castaño Bilingual School</div>
+          <p data-i18n="experience.item3Body">
+            Instrucción académica para estudiantes de 6to grado a diversificado, diseñando currículos
+            enfocados en razonamiento lógico y resolución de problemas complejos.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -285,6 +289,15 @@
 
   <!-- Habilidades -->
   <section id="habilidades" class="container reveal">
+    <!-- Laptop 3D decorativa: hace zoom al llegar y de su pantalla salen las skills (js/skills-storm.js) -->
+    <div class="skills-laptop" aria-hidden="true">
+      <div class="laptop-zoom">
+        <div class="laptop">
+          <div class="laptop-base"><div class="laptop-keys"></div><div class="laptop-pad"></div></div>
+          <div class="laptop-lid"><div class="laptop-screen"><div class="screen-bar"><i></i><i></i><i></i><span class="screen-tab"></span><span class="screen-tab is-active"></span></div><div class="screen-body"><div class="screen-side"><b></b><b></b><b></b><b></b><b></b></div><div class="screen-code"><i class="code-line" style="--w:46%;--c:#ff2bd6;--i:0"></i><i class="code-line" style="--w:72%;--c:#4fc8ff;--i:1"></i><i class="code-line" style="--w:58%;--c:#3ee8cf;--i:2"></i><i class="code-line" style="--w:34%;--c:#3dd332;--i:3"></i><i class="code-line" style="--w:80%;--c:#4fc8ff;--i:4"></i><i class="code-line" style="--w:52%;--c:#fff27a;--i:5"></i><i class="code-line" style="--w:66%;--c:#ff2bd6;--i:6"></i><i class="code-line" style="--w:40%;--c:#3ee8cf;--i:7"></i></div></div></div></div>
+        </div>
+      </div>
+    </div>
     <div class="section-head">
       <span class="eyebrow" data-i18n="skills.eyebrow">Habilidades</span>
       <h2 data-i18n="skills.title">Lo que aporto</h2>
@@ -420,7 +433,7 @@
     </div>
 
     <div class="resume-summary">
-      <div class="resume-education">
+      <div class="card resume-education">
         <h3 class="resume-edu-title" data-i18n="resume.eduTitle">Educación</h3>
         <ul>
           <li data-i18n="resume.edu1">Universidad de San Carlos de Guatemala — Ingeniería en Ciencias y Sistemas, 7mo semestre (en curso)</li>
@@ -432,7 +445,7 @@
           <span data-i18n="resume.download">Descargar CV (PDF)</span>
         </a>
       </div>
-      <div>
+      <div class="card resume-languages">
         <h3 data-i18n="resume.langTitle">Idiomas</h3>
         <ul>
           <li data-i18n="resume.lang1">Español — Nativo</li>
@@ -535,6 +548,8 @@
 <script src="js/main.js"></script>
 <script src="js/cursor-trail.js"></script>
 <script src="js/projects.js"></script>
+<script src="js/cards3d.js"></script>
+<script src="js/skills-storm.js"></script>
 <script src="js/terminal.js"></script>
 <script src="js/background.js"></script>
 </body>

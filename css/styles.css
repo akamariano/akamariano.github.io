@@ -7,7 +7,10 @@
   --surface-solid: #ffffff;
   --surface-raised: rgba(255, 255, 255, 0.86);
   --text: #1d1d1f;
-  --text-secondary: #4a4a50; /* más oscuro para leerse bien sobre el celeste aqua del fondo */
+  --text-secondary: #2c2c32; /* más oscuro para leerse bien sobre el celeste azul del fondo */
+  --eyebrow: #003d7a; /* azul marino: el azul de acento se pierde sobre el fondo celeste */
+  /* contorno blanco pixelado (esquinas cuadradas) para el apellido sobre el fondo celeste */
+  --surname-outline: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff);
   --border: rgba(0, 0, 0, 0.08);
   --accent: #0071e3;
   --accent-2: #0c6e86;
@@ -17,7 +20,7 @@
   --ferxxo: #cbff3d;
   --celeste: #4fc8ff;
   --fuchsia: #ff2bd6; /* fucsia neón del cursor: solo para detalles decorativos, no para texto */
-  --num-green: #1f8f33; /* verde de los números de sección, legible sobre fondo claro */
+  --num-green: #0b5a1c; /* verde oscuro de los números de sección, legible sobre el fondo celeste */
   --btn-gradient-2: #0c6e86; /* verde agua de los apellidos, con suficiente contraste contra texto blanco en ambos temas */
   --chip-bg: rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.03);
@@ -48,6 +51,8 @@
   --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
   --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
   --num-green: #3dd332;
+  --eyebrow: var(--accent);
+  --surname-outline: none;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,6 +73,8 @@
     --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
     --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
     --num-green: #3dd332;
+    --eyebrow: var(--accent);
+    --surname-outline: none;
   }
 }
 
@@ -222,6 +229,10 @@ body {
   color: transparent;
 }
 
+h1 .gradient-text {
+  filter: var(--surname-outline);
+}
+
 .eyebrow-2 {
   color: var(--accent-2);
 }
@@ -263,7 +274,7 @@ section {
   font-weight: 600;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--eyebrow);
   margin-bottom: 12px;
 }
 

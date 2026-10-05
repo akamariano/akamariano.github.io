@@ -2424,10 +2424,135 @@ html:not([lang="en"]) .legal .lang-en {
   box-shadow: inset 0 0 0 2px var(--laptop-bezel-edge);
   transform-origin: 50% 100%;
   transform: rotateX(8deg); /* abierta ~98° respecto al teclado */
+  transform-style: preserve-3d;
+}
+
+/* Cámara en el marco */
+.laptop-lid::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #4a5a78, #0a0c12 70%);
+}
+
+/* Tapa por detrás (lo que se ve con la laptop cerrada): aluminio con Tux y stickers */
+.laptop-lid-back {
+  position: absolute;
+  inset: 0 -5%; /* mismo ancho que la base */
+  border-radius: inherit;
+  background:
+    radial-gradient(120% 80% at 30% 10%, rgba(255, 255, 255, 0.55), transparent 55%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0 1px, rgba(0, 0, 0, 0.025) 1px 3px),
+    linear-gradient(160deg, #e9ebee, #b9bdc4 70%, #a7abb3);
+  box-shadow:
+    inset 0 0 0 1.5px rgba(255, 255, 255, 0.7),
+    inset 0 0 0 4px #b4b8bf,
+    inset 0 -10px 18px rgba(0, 0, 0, 0.12);
+  /* rotateX(180°): de espaldas y con los stickers derechos cuando la tapa está cerrada */
+  transform: translateZ(-1px) rotateX(180deg);
+  backface-visibility: hidden;
+}
+
+.lid-tux {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 92px;
+  height: 110px;
+  margin: -55px 0 0 -46px;
+  filter: drop-shadow(0 0 0 #fff) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+}
+
+.sticker {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  border: 4px solid #fff; /* borde troquelado blanco */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.22);
+  font: 800 20px/1 ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+.sticker svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.sticker-github {
+  left: 46px;
+  top: 34px;
+  width: 64px;
+  height: 64px;
+  padding: 6px;
+  border-radius: 50%;
+  background: #fff;
+  transform: rotate(-12deg);
+}
+
+.sticker-git {
+  left: 64px;
+  bottom: 40px;
+  width: 74px;
+  height: 74px;
+  border: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 0 0 #fff) drop-shadow(2px 0 0 #fff) drop-shadow(-2px 0 0 #fff) drop-shadow(0 2px 0 #fff) drop-shadow(0 -2px 0 #fff) drop-shadow(0 2px 2px rgba(0, 0, 0, 0.25));
+  transform: rotate(8deg);
+}
+
+.sticker-term {
+  right: 58px;
+  top: 40px;
+  width: 78px;
+  height: 54px;
+  border-radius: 8px;
+  background: #111317;
+  color: #3dd332;
+  font-size: 24px;
+  transform: rotate(9deg);
+}
+
+.sticker-sudo {
+  right: 44px;
+  bottom: 58px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #fff27a;
+  color: #111;
+  font-size: 17px;
+  transform: rotate(-7deg);
+}
+
+.sticker-ubuntu {
+  right: 150px;
+  bottom: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border-width: 3px;
+  background: #fff;
+  transform: rotate(15deg);
+}
+
+.sticker-code {
+  left: 150px;
+  top: 112px;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: #ff2bd6;
+  color: #fff;
+  font-size: 15px;
+  transform: rotate(-16deg);
 }
 
 .laptop-screen {
   position: relative;
+  backface-visibility: hidden;
   width: 100%;
   height: 100%;
   border-radius: 8px;
@@ -2534,28 +2659,101 @@ html:not([lang="en"]) .legal .lang-en {
   width: 110%;
   height: 330px;
   border-radius: 6px 6px 22px 22px;
-  background: linear-gradient(180deg, #d9dbe0, #a9adb5);
-  box-shadow: inset 0 0 0 2px #c4c7cd;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 6%),
+    radial-gradient(90% 60% at 50% 100%, rgba(255, 255, 255, 0.35), transparent 70%),
+    linear-gradient(180deg, #dcdee2, #b3b7be);
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.6), inset 0 0 0 3px #bcc0c6;
   transform-origin: 50% 0;
   transform: rotateX(90deg);
-  padding: 26px 34px;
+  transform-style: preserve-3d;
+  padding: 26px 22px;
+}
+
+/* Sombra sobre la "mesa" */
+.laptop-shadow {
+  position: absolute;
+  inset: 4% -2% -4%;
+  border-radius: 40px;
+  background: rgba(10, 14, 30, 0.35);
+  filter: blur(18px);
+  transform: translateZ(-30px);
+}
+
+/* Grosor del frente del case */
+.laptop-base-front {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 100%;
+  height: 12px;
+  border-radius: 0 0 10px 10px;
+  background: linear-gradient(180deg, #9ea2aa, #7d8189);
+  transform-origin: 50% 0;
+  transform: rotateX(-90deg);
+}
+
+.laptop-base-front::after {
+  /* muesca para abrir la tapa */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 80px;
+  height: 5px;
+  margin-left: -40px;
+  border-radius: 0 0 6px 6px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.laptop-deck {
+  display: flex;
+  gap: 14px;
+  height: 52%;
+}
+
+/* Rejillas de las bocinas a los lados del teclado */
+.laptop-speaker {
+  width: 34px;
+  border-radius: 6px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.35) 1px, transparent 1.6px) 0 0 / 5px 5px;
 }
 
 .laptop-keys {
-  height: 52%;
+  position: relative;
+  flex: 1;
   border-radius: 8px;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 6px, rgba(0, 0, 0, 0.25) 6px 8px),
-    repeating-linear-gradient(0deg, #2b2c30 0 14px, #1a1b1e 14px 18px);
+  padding: 4px;
+  background: #b9bdc4;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+  /* teclas negras con separación de aluminio */
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 19px, #b9bdc4 19px 22px),
+    repeating-linear-gradient(180deg, transparent 0 22px, #b9bdc4 22px 25px),
+    linear-gradient(180deg, #2a2b30, #1b1c20);
+  background-origin: content-box;
+  background-clip: content-box;
+}
+
+/* Barra espaciadora */
+.laptop-space {
+  position: absolute;
+  left: 32%;
+  right: 32%;
+  bottom: 4px;
+  height: 19px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #2a2b30, #1b1c20);
+  box-shadow: 0 0 0 3px #b9bdc4;
 }
 
 .laptop-pad {
-  width: 36%;
-  height: 30%;
-  margin: 18px auto 0;
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  width: 38%;
+  height: 34%;
+  margin: 16px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.06));
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14), inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 /* Mientras la sección no ha llegado, las skills esperan ocultas para salir volando */

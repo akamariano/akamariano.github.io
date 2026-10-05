@@ -1,5 +1,5 @@
 /* Skills como "lluvia de ideas": al llegar a la sección, la laptop de fondo hace zoom hacia
-   el frente mientras abre la tapa y se enciende la pantalla; de la pantalla salen volando
+   el frente todavía cerrada; ya cerca abre la tapa y se enciende la pantalla; de la pantalla salen volando
    todas las skills, girando, y se acomodan en su lugar (cada una suelta un destello al
    aterrizar), y la laptop se aleja y se desvanece hasta desaparecer. Mientras la sección
    está en pantalla brillan destellos sueltos.
@@ -22,7 +22,10 @@
   const screen = section.querySelector(".laptop-screen");
   const codeLines = Array.from(section.querySelectorAll(".code-line"));
   const SPRING = "cubic-bezier(0.16, 1, 0.3, 1)";
-  const ZOOM_MS = 1100; // zoom de la laptop antes de que salgan las skills
+  const ZOOM_MS = 1100; // zoom de la laptop (llega cerrada)
+  const OPEN_AT = 950; // cuándo empieza a abrirse la tapa
+  const OPEN_MS = 1000; // duración de la apertura
+  const BURST_AT = OPEN_AT + 750; // las skills salen cuando la tapa ya casi está abierta
 
   let played = false;
   let timers = [];
@@ -81,19 +84,28 @@
       ],
       { duration: ZOOM_MS, easing: SPRING, fill: "forwards" }
     );
-    // La tapa se abre desde cerrada
-    // cerrada = tapa acostada sobre el teclado (-90°)
-    lid.animate([{ transform: "rotateX(-88deg)" }, { transform: "rotateX(8deg)" }], {
-      duration: ZOOM_MS * 0.9,
-      delay: 120,
-      easing: SPRING,
+    // La tapa llega cerrada (acostada sobre el teclado) y se abre cuando el zoom ya casi terminó,
+    // pasándose un poquito y asentándose en su ángulo
+    lid.animate(
+      [
+        { transform: "rotateX(-88deg)" },
+        { transform: "rotateX(14deg)", offset: 0.75 },
+        { transform: "rotateX(8deg)" },
+      ],
+      { duration: OPEN_MS, delay: OPEN_AT, easing: SPRING, fill: "backwards" }
+    );
+    // La pantalla se enciende mientras se abre
+    screen.animate([{ filter: "brightness(0)" }, { filter: "brightness(1.6)", offset: 0.6 }, { filter: "brightness(1)" }], {
+      duration: 700,
+      delay: OPEN_AT + 250,
+      easing: "ease-out",
       fill: "backwards",
     });
     // El código se "escribe" en la pantalla
     codeLines.forEach((line, i) => {
       line.animate([{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }], {
         duration: 380,
-        delay: 450 + i * 70,
+        delay: OPEN_AT + 450 + i * 70,
         easing: "cubic-bezier(0.22, 1, 0.36, 1)",
         fill: "backwards",
       });
@@ -108,13 +120,13 @@
         ],
         { duration: 2200, easing: "cubic-bezier(0.4, 0, 0.2, 1)", fill: "forwards" }
       );
-    }, ZOOM_MS + 900);
+    }, BURST_AT + 1050);
   }
 
   function storm() {
     played = true;
     laptopIntro();
-    later(burst, laptopZoom ? ZOOM_MS - 150 : 0);
+    later(burst, laptopZoom ? BURST_AT : 0);
   }
 
   function burst() {

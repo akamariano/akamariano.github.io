@@ -10,14 +10,14 @@
   --text-secondary: #6e6e73;
   --border: rgba(0, 0, 0, 0.08);
   --accent: #0071e3;
-  --accent-2: #7b5cff;
+  --accent-2: #0c6e86;
   --accent-3: #0c6e86;
   --accent-text: #ffffff;
   --whatsapp: #25d366;
   --ferxxo: #cbff3d;
   --celeste: #4fc8ff;
   --num-green: #1f8f33; /* verde de los números de sección, legible sobre fondo claro */
-  --btn-gradient-2: #6a3fe0; /* violeta con suficiente contraste contra texto blanco en ambos temas */
+  --btn-gradient-2: #0c6e86; /* verde agua de los apellidos, con suficiente contraste contra texto blanco en ambos temas */
   --chip-bg: rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.03);
   --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -39,7 +39,7 @@
   --text-secondary: #98989d;
   --border: rgba(255, 255, 255, 0.1);
   --accent: #286cf8;
-  --accent-2: #9d84ff;
+  --accent-2: #3ee8cf;
   --accent-3: #3ee8cf;
   --accent-text: #ffffff;
   --chip-bg: rgba(255, 255, 255, 0.08);
@@ -59,7 +59,7 @@
     --text-secondary: #98989d;
     --border: rgba(255, 255, 255, 0.1);
     --accent: #286cf8;
-    --accent-2: #9d84ff;
+    --accent-2: #3ee8cf;
     --accent-3: #3ee8cf;
     --accent-text: #ffffff;
     --chip-bg: rgba(255, 255, 255, 0.08);
@@ -609,7 +609,7 @@ main {
   border-radius: 50%;
   background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--num-green), var(--accent));
   animation: ring-spin 8s linear infinite;
-  filter: drop-shadow(0 0 14px rgba(123, 92, 255, 0.35));
+  filter: drop-shadow(0 0 14px rgba(62, 232, 207, 0.35));
 }
 
 @keyframes ring-spin {
@@ -684,7 +684,7 @@ main {
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(150deg, var(--accent), #7b5cff);
+  background: linear-gradient(150deg, var(--accent), var(--btn-gradient-2));
   box-shadow: var(--shadow-lg);
   border: 3px solid var(--surface-solid);
 }
@@ -1578,7 +1578,7 @@ main {
   place-items: center;
   color: #ffffff;
   background: linear-gradient(135deg, var(--accent), var(--btn-gradient-2));
-  box-shadow: 0 8px 20px rgba(106, 63, 224, 0.28);
+  box-shadow: 0 8px 20px rgba(12, 110, 134, 0.28);
   margin-bottom: 6px;
 }
 
@@ -1751,7 +1751,7 @@ main {
 }
 
 .t-prompt {
-  color: #9d84ff;
+  color: #3ee8cf;
 }
 
 .t-link {
@@ -1794,7 +1794,7 @@ main {
 }
 
 .terminal-prompt {
-  color: #9d84ff;
+  color: #3ee8cf;
   white-space: nowrap;
 }
 
@@ -1832,7 +1832,7 @@ main {
   }
   .terminal-input-row::before {
     content: "$";
-    color: #9d84ff;
+    color: #3ee8cf;
   }
 }
 

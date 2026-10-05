@@ -121,7 +121,7 @@
     }
 
     // comida: punto y coma pulsante
-    const accent2 = cssVar("--accent-2", "#7b5cff");
+    const accent2 = cssVar("--accent-2", "#0c6e86");
     ctx.font = `${Math.floor(cellSize * 0.9)}px ui-monospace, SFMono-Regular, Menlo, monospace`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";

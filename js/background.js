@@ -7,7 +7,7 @@
 
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const GLYPHS = "01{}<>/;=()[]#*λΣπ01010110".split("");
-  const HUES = ["#0071e3", "#7b5cff", "#30d5c8"]; // azul, violeta, verde-agua
+  const HUES = ["#0071e3", "#3ee8cf", "#30d5c8"]; // azul, verde agua, verde-agua
   const FLOW_DURATION = 10000; // el fondo fluye solo los primeros 10s al entrar a la página
   const pageLoadTime = performance.now();
 
@@ -24,7 +24,7 @@
   let lightWashSettled = null; // mismo gradiente opaco: el color final ya "asentado"
 
   function buildLightWash(opaque) {
-    // Malla suave verde-ferxxo / celeste / morado en vez de un fondo blanco plano.
+    // Malla suave verde-ferxxo / celeste / verde agua en vez de un fondo blanco plano.
     // Nota: al repintarse cada frame, el color final "asentado" es el de estos stops
     // (el alpha solo controla qué tan rápido converge, no qué tan pálido queda) —
     // por eso los stops ya son tonos pastel, no el neón puro.
@@ -34,7 +34,7 @@
     );
     g.addColorStop(0, `rgba(228,250,176,${opaque ? 1 : 0.16})`); // verde ferxxo pastel
     g.addColorStop(0.35, `rgba(201,239,255,${opaque ? 1 : 0.15})`); // celeste pastel
-    g.addColorStop(0.68, `rgba(227,217,255,${opaque ? 1 : 0.14})`); // morado pastel
+    g.addColorStop(0.68, `rgba(214,247,240,${opaque ? 1 : 0.14})`); // verde agua pastel
     g.addColorStop(1, `rgba(242,245,239,${opaque ? 1 : 0.22})`); // base pálida (no blanco puro)
     return g;
   }

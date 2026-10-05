@@ -24,18 +24,18 @@
   let lightWashSettled = null; // mismo gradiente opaco: el color final ya "asentado"
 
   function buildLightWash(opaque) {
-    // Malla verde oscuro / celeste azul / fucsia oscuro en vez de un fondo blanco plano.
+    // Malla suave verde-ferxxo / rosado / verde agua en vez de un fondo blanco plano.
     // Nota: al repintarse cada frame, el color final "asentado" es el de estos stops
     // (el alpha solo controla qué tan rápido converge, no qué tan pálido queda) —
-    // por eso los stops son tonos medios: oscuros, pero aún legibles con texto negro.
+    // por eso los stops ya son tonos pastel, no el neón puro.
     const g = ctx.createRadialGradient(
       width * 0.18, height * 0.12, 0,
       width * 0.5, height * 0.55, Math.max(width, height) * 0.95
     );
-    g.addColorStop(0, `rgba(70,165,110,${opaque ? 1 : 0.16})`); // verde oscuro
-    g.addColorStop(0.35, `rgba(74,163,208,${opaque ? 1 : 0.15})`); // celeste azul, un poco más claro que el apellido
-    g.addColorStop(0.68, `rgba(200,105,180,${opaque ? 1 : 0.14})`); // fucsia oscuro
-    g.addColorStop(1, `rgba(62,140,128,${opaque ? 1 : 0.22})`); // verde azulado profundo
+    g.addColorStop(0, `rgba(228,250,176,${opaque ? 1 : 0.16})`); // verde ferxxo pastel
+    g.addColorStop(0.35, `rgba(255,214,242,${opaque ? 1 : 0.15})`); // rosado pastel (fucsia suave)
+    g.addColorStop(0.68, `rgba(214,247,240,${opaque ? 1 : 0.14})`); // verde agua pastel
+    g.addColorStop(1, `rgba(246,240,244,${opaque ? 1 : 0.22})`); // base pálida rosada (no blanco puro)
     return g;
   }
 

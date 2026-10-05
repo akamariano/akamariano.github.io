@@ -7,7 +7,7 @@
 
   const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   const GLYPHS = "01{}<>/;=()[]#*λΣπ01010110".split("");
-  const HUES = ["#0071e3", "#3ee8cf", "#30d5c8"]; // azul, verde agua, verde-agua
+  const HUES = ["#0071e3", "#ff2bd6", "#30d5c8"]; // azul, fucsia neón, verde-agua
   const FLOW_DURATION = 10000; // el fondo fluye solo los primeros 10s al entrar a la página
   const pageLoadTime = performance.now();
 
@@ -33,7 +33,7 @@
       width * 0.5, height * 0.55, Math.max(width, height) * 0.95
     );
     g.addColorStop(0, `rgba(228,250,176,${opaque ? 1 : 0.16})`); // verde ferxxo pastel
-    g.addColorStop(0.35, `rgba(201,239,255,${opaque ? 1 : 0.15})`); // celeste pastel
+    g.addColorStop(0.35, `rgba(168,222,250,${opaque ? 1 : 0.15})`); // celeste (más intenso)
     g.addColorStop(0.68, `rgba(214,247,240,${opaque ? 1 : 0.14})`); // verde agua pastel
     g.addColorStop(1, `rgba(242,245,239,${opaque ? 1 : 0.22})`); // base pálida (no blanco puro)
     return g;

@@ -6,12 +6,12 @@
   if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const COLOR = "#3dd332";
+  const COLOR = "#ff2bd6"; // fucsia neón, igual que el cursor
   const PIXEL = 3; // tamaño base de cada destello (px CSS)
   const MAX_SPARKS = 160;
   const MIN_DIST = 6; // distancia mínima recorrida entre tandas de destellos
   const WAND_RADIUS = 143; // px desde el borde de un enlace de WhatsApp para activar la varita
-  const WAND_COLORS = [COLOR, "#1f9e1a", "#b6ff5c", "#fff27a"];
+  const WAND_COLORS = [COLOR, "#c4009e", "#ff8ae8", "#fff27a"];
   const BUBBLE_EVERY = 480; // ms entre globos "Yes!"
   const MAX_BUBBLES = 4;
   const waLinks = document.querySelectorAll('a[href*="wa.me"]');

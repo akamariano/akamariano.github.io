@@ -1904,6 +1904,13 @@ main {
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* hover verde ferxxo en todos los botones (va al final para ganarle a cada variante) */
+.btn.btn:hover {
+  background: var(--ferxxo);
+  color: #0f1a00;
+  border-color: var(--ferxxo);
+}
+
 .cta-actions .btn svg {
   width: 18px;
   height: 18px;

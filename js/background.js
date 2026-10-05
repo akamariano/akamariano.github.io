@@ -33,7 +33,7 @@
       width * 0.5, height * 0.55, Math.max(width, height) * 0.95
     );
     g.addColorStop(0, `rgba(228,250,176,${opaque ? 1 : 0.16})`); // verde ferxxo pastel
-    g.addColorStop(0.35, `rgba(168,222,250,${opaque ? 1 : 0.15})`); // celeste (más intenso)
+    g.addColorStop(0.35, `rgba(132,210,238,${opaque ? 1 : 0.15})`); // celeste azul aqua
     g.addColorStop(0.68, `rgba(214,247,240,${opaque ? 1 : 0.14})`); // verde agua pastel
     g.addColorStop(1, `rgba(242,245,239,${opaque ? 1 : 0.22})`); // base pálida (no blanco puro)
     return g;

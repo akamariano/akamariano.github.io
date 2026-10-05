@@ -7,7 +7,7 @@
   --surface-solid: #ffffff;
   --surface-raised: rgba(255, 255, 255, 0.86);
   --text: #1d1d1f;
-  --text-secondary: #6e6e73;
+  --text-secondary: #4a4a50; /* más oscuro para leerse bien sobre el celeste aqua del fondo */
   --border: rgba(0, 0, 0, 0.08);
   --accent: #0071e3;
   --accent-2: #0c6e86;

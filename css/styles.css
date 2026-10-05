@@ -7,8 +7,8 @@
   --surface-solid: #ffffff;
   --surface-raised: rgba(255, 255, 255, 0.86);
   --text: #1d1d1f;
-  --text-secondary: #2c2c32; /* más oscuro para leerse bien sobre el celeste azul del fondo */
-  --eyebrow: #003d7a; /* azul marino: el azul de acento se pierde sobre el fondo celeste */
+  --text-secondary: #1f1f24; /* casi negro para leerse bien sobre el fondo oscuro (verde/celeste/fucsia) */
+  --eyebrow: #00214a; /* azul marino: el azul de acento se pierde sobre el fondo celeste */
   /* contorno blanco pixelado (esquinas cuadradas) para el apellido sobre el fondo celeste */
   --surname-outline: drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff);
   --border: rgba(0, 0, 0, 0.08);

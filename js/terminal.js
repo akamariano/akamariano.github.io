@@ -83,8 +83,9 @@
         [hl("Habilidades")],
         ["Lenguajes    ", dim("Python · Java · JavaScript/TypeScript · C++ · PHP · x86")],
         ["Web          ", dim("HTML & CSS · React · Express · Tailwind")],
-        ["Datos        ", dim("SQL · PostgreSQL · MongoDB · Oracle · DBeaver")],
-        ["Herramientas ", dim("Git & GitHub · Docker · Linux · AWS EC2/S3")],
+        ["Datos        ", dim("SQL · SQL Server · triggers · vistas · PostgreSQL · MongoDB · Oracle")],
+        ["Herramientas ", dim("Git & GitHub · Docker · Kubernetes · despliegue · Linux · AWS EC2/S3")],
+        ["Redes        ", dim("VLANs · routing · trunking · topologías")],
         ["Blandas      ", dim("ventas consultivas · liderazgo · mentoría · trabajo en equipo")],
       ],
       contact: [
@@ -153,8 +154,9 @@
         [hl("Skills")],
         ["Languages  ", dim("Python · Java · JavaScript/TypeScript · C++ · PHP · x86")],
         ["Web        ", dim("HTML & CSS · React · Express · Tailwind")],
-        ["Data       ", dim("SQL · PostgreSQL · MongoDB · Oracle · DBeaver")],
-        ["Tools      ", dim("Git & GitHub · Docker · Linux · AWS EC2/S3")],
+        ["Data       ", dim("SQL · SQL Server · triggers · views · PostgreSQL · MongoDB · Oracle")],
+        ["Tools      ", dim("Git & GitHub · Docker · Kubernetes · deployment · Linux · AWS EC2/S3")],
+        ["Networking ", dim("VLANs · routing · trunking · topologies")],
         ["Soft       ", dim("consultative sales · leadership · mentoring · teamwork")],
       ],
       contact: [

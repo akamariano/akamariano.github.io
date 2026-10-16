@@ -21,9 +21,10 @@ async function loadConfig() {
       screenshot: parsed.screenshot ?? {},
       howTo: parsed.howTo ?? {},
       titles: parsed.titles ?? {},
+      featured: parsed.featured ?? {},
     };
   } catch {
-    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {}, demoUrl: {}, screenshot: {}, howTo: {}, titles: {} };
+    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {}, demoUrl: {}, screenshot: {}, howTo: {}, titles: {}, featured: {} };
   }
 }
 
@@ -67,7 +68,7 @@ async function fetchRepos() {
   return res.json();
 }
 
-async function toCard(repo, { titles, descriptions, extraTech, demoUrl, screenshot, howTo }) {
+async function toCard(repo, { titles, descriptions, extraTech, demoUrl, screenshot, howTo, featured }) {
   const extra = extraTech[repo.name] ?? [];
   return {
     name: repo.name,
@@ -78,6 +79,7 @@ async function toCard(repo, { titles, descriptions, extraTech, demoUrl, screensh
     demoUrl: demoUrl[repo.name] ?? null,
     screenshot: screenshot[repo.name] ?? null,
     howTo: howTo[repo.name] ?? null,
+    featured: featured[repo.name] ?? null,
     language: repo.language,
     tech: [...extra, ...(await fetchTech(repo.name))],
     stars: repo.stargazers_count,

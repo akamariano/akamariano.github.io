@@ -32,7 +32,7 @@
   function renderProject(project) {
     const lang = window.currentLang || "es";
     const card = document.createElement("div");
-    card.className = "card project-card" + (project.screenshot ? " has-thumb" : "");
+    card.className = "card project-card" + (project.screenshot ? " has-thumb" : "") + (project.featured ? " is-featured" : "");
 
     const description = project.description || t("projects.noDescription");
     const updated = project.updatedAt
@@ -41,15 +41,19 @@
     // Título legible por idioma (projects.config.json → "titles"); si no hay, se usa el nombre del repo
     const title = (project.title && (project.title[lang] || project.title.es)) || project.name;
     const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
+    // Proyecto destacado (projects.config.json → "featured"): insignia y lista de competencias por idioma
+    const highlights = project.featured ? (project.featured[lang] || project.featured.es || []) : [];
 
     card.innerHTML = `
       ${project.screenshot ? `<div class="project-thumb-wrap"><img class="project-thumb" src="${project.screenshot}" alt="${title}" loading="lazy" /></div>` : ""}
       <div class="project-card-body">
+        ${project.featured ? `<span class="project-featured-badge">${starIconSvg()}${t("projects.featured")}</span>` : ""}
         <a class="project-name" href="${project.url}" target="_blank" rel="noopener" title="${project.name}">${repoIconSvg()}${title}</a>
         <div class="project-desc-wrap">
           <p class="project-desc is-clamped">${description}</p>
           <button class="project-more" type="button" aria-expanded="false" hidden>${t("projects.more")}</button>
         </div>
+        ${highlights.length ? `<ul class="project-highlights" aria-label="${t("projects.highlights")}">${highlights.map((h) => `<li>${h}</li>`).join("")}</ul>` : ""}
         ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
         <div class="project-meta">
           ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}

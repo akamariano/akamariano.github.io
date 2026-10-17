@@ -121,7 +121,7 @@
         <a class="btn btn-primary" href="#proyectos">
           <span data-i18n="hero.ctaProjects">Ver proyectos</span>
         </a>
-        <a class="btn btn-secondary" href="assets/cv.pdf" download>
+        <a class="btn btn-secondary" href="assets/cv/CV_Mariano_Rac_ES_Foto.pdf" data-i18n-href="cv.photoPdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
           <span data-i18n="hero.ctaResume">Descargar CV</span>
         </a>
@@ -316,7 +316,9 @@
       <div class="chip-row">
         <span class="chip chip-logo"><img src="assets/img/skills/python.svg" alt="" width="18" height="18" loading="lazy" />Python</span>
         <span class="chip chip-logo"><img src="assets/img/skills/java.svg" alt="" width="18" height="18" loading="lazy" />Java</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/go.svg" alt="" width="18" height="18" loading="lazy" />Go</span>
         <span class="chip chip-logo"><img src="assets/img/skills/javascript.svg" alt="" width="18" height="18" loading="lazy" /><img src="assets/img/skills/typescript.svg" alt="" width="18" height="18" loading="lazy" />JavaScript / TypeScript</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/angular.svg" alt="" width="18" height="18" loading="lazy" />Angular</span>
         <span class="chip chip-logo"><img src="assets/img/skills/cplusplus.svg" alt="" width="18" height="18" loading="lazy" />C++</span>
         <span class="chip chip-logo"><img src="assets/img/skills/php.svg" alt="" width="18" height="18" loading="lazy" />PHP</span>
         <span class="chip" data-i18n="skills.assembly">Ensamblador (x86)</span>
@@ -470,10 +472,19 @@
           <li data-i18n="resume.edu2">Colegio Jesús Rey de Gloria — Bachillerato en Computación (2020)</li>
           <li data-i18n="resume.edu3">Reconocimiento a la excelencia académica — Universidad de San Carlos de Guatemala (2 ocasiones)</li>
         </ul>
-        <a class="btn btn-primary" href="assets/cv.pdf" download>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
-          <span data-i18n="resume.download">Descargar CV (PDF)</span>
-        </a>
+        <div class="resume-downloads">
+          <a class="btn btn-primary" href="assets/cv/CV_Mariano_Rac_ES_Foto.pdf" data-i18n-href="cv.photoPdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
+            <span data-i18n="resume.download">Descargar CV (PDF)</span>
+          </a>
+          <p class="resume-ats-note" data-i18n="resume.atsNote">Versión ATS: solo texto, sin foto ni diseño, lista para portales de empleo y sistemas automáticos de selección.</p>
+          <div class="resume-ats-links">
+            <a class="btn btn-secondary" href="assets/cv/CV_Mariano_Rac_ES_ATS.pdf" data-i18n-href="cv.atsPdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg>
+              <span data-i18n="resume.atsPdf">CV ATS (PDF)</span>
+            </a>
+          </div>
+        </div>
       </div>
       <div class="card resume-languages">
         <h3 data-i18n="resume.langTitle">Idiomas</h3>

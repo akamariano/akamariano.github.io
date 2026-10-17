@@ -140,6 +140,10 @@ const translations = {
     "resume.cardTitle": "CV completo en PDF",
     "resume.cardBody": "Descarga mi currículum con el detalle completo de mi formación y experiencia.",
     "resume.download": "Descargar CV (PDF)",
+    "resume.atsNote": "Versión ATS: solo texto, sin foto ni diseño, lista para portales de empleo y sistemas automáticos de selección.",
+    "resume.atsPdf": "CV ATS (PDF)",
+    "cv.photoPdf": "assets/cv/CV_Mariano_Rac_ES_Foto.pdf",
+    "cv.atsPdf": "assets/cv/CV_Mariano_Rac_ES_ATS.pdf",
     "resume.eduTitle": "Educación",
     "resume.edu1": "Universidad de San Carlos de Guatemala — Ingeniería en Ciencias y Sistemas, 7mo semestre (en curso)",
     "resume.edu2": "Colegio Jesús Rey de Gloria — Bachillerato en Computación (2020)",
@@ -312,6 +316,10 @@ const translations = {
     "resume.cardTitle": "Full résumé (PDF)",
     "resume.cardBody": "Download my résumé for the full detail of my education and experience.",
     "resume.download": "Download résumé (PDF)",
+    "resume.atsNote": "ATS version: plain text, no photo or design, ready for job portals and applicant tracking systems.",
+    "resume.atsPdf": "ATS résumé (PDF)",
+    "cv.photoPdf": "assets/cv/CV_Mariano_Rac_EN_Foto.pdf",
+    "cv.atsPdf": "assets/cv/CV_Mariano_Rac_EN_ATS.pdf",
     "resume.eduTitle": "Education",
     "resume.edu1": "Universidad de San Carlos de Guatemala — Systems Engineering, 7th semester (in progress)",
     "resume.edu2": "Colegio Jesús Rey de Gloria — High School Diploma in Computer Science (2020)",
@@ -357,6 +365,11 @@ function applyTranslations(lang) {
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
     const key = el.getAttribute("data-i18n-html");
     if (dict[key] !== undefined) el.innerHTML = dict[key];
+  });
+
+  document.querySelectorAll("[data-i18n-href]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-href");
+    if (dict[key] !== undefined) el.setAttribute("href", dict[key]);
   });
 
   document.documentElement.lang = lang;

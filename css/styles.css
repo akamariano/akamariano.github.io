@@ -1217,8 +1217,25 @@ main {
   margin-bottom: 18px;
 }
 
-.resume-education .btn {
+.resume-downloads {
   margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.resume-ats-note {
+  margin: 6px 0 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.resume-ats-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* ==========================================================================
@@ -2239,7 +2256,8 @@ html:not([lang="en"]) .legal .lang-en {
 .card-3d.timeline-card .org,
 .card-3d.timeline-card p,
 .card-3d.resume-languages ul,
-.card-3d.resume-education ul {
+.card-3d.resume-education ul,
+.card-3d.resume-education .resume-ats-note {
   transform: translateZ(calc(var(--lift) * 16px));
 }
 

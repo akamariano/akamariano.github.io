@@ -43,6 +43,9 @@
     const tech = project.tech && project.tech.length ? project.tech : (project.language ? [project.language] : []);
     // Proyecto destacado (projects.config.json → "featured"): insignia y lista de competencias por idioma
     const highlights = project.featured ? (project.featured[lang] || project.featured.es || []) : [];
+    // Sin repetir en el stack lo que ya aparece como competencia destacada (p. ej. Docker, Vite)
+    const shown = new Set(highlights.map((h) => h.toLowerCase()));
+    const techShown = tech.filter((name) => !shown.has(name.toLowerCase()));
 
     card.innerHTML = `
       ${project.screenshot ? `<div class="project-thumb-wrap"><img class="project-thumb" src="${project.screenshot}" alt="${title}" loading="lazy" /></div>` : ""}
@@ -54,7 +57,7 @@
           <button class="project-more" type="button" aria-expanded="false" hidden>${t("projects.more")}</button>
         </div>
         ${highlights.length ? `<ul class="project-highlights" aria-label="${t("projects.highlights")}">${highlights.map((h) => `<li>${h}</li>`).join("")}</ul>` : ""}
-        ${tech.length ? `<div class="project-tech">${tech.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
+        ${techShown.length ? `<div class="project-tech">${techShown.map((t) => `<span class="tech-tag">${t}</span>`).join("")}</div>` : ""}
         <div class="project-meta">
           ${project.stars ? `<span>${starIconSvg()}${project.stars}</span>` : ""}
           ${updated ? `<span>${t("projects.updated")} ${updated}</span>` : ""}

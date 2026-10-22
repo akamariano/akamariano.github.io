@@ -38,6 +38,7 @@ const translations = {
     "hero.role2": "Mentor — The Church of Jesus Christ of Latter-day Saints",
     "hero.role3": "Estudiante de Ingeniería en Sistemas — USAC",
     "hero.available": "Disponible para proyectos",
+    "hero.bubble": "Abre la terminal",
     "hero.typed": "Desarrollador de software|Ventas de software a medida|Estudiante de Sistemas|Mentor",
 
     "about.eyebrow": "Sobre mí",
@@ -214,6 +215,7 @@ const translations = {
     "hero.role2": "Mentor — The Church of Jesus Christ of Latter-day Saints",
     "hero.role3": "Systems Engineering Student — USAC",
     "hero.available": "Open to projects",
+    "hero.bubble": "Open terminal",
     "hero.typed": "Software developer|Custom software sales|Systems Engineering student|Mentor",
 
     "about.eyebrow": "About me",

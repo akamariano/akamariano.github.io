@@ -117,6 +117,25 @@ html {
   cursor: url("../assets/cursor.svg") 0 0, auto;
 }
 
+/* Celular: sin destello gris al tocar ni retraso de doble toque; el texto de los botones no se selecciona con presión larga */
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+a,
+button,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+button,
+[role="button"],
+.btn {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 a[href],
 button,
 [role="button"],
@@ -374,13 +393,17 @@ main {
 
 .nav-links a {
   position: relative;
+  display: inline-block;
+  padding: 12px 0;
   font-size: 0.9375rem;
   color: var(--text-secondary);
   transition: color 200ms var(--spring);
 }
 
-.nav-links a:hover {
-  color: var(--text);
+@media (hover: hover) and (pointer: fine) {
+  .nav-links a:hover {
+    color: var(--text);
+  }
 }
 
 .nav-links a::after {
@@ -388,7 +411,7 @@ main {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -8px;
+  bottom: 4px;
   height: 2px;
   border-radius: 2px;
   background: linear-gradient(90deg, var(--accent), var(--fuchsia));
@@ -425,8 +448,10 @@ main {
   transition: transform 150ms var(--spring-snappy), background 200ms var(--spring);
 }
 
-.icon-btn:hover {
-  background: var(--chip-bg);
+@media (hover: hover) and (pointer: fine) {
+  .icon-btn:hover {
+    background: var(--chip-bg);
+  }
 }
 
 .icon-btn:active {
@@ -437,6 +462,17 @@ main {
 .icon-btn svg {
   width: 18px;
   height: 18px;
+}
+
+.icon-btn {
+  position: relative;
+}
+
+/* área táctil de 44px sin agrandar el botón */
+.icon-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
 }
 
 .lang-btn {
@@ -518,17 +554,24 @@ main {
 @media (max-width: 860px) {
   .hero {
     grid-template-columns: 1fr;
-    padding-top: 64px;
+    padding-top: 40px;
     text-align: center;
   }
   /* En celular la foto va primero y más pequeña */
   .hero .hero-portrait-wrap {
     order: -1;
-    --portrait-size: 180px;
-    margin-top: 32px; /* espacio para el globo "Click me!" */
+    --portrait-size: 140px;
+    margin-top: 32px; /* espacio para el globo de la terminal */
   }
   .hero p {
     margin-inline: auto;
+  }
+  /* párrafo largo alineado a la izquierda: centrado cansa la lectura */
+  .hero .hero-lede {
+    text-align: left;
+  }
+  .hero-actions {
+    margin-top: 24px;
   }
   .hero-actions {
     justify-content: center;
@@ -700,8 +743,10 @@ main {
   border: 3px solid var(--surface-solid);
 }
 
-.hero-portrait:hover {
-  transform: scale(1.03);
+@media (hover: hover) and (pointer: fine) {
+  .hero-portrait:hover {
+    transform: scale(1.03);
+  }
 }
 
 .hero-portrait:active {
@@ -843,9 +888,11 @@ main {
   z-index: 1;
 }
 
-.btn:hover::before {
-  transform: translateX(70%);
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover::before {
+    transform: translateX(70%);
+    opacity: 1;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -867,10 +914,12 @@ main {
   box-shadow: var(--shadow-sm), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
 }
 
-.btn-primary:hover {
-  background-position: 100% 100%;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background-position: 100% 100%;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+  }
 }
 
 .btn-primary:active {
@@ -884,10 +933,12 @@ main {
   box-shadow: var(--shadow-sm), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
-.btn-secondary:hover {
-  background: var(--chip-bg);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+@media (hover: hover) and (pointer: fine) {
+  .btn-secondary:hover {
+    background: var(--chip-bg);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  }
 }
 
 :root[data-theme="dark"] .btn-secondary {
@@ -917,9 +968,11 @@ main {
   transition: transform 220ms var(--spring), box-shadow 220ms var(--spring);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
 }
 
 /* ==========================================================================
@@ -970,8 +1023,10 @@ main {
   font-weight: 600;
 }
 
-.role-card a.inline-link:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .role-card a.inline-link:hover {
+    text-decoration: underline;
+  }
 }
 
 /* ==========================================================================
@@ -1018,6 +1073,15 @@ main {
 
 .timeline-card {
   padding: 24px 28px;
+}
+
+@media (max-width: 640px) {
+  .timeline-item {
+    padding-left: 18px;
+  }
+  .timeline-card {
+    padding: 20px;
+  }
 }
 
 .timeline-item .meta {
@@ -1155,10 +1219,12 @@ main {
   transition: transform 220ms var(--spring), box-shadow 220ms var(--spring), border-color 220ms var(--spring);
 }
 
-.chip:hover {
-  transform: translateY(-2px);
-  border-color: var(--fuchsia);
-  box-shadow: var(--shadow-sm);
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover {
+    transform: translateY(-2px);
+    border-color: var(--fuchsia);
+    box-shadow: var(--shadow-sm);
+  }
 }
 
 .chip-logo {
@@ -1276,16 +1342,20 @@ main {
   transition: transform 600ms var(--spring);
 }
 
-.project-card:hover .project-thumb {
-  transform: scale(1.06);
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-thumb {
+    transform: scale(1.06);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .project-thumb {
     transition: none;
   }
-  .project-card:hover .project-thumb {
-    transform: none;
+  @media (hover: hover) and (pointer: fine) {
+    .project-card:hover .project-thumb {
+      transform: none;
+    }
   }
 }
 
@@ -1310,8 +1380,10 @@ main {
   width: fit-content;
 }
 
-.project-card .project-name:hover {
-  color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+  .project-card .project-name:hover {
+    color: var(--accent);
+  }
 }
 
 .project-demo-btn {
@@ -1367,7 +1439,8 @@ main {
 }
 
 .project-more {
-  padding: 6px 0; /* área táctil más cómoda sin cambiar el aspecto de enlace */
+  padding: 13px 0; /* área táctil de 44px sin cambiar el aspecto de enlace */
+  margin: -7px 0;
   border: 0;
   background: none;
   font: inherit;
@@ -1376,8 +1449,10 @@ main {
   color: var(--accent);
 }
 
-.project-more:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .project-more:hover {
+    text-decoration: underline;
+  }
 }
 
 .project-more[hidden] {
@@ -1566,8 +1641,8 @@ main {
    ========================================================================== */
 .whatsapp-fab {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
   width: 58px;
   height: 58px;
   border-radius: 50%;
@@ -1590,9 +1665,11 @@ main {
   pointer-events: auto;
 }
 
-.whatsapp-fab:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 14px 30px rgba(37, 211, 102, 0.55), var(--shadow-lg);
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-fab:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 14px 30px rgba(37, 211, 102, 0.55), var(--shadow-lg);
+  }
 }
 
 .whatsapp-fab:active {
@@ -1639,10 +1716,16 @@ main {
 
 @media (max-width: 600px) {
   .whatsapp-fab {
-    right: 16px;
-    bottom: 16px;
+    right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     width: 52px;
     height: 52px;
+  }
+  /* al bajar se aparta para no tapar el contenido; vuelve al subir */
+  .whatsapp-fab.is-visible.is-tucked {
+    opacity: 0;
+    transform: translateY(24px) scale(0.9);
+    pointer-events: none;
   }
 }
 
@@ -1808,9 +1891,11 @@ main {
   font-size: 0.9375rem;
 }
 
-.terminal-close:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e6edf3;
+@media (hover: hover) and (pointer: fine) {
+  .terminal-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e6edf3;
+  }
 }
 
 .terminal-body {
@@ -1857,8 +1942,10 @@ main {
   text-underline-offset: 3px;
 }
 
-.t-link:hover {
-  color: #79c0ff;
+@media (hover: hover) and (pointer: fine) {
+  .t-link:hover {
+    color: #79c0ff;
+  }
 }
 
 .terminal-chips {
@@ -1879,8 +1966,10 @@ main {
   font-size: 0.8125rem;
 }
 
-.terminal-chip:hover {
-  background: rgba(61, 211, 50, 0.18);
+@media (hover: hover) and (pointer: fine) {
+  .terminal-chip:hover {
+    background: rgba(61, 211, 50, 0.18);
+  }
 }
 
 .terminal-input-row {
@@ -1988,8 +2077,10 @@ main {
   color: #1d1d1f;
 }
 
-.btn-light:hover {
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+@media (hover: hover) and (pointer: fine) {
+  .btn-light:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .btn-outline-light {
@@ -1997,15 +2088,19 @@ main {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
-.btn-outline-light:hover {
-  background: rgba(255, 255, 255, 0.12);
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
 }
 
 /* hover verde del cursor en todos los botones (va al final para ganarle a cada variante) */
-.btn.btn:hover {
-  background: #3dd332;
-  color: #0f1a00;
-  border-color: #3dd332;
+@media (hover: hover) and (pointer: fine) {
+  .btn.btn:hover {
+    background: #3dd332;
+    color: #0f1a00;
+    border-color: #3dd332;
+  }
 }
 
 .cta-actions .btn svg {
@@ -2039,12 +2134,17 @@ footer .footer-links {
 }
 
 .footer-links a {
+  display: inline-block;
+  padding: 12px 4px; /* área táctil de 44px */
+  margin: -12px -4px;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
 
-.footer-links a:hover {
-  color: var(--accent);
+@media (hover: hover) and (pointer: fine) {
+  .footer-links a:hover {
+    color: var(--accent);
+  }
 }
 
 /* ==========================================================================
@@ -2120,8 +2220,10 @@ html:not([lang="en"]) .legal .lang-en {
   font-weight: 500;
 }
 
-.legal-toc a:hover {
-  border-color: var(--fuchsia);
+@media (hover: hover) and (pointer: fine) {
+  .legal-toc a:hover {
+    border-color: var(--fuchsia);
+  }
 }
 
 .legal-table-wrap {
@@ -2186,8 +2288,10 @@ html:not([lang="en"]) .legal .lang-en {
   --lift: 0;
 }
 
-.card.card-3d:hover {
-  transform: none; /* evita el translateY genérico de .card:hover */
+@media (hover: hover) and (pointer: fine) {
+  .card.card-3d:hover {
+    transform: none; /* evita el translateY genérico de .card:hover */
+  }
 }
 
 .card.card-3d.is-hovered {
@@ -2214,8 +2318,10 @@ html:not([lang="en"]) .legal .lang-en {
   transform: translateZ(calc(var(--lift) * 40px));
 }
 
-.card-3d .service-btn:hover {
-  transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .card-3d .service-btn:hover {
+    transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+  }
 }
 
 .card-3d .service-btn:active {
@@ -2271,8 +2377,10 @@ html:not([lang="en"]) .legal .lang-en {
   transform: translateZ(calc(var(--lift) * 40px));
 }
 
-.card-3d.resume-education .btn:hover {
-  transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .card-3d.resume-education .btn:hover {
+    transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+  }
 }
 
 .card-3d.resume-education .btn:active {
@@ -2337,8 +2445,10 @@ html:not([lang="en"]) .legal .lang-en {
   transform: translateZ(calc(var(--lift) * 40px));
 }
 
-.card-3d .project-demo-btn:hover {
-  transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+@media (hover: hover) and (pointer: fine) {
+  .card-3d .project-demo-btn:hover {
+    transform: translateZ(calc(var(--lift) * 40px)) translateY(-2px);
+  }
 }
 
 .card-3d .project-demo-btn:active {
@@ -3031,8 +3141,10 @@ html:not([lang="en"]) .legal .lang-en {
   height: 20px;
 }
 
-.dpad-btn:hover {
-  background: var(--chip-bg);
+@media (hover: hover) and (pointer: fine) {
+  .dpad-btn:hover {
+    background: var(--chip-bg);
+  }
 }
 
 .dpad-btn:active {

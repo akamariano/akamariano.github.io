@@ -31,6 +31,10 @@
     const isDark = theme === "dark" || (theme === null && systemPrefersDark());
     sunIcon.style.display = isDark ? "none" : "block";
     moonIcon.style.display = isDark ? "block" : "none";
+    // La barra de estado del celular sigue el tema elegido, no solo el del sistema
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.setAttribute("content", isDark ? "#000000" : "#f2f5ef");
+    });
   }
 
   function applyTheme(theme) {
@@ -230,7 +234,7 @@
   const whatsappFab = document.getElementById("whatsapp-fab");
   if (whatsappFab) {
     // Se agrega un frame después para que se vea la animación de entrada
-    requestAnimationFrame(() => whatsappFab.classList.add("is-visible"));
+    requestAnimationFrame(() => whatsappFab.classList.add("is-visible", ...(window.scrollY < 400 ? ["is-tucked"] : [])));
   }
 
   /* ---------------- Nav: resalta la sección activa ---------------- */
@@ -255,6 +259,17 @@
     sections.forEach((s) => navObserver.observe(s));
   }
 
+  /* En celular el FAB se aparta al bajar (no tapa el contenido) y vuelve al subir; la regla vive en CSS (max-width: 600px) */
+  let lastScrollY = window.scrollY;
+  function updateFabTuck() {
+    if (!whatsappFab) return;
+    const y = window.scrollY;
+    if (Math.abs(y - lastScrollY) < 8) return; // ignora temblores mínimos del scroll
+    // escondido sobre el hero (no tapa los botones principales) y mientras se baja
+    whatsappFab.classList.toggle("is-tucked", y < 400 || y > lastScrollY);
+    lastScrollY = y;
+  }
+
   let scrollTicking = false;
   window.addEventListener(
     "scroll",
@@ -263,6 +278,7 @@
       scrollTicking = true;
       requestAnimationFrame(() => {
         updateProgress();
+        updateFabTuck();
         scrollTicking = false;
       });
     },

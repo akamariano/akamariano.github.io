@@ -22,9 +22,13 @@ async function loadConfig() {
       howTo: parsed.howTo ?? {},
       titles: parsed.titles ?? {},
       featured: parsed.featured ?? {},
+      category: parsed.category ?? {},
+      window: parsed.window ?? {},
+      caseStudy: parsed.caseStudy ?? {},
+      extra: parsed.extra ?? [],
     };
   } catch {
-    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {}, demoUrl: {}, screenshot: {}, howTo: {}, titles: {}, featured: {} };
+    return { exclude: new Set(), pinned: [], descriptions: {}, extraTech: {}, demoUrl: {}, screenshot: {}, howTo: {}, titles: {}, featured: {}, category: {}, window: {}, caseStudy: {}, extra: [] };
   }
 }
 
@@ -68,45 +72,62 @@ async function fetchRepos() {
   return res.json();
 }
 
-async function toCard(repo, { titles, descriptions, extraTech, demoUrl, screenshot, howTo, featured }) {
-  const extra = extraTech[repo.name] ?? [];
+// id: nombre del repo, o el id de una entrada de "extra" (un proyecto dentro de una carpeta del repo).
+// descriptions y howTo pueden ser texto o { es, en }; el frontend elige según el idioma.
+async function toCard(repo, id, path, config) {
+  const { titles, descriptions, extraTech, demoUrl, screenshot, howTo, featured, category, window, caseStudy } = config;
+  const extra = extraTech[id] ?? [];
+  // Un subproyecto no usa los lenguajes de todo el repo: su stack va completo en extraTech
+  const langs = path ? [] : await fetchTech(repo.name);
   return {
-    name: repo.name,
-    title: titles[repo.name] ?? null,
-    description: descriptions[repo.name] || repo.description,
-    url: repo.html_url,
+    name: id,
+    title: titles[id] ?? null,
+    description: descriptions[id] || repo.description,
+    url: path ? `${repo.html_url}/tree/${repo.default_branch}/${path}` : repo.html_url,
     homepage: repo.homepage || null,
-    demoUrl: demoUrl[repo.name] ?? null,
-    screenshot: screenshot[repo.name] ?? null,
-    howTo: howTo[repo.name] ?? null,
-    featured: featured[repo.name] ?? null,
+    demoUrl: demoUrl[id] ?? null,
+    screenshot: screenshot[id] ?? null,
+    howTo: howTo[id] ?? null,
+    featured: featured[id] ?? null,
+    category: category[id] ?? "software",
+    // Marco de la captura: { kind: "browser" | "terminal" | "app", title }; sin él, navegador con la URL
+    window: window[id] ?? null,
+    caseStudy: caseStudy[id] ?? null,
     language: repo.language,
-    tech: [...extra, ...(await fetchTech(repo.name))],
-    stars: repo.stargazers_count,
+    tech: [...new Set([...extra, ...langs])],
+    stars: path ? 0 : repo.stargazers_count,
     topics: repo.topics ?? [],
-    updatedAt: repo.updated_at,
+    updatedAt: repo.pushed_at || repo.updated_at,
   };
 }
 
 async function main() {
   const [config, repos] = await Promise.all([loadConfig(), fetchRepos()]);
 
-  const visible = repos.filter((repo) => !repo.fork && !config.exclude.has(repo.name));
+  const byName = new Map(repos.map((repo) => [repo.name, repo]));
+  const entries = repos
+    .filter((repo) => !repo.fork && !config.exclude.has(repo.name))
+    .map((repo) => ({ repo, id: repo.name, path: null }));
+  // Proyectos dentro de una carpeta de un repo (p. ej. los 3 del laboratorio de SO1).
+  // Solo aparecen si el repo es público, igual que los demás.
+  config.extra.forEach(({ id, repo, path }) => {
+    if (byName.has(repo)) entries.push({ repo: byName.get(repo), id, path });
+  });
 
-  visible.sort((a, b) => {
-    const aPinned = config.pinned.indexOf(a.name);
-    const bPinned = config.pinned.indexOf(b.name);
+  entries.sort((a, b) => {
+    const aPinned = config.pinned.indexOf(a.id);
+    const bPinned = config.pinned.indexOf(b.id);
     if (aPinned !== -1 || bPinned !== -1) {
       if (aPinned === -1) return 1;
       if (bPinned === -1) return -1;
       return aPinned - bPinned;
     }
-    return new Date(b.updated_at) - new Date(a.updated_at);
+    return new Date(b.repo.updated_at) - new Date(a.repo.updated_at);
   });
 
   const payload = {
     generatedAt: new Date().toISOString(),
-    projects: await Promise.all(visible.map((repo) => toCard(repo, config))),
+    projects: await Promise.all(entries.map(({ repo, id, path }) => toCard(repo, id, path, config))),
   };
 
   await mkdir(OUTPUT_DIR, { recursive: true });

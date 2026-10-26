@@ -1,4 +1,4 @@
-/* Tarjetas 3D estilo Apple (Contexto, Servicios, Experiencia, Proyectos, Badges, Certificados,
+/* Tarjetas 3D estilo Apple (Servicios, Experiencia, Proyectos, Badges, Certificados,
    Educación, Contacto/redes y la descripción del hero):
    - Entrada ligada al scroll: llegan inclinadas desde el fondo (las de los lados abiertas
      en abanico) y se enderezan mientras bajas; al subir se revierte igual.
@@ -9,11 +9,17 @@
    y revertir en cualquier momento sin saltos. */
 (function () {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  // Teléfonos de gama baja (poca memoria o pocos núcleos con pantalla táctil) o "ahorro de datos":
+  // tarjetas estáticas, sin inclinación ni entrada por scroll, para no trabar el desplazamiento
+  const lowEnd =
+    (navigator.deviceMemory && navigator.deviceMemory <= 2) ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4 && window.matchMedia("(pointer: coarse)").matches) ||
+    (navigator.connection && navigator.connection.saveData);
+  if (lowEnd) return;
 
-  // .timeline-item contiene una sola tarjeta: cada puesto entra por su cuenta al hacer scroll
   const GRID_SELECTOR =
-    ".about-grid, .services-grid, .projects-grid, .badges-grid, .certs-grid, .timeline-item, .resume-summary, .contact-grid";
-  const ICON_SELECTOR = ".service-icon, .role-icon, .contact-icon, .badge-image, .project-name svg";
+    ".services-grid, .projects-grid, .notes-list, .badges-grid, .certs-grid, .resume-summary, .contact-grid";
+  const ICON_SELECTOR = ".contact-icon, .badge-image, .project-name svg";
   // Elementos sueltos (no en grid): entran al cargar la página en vez de con el scroll
   const SOLO_SELECTOR = ".hero-lede";
   const solos = Array.from(document.querySelectorAll(SOLO_SELECTOR));

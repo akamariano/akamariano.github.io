@@ -21,18 +21,76 @@
     "ACE1-23VJ0778202101149PROY2",
     "P1_OLC2B_202101149",
     "P1_MIAC_202101149",
-    "P2_OLCA_202101149"
+    "P2_OLCA_202101149",
+    "202101149_LAB_SO1_1S2026",
+    "Redes1_2S_2026_202101149"
+  ],
+  "extra": [
+    {
+      "id": "so1-mumnk8s",
+      "repo": "202101149_LAB_SO1_1S2026",
+      "path": "Proyecto3"
+    },
+    {
+      "id": "so1-continfo",
+      "repo": "202101149_LAB_SO1_1S2026",
+      "path": "Proyecto2"
+    },
+    {
+      "id": "so1-runtimes",
+      "repo": "202101149_LAB_SO1_1S2026",
+      "path": "Proyecto1"
+    },
+    {
+      "id": "redes-smartcity",
+      "repo": "Redes1_2S_2026_202101149",
+      "path": "Proyecto1"
+    },
+    {
+      "id": "redes-cayala",
+      "repo": "Redes1_2S_2026_202101149",
+      "path": "Practica2"
+    },
+    {
+      "id": "redes-cableado",
+      "repo": "Redes1_2S_2026_202101149",
+      "path": "Practica1"
+    }
   ],
   "pinned": [
     "super-estrella-bd1",
+    "so1-mumnk8s",
+    "Proyecto3_Redes1_2S_2026_202101149",
     "centro-jas-naranjo",
+    "so1-continfo",
+    "redes-smartcity",
+    "so1-runtimes",
+    "redes-cayala",
     "OLC2_1S2026_P1_202101149",
     "MIA_1S2026_P2_2022101149",
     "MIA_1S2026_P1_202101149",
+    "redes-cableado",
     "EDD_1S2023_PY_202101149",
     "ACE2_2S23_G2",
     "P1_OLCA_202101149"
   ],
+  "category": {
+    "super-estrella-bd1": "software",
+    "centro-jas-naranjo": "software",
+    "OLC2_1S2026_P1_202101149": "software",
+    "EDD_1S2023_PY_202101149": "software",
+    "ACE2_2S23_G2": "software",
+    "P1_OLCA_202101149": "software",
+    "so1-mumnk8s": "infra",
+    "so1-continfo": "infra",
+    "so1-runtimes": "infra",
+    "MIA_1S2026_P2_2022101149": "infra",
+    "MIA_1S2026_P1_202101149": "infra",
+    "Proyecto3_Redes1_2S_2026_202101149": "redes",
+    "redes-smartcity": "redes",
+    "redes-cayala": "redes",
+    "redes-cableado": "redes"
+  },
   "extraTech": {
     "super-estrella-bd1": [
       "React",
@@ -55,6 +113,61 @@
       "PostgreSQL",
       "Express",
       "Tailwind"
+    ],
+    "so1-mumnk8s": [
+      "Rust",
+      "Go",
+      "gRPC",
+      "RabbitMQ",
+      "Valkey",
+      "Grafana",
+      "Locust",
+      "Dapr",
+      "Falco"
+    ],
+    "so1-continfo": [
+      "C",
+      "eBPF",
+      "Go",
+      "Docker",
+      "Valkey",
+      "Grafana"
+    ],
+    "so1-runtimes": [
+      "Go",
+      "KVM",
+      "containerd",
+      "podman",
+      "Docker",
+      "Zot"
+    ],
+    "Proyecto3_Redes1_2S_2026_202101149": [
+      "Cisco Packet Tracer",
+      "OSPF",
+      "EIGRP",
+      "RIPv2",
+      "HSRP",
+      "LACP"
+    ],
+    "redes-smartcity": [
+      "Cisco Packet Tracer",
+      "VTP",
+      "PAgP",
+      "Rapid PVST+",
+      "802.1Q"
+    ],
+    "redes-cayala": [
+      "Cisco Packet Tracer",
+      "VLANs",
+      "EtherChannel",
+      "Rapid PVST+",
+      "VTP"
+    ],
+    "redes-cableado": [
+      "Cisco Packet Tracer",
+      "TIA/EIA-568",
+      "Cat6",
+      "OM3"
     ]
   },
   "demoUrl": {
@@ -63,17 +176,57 @@
     "centro-jas-naranjo": "https://akamariano.github.io/centro-jas-naranjo/"
   },
   "howTo": {
-    "super-estrella-bd1": "Entra al demo y registra una venta en «Nueva venta»: los triggers validan el stock y cambian el estado de la venta. En «Escenarios» puedes ejecutar los casos de prueba del API.",
-    "EDD_1S2023_PY_202101149": "Admin: admin / admin → carga alumnos.json → construye el árbol AVL. Estudiante: carnet 12345, contraseña abc1239 → crea carpetas y asigna permisos.",
-    "centro-jas-naranjo": "Regístrate con cualquier dato para generar tu carnet con QR, o entra como Administrador (modo de prueba) para ver el check-in."
+    "super-estrella-bd1": {
+      "es": "Entra al demo y registra una venta en «Nueva venta»: los triggers validan el stock y cambian el estado de la venta. En «Escenarios» puedes ejecutar los casos de prueba del API.",
+      "en": "Open the demo and record a sale under “Nueva venta”: the triggers validate stock and update the sale status. Under “Escenarios” you can run the API test cases."
+    },
+    "EDD_1S2023_PY_202101149": {
+      "es": "Admin: admin / admin → carga alumnos.json → construye el árbol AVL. Estudiante: carnet 12345, contraseña abc1239 → crea carpetas y asigna permisos.",
+      "en": "Admin: admin / admin → load alumnos.json → build the AVL tree. Student: ID 12345, password abc1239 → create folders and assign permissions."
+    },
+    "centro-jas-naranjo": {
+      "es": "Regístrate con cualquier dato para generar tu carnet con QR, o entra como Administrador (modo de prueba) para ver el check-in.",
+      "en": "Sign up with any details to generate your QR badge, or enter as Administrator (test mode) to see the check-in."
+    },
+    "so1-mumnk8s": {
+      "es": "Con Docker: docker compose -f docker-compose.local.yml up --build en Proyecto3 levanta el flujo completo sin GCP; Grafana queda en localhost:3000. Pasos en el README del repositorio.",
+      "en": "With Docker: docker compose -f docker-compose.local.yml up --build in Proyecto3 runs the whole pipeline without GCP; Grafana is on localhost:3000. Steps in the repository README."
+    },
+    "so1-continfo": {
+      "es": "En un Ubuntu con Docker y los headers del kernel: compila el módulo con make, carga continfo.ko y corre el daemon con sudo; Grafana queda en localhost:3001.",
+      "en": "On Ubuntu with Docker and kernel headers: build the module with make, load continfo.ko and run the daemon with sudo; Grafana is on localhost:3001."
+    },
+    "so1-runtimes": {
+      "es": "Con Docker: docker compose -f docker-compose.local.yml up --build en Proyecto1 y prueba curl localhost:8081/api1/202101149/call-api2. Apaga una API para ver connection: false.",
+      "en": "With Docker: docker compose -f docker-compose.local.yml up --build in Proyecto1, then curl localhost:8081/api1/202101149/call-api2. Stop one API to see connection: false."
+    },
+    "Proyecto3_Redes1_2S_2026_202101149": {
+      "es": "Abre Unido/BanTech_GT_v1.pkt en Packet Tracer 9: show ip route en los CORE, show standby brief en MS1/MS2, y apaga el uplink de MS1 para ver a MS2 tomar el gateway.",
+      "en": "Open Unido/BanTech_GT_v1.pkt in Packet Tracer 9: show ip route on the COREs, show standby brief on MS1/MS2, then shut MS1's uplink and watch MS2 take over the gateway."
+    },
+    "redes-smartcity": {
+      "es": "Abre SmartCity.pkt en Packet Tracer 8.2+ y revisa show vtp status, show etherchannel summary y show spanning-tree en SW-CORE.",
+      "en": "Open SmartCity.pkt in Packet Tracer 8.2+ and check show vtp status, show etherchannel summary and show spanning-tree on SW-CORE."
+    },
+    "redes-cayala": {
+      "es": "Abre Cayala.pkt en Packet Tracer 8.2+: show vlan brief y show spanning-tree en SW_CC, y ping entre PCs de la misma zona.",
+      "en": "Open Cayala.pkt in Packet Tracer 8.2+: show vlan brief and show spanning-tree on SW_CC, then ping between PCs in the same zone."
+    }
   },
   "screenshot": {
-    "super-estrella-bd1": "assets/img/projects/super-estrella.jpg",
-    "centro-jas-naranjo": "assets/img/projects/centro-jas-naranjo.jpg",
-    "OLC2_1S2026_P1_202101149": "assets/img/projects/olc2.jpg",
-    "MIA_1S2026_P2_2022101149": "assets/img/projects/mia-p2.jpg",
-    "MIA_1S2026_P1_202101149": "assets/img/projects/mia-p1.jpg",
-    "ACE2_2S23_G2": "assets/img/projects/ace2.jpg"
+    "super-estrella-bd1": "assets/img/projects/super-estrella.webp",
+    "centro-jas-naranjo": "assets/img/projects/centro-jas-naranjo.webp",
+    "OLC2_1S2026_P1_202101149": "assets/img/projects/olc2.webp",
+    "MIA_1S2026_P2_2022101149": "assets/img/projects/mia-p2.webp",
+    "MIA_1S2026_P1_202101149": "assets/img/projects/mia-p1.webp",
+    "ACE2_2S23_G2": "assets/img/projects/ace2.webp",
+    "so1-mumnk8s": "assets/img/projects/so1-gke.webp",
+    "so1-continfo": "assets/img/projects/so1-kernel.webp",
+    "so1-runtimes": "assets/img/projects/so1-vms.webp",
+    "Proyecto3_Redes1_2S_2026_202101149": "assets/img/projects/bantech.webp",
+    "redes-smartcity": "assets/img/projects/redes-smartcity.webp",
+    "redes-cayala": "assets/img/projects/redes-cayala.webp",
+    "redes-cableado": "assets/img/projects/redes-cableado.webp"
   },
   "titles": {
     "super-estrella-bd1": {
@@ -107,17 +260,97 @@
     "P1_OLCA_202101149": {
       "es": "Analizador de lenguajes en Java",
       "en": "Language analyzer in Java"
+    },
+    "so1-mumnk8s": {
+      "es": "M.U.M.N.K8s: microservicios Rust y Go en Kubernetes (GKE)",
+      "en": "M.U.M.N.K8s: Rust & Go microservices on Kubernetes (GKE)"
+    },
+    "so1-continfo": {
+      "es": "Monitoreo de contenedores con módulo de kernel y eBPF",
+      "en": "Container monitoring with a kernel module and eBPF"
+    },
+    "so1-runtimes": {
+      "es": "3 APIs en 3 VMs: containerd, podman y Docker",
+      "en": "3 APIs on 3 VMs: containerd, podman & Docker"
+    },
+    "Proyecto3_Redes1_2S_2026_202101149": {
+      "es": "BanTech GT: red bancaria nacional",
+      "en": "BanTech GT: nationwide banking network"
+    },
+    "redes-smartcity": {
+      "es": "SmartCity Tech Park: campus jerárquico",
+      "en": "SmartCity Tech Park: hierarchical campus"
+    },
+    "redes-cayala": {
+      "es": "Ciudad Cayalá: red de servicios con 15 switches",
+      "en": "Ciudad Cayalá: 15-switch services network"
+    },
+    "redes-cableado": {
+      "es": "Cableado estructurado de un edificio de oficinas",
+      "en": "Structured cabling for an office building"
     }
   },
   "descriptions": {
-    "super-estrella-bd1": "Aplicación full stack para un supermercado: base de datos relacional en Microsoft SQL Server 2022 (migrada desde Oracle SQL) con 19 tablas, triggers y vistas; API REST en Node.js + Express como única puerta de entrada a los datos; y panel en React + Vite con reportes y gráficas. Todo se levanta con Docker y docker-compose, y el frontend está publicado con un demo en vivo.",
-    "centro-jas-naranjo": "Plataforma de registro de asistentes con carnet/QR descargable y check-in híbrido (cámara o búsqueda manual) para un centro comunitario. Demo en modo de prueba: los datos se guardan solo en el navegador.",
-    "OLC2_1S2026_P1_202101149": "Intérprete del lenguaje Golampi para el curso de Organización de Lenguajes y Compiladores 2: análisis léxico, sintáctico y semántico.",
-    "MIA_1S2026_P2_2022101149": "Implementación de un sistema de archivos (ExtreamFS) en C++, desplegado en instancias de AWS EC2 con S3 como backend de almacenamiento, usando CMake y Makefile.",
-    "MIA_1S2026_P1_202101149": "Primera fase del proyecto de sistema de archivos ExtreamFS, en C++ con CMake, desplegado sobre AWS EC2 y S3.",
-    "EDD_1S2023_PY_202101149": "Implementación de estructuras de datos para el curso de Estructuras de Datos, con visualización web en JavaScript.",
-    "ACE2_2S23_G2": "Proyecto del curso de Arquitectura de Computadoras y Ensambladores 2: simulación visual construida en C++ y Processing.",
-    "P1_OLCA_202101149": "Proyecto del curso de Organización de Lenguajes y Compiladores A, en Java."
+    "super-estrella-bd1": {
+      "es": "Aplicación full stack para un supermercado: base de datos relacional en Microsoft SQL Server 2022 (migrada desde Oracle SQL) con 19 tablas, triggers y vistas; API REST en Node.js + Express como única puerta de entrada a los datos; y panel en React + Vite con reportes y gráficas. Todo se levanta con Docker y docker-compose, y el frontend está publicado con un demo en vivo.",
+      "en": "Full-stack app for a supermarket: a relational database in Microsoft SQL Server 2022 (migrated from Oracle SQL) with 19 tables, triggers and views; a Node.js + Express REST API as the only door to the data; and a React + Vite dashboard with reports and charts. Everything runs with Docker and docker-compose, and the frontend is published as a live demo."
+    },
+    "centro-jas-naranjo": {
+      "es": "Plataforma de registro de asistentes con carnet/QR descargable y check-in híbrido (cámara o búsqueda manual) para un centro comunitario. Demo en modo de prueba: los datos se guardan solo en el navegador.",
+      "en": "Attendee registration platform with a downloadable QR badge and hybrid check-in (camera or manual search) for a community center. The demo runs in test mode: data stays in your browser."
+    },
+    "OLC2_1S2026_P1_202101149": {
+      "es": "Intérprete del lenguaje Golampi para el curso de Organización de Lenguajes y Compiladores 2: análisis léxico, sintáctico y semántico.",
+      "en": "Interpreter for the Golampi language, built for Compilers 2: lexical, syntactic and semantic analysis."
+    },
+    "MIA_1S2026_P2_2022101149": {
+      "es": "Implementación de un sistema de archivos (ExtreamFS) en C++, desplegado en instancias de AWS EC2 con S3 como backend de almacenamiento, usando CMake y Makefile.",
+      "en": "A file system (ExtreamFS) implemented in C++, deployed on AWS EC2 instances with S3 as the storage backend, built with CMake and Make."
+    },
+    "MIA_1S2026_P1_202101149": {
+      "es": "Primera fase del proyecto de sistema de archivos ExtreamFS, en C++ con CMake, desplegado sobre AWS EC2 y S3.",
+      "en": "First phase of the ExtreamFS file system project, in C++ with CMake, deployed on AWS EC2 and S3."
+    },
+    "EDD_1S2023_PY_202101149": {
+      "es": "Implementación de estructuras de datos para el curso de Estructuras de Datos, con visualización web en JavaScript.",
+      "en": "Data structures implemented for the Data Structures course, with a web visualization in JavaScript."
+    },
+    "ACE2_2S23_G2": {
+      "es": "Proyecto del curso de Arquitectura de Computadoras y Ensambladores 2: simulación visual construida en C++ y Processing.",
+      "en": "Computer Architecture & Assembly 2 project: a visual simulation built in C++ and Processing."
+    },
+    "P1_OLCA_202101149": {
+      "es": "Proyecto del curso de Organización de Lenguajes y Compiladores A, en Java.",
+      "en": "Project for the Languages & Compilers A course, in Java."
+    },
+    "so1-mumnk8s": {
+      "es": "Sistema distribuido en Google Cloud que recibe reportes en tiempo real: una API en Rust con autoescalado (HPA) los envía a microservicios en Go que se hablan por gRPC, pasan por una cola de RabbitMQ y terminan en Valkey, con un dashboard de Grafana. Valkey y Grafana los instala un Operator propio como Custom Resources; las imágenes salen de un registro privado Zot con HTTPS, y en pruebas de carga con Locust sostuvo unas 1 290 peticiones por segundo sin fallos. Extras: flujo alterno con Dapr y una regla propia de Falco.",
+      "en": "A distributed system on Google Cloud that ingests real-time reports: an autoscaled (HPA) Rust API forwards them to Go microservices that talk over gRPC, through a RabbitMQ queue and into Valkey, with a Grafana dashboard. Valkey and Grafana are installed by my own Operator as Custom Resources; images come from a private Zot registry over HTTPS, and under Locust load tests it sustained about 1,290 requests per second with zero failures. Extras: an alternate Dapr flow and a custom Falco rule."
+    },
+    "so1-continfo": {
+      "es": "Un módulo de kernel en C expone en /proc la RAM del sistema y los procesos de cada contenedor (leyendo su cgroup v2). Un daemon en Go lee esa telemetría cada 30 segundos, conserva 3 contenedores de bajo consumo y 2 de alto, y elimina el resto; una sonda eBPF sobre pidfd_send_signal confirma a nivel de kernel cada eliminación. Todo se visualiza en Grafana con Valkey.",
+      "en": "A C kernel module exposes system RAM and each container's processes in /proc (by reading their cgroup v2). A Go daemon reads that telemetry every 30 seconds, keeps 3 low-usage and 2 high-usage containers and removes the rest; an eBPF probe on pidfd_send_signal confirms every kill at kernel level. Everything is visualized in Grafana backed by Valkey."
+    },
+    "so1-runtimes": {
+      "es": "Tres APIs REST en Go, sin frameworks, repartidas en tres máquinas virtuales de KVM creadas con cloud-init, cada una con un runtime distinto: containerd (con nerdctl y BuildKit), podman y Docker. Las imágenes son multi-stage (de más de 800 MB a entre 16 y 25 MB) y se publican en un registro privado Zot; las APIs se llaman entre sí y reportan si la otra VM está caída.",
+      "en": "Three framework-free Go REST APIs spread across three KVM virtual machines provisioned with cloud-init, each with a different runtime: containerd (with nerdctl and BuildKit), podman and Docker. Images are multi-stage (from over 800 MB down to 16–25 MB) and pushed to a private Zot registry; the APIs call each other and report when another VM is down."
+    },
+    "Proyecto3_Redes1_2S_2026_202101149": {
+      "es": "Red nacional de un banco con 112 dispositivos y 120 enlaces, en un grupo de tres que coordiné. Diseñé el backbone: tres switches 3650 en triángulo con EtherChannel de capa 3 (LACP) y OSPF área 0, con un solo punto de redistribución hacia cada sede: EIGRP en Occidente, RIPv2 en Oriente y rutas estáticas en el Data Center. Oriente tiene gateway redundante con HSRP, y la conmutación ante fallas quedó probada.",
+      "en": "A bank's nationwide network with 112 devices and 120 links, built by a team of three that I coordinated. I designed the backbone: three 3650 switches in a triangle with layer-3 EtherChannel (LACP) and OSPF area 0, with a single redistribution point toward each site: EIGRP in the West, RIPv2 in the East and static routes in the Data Center. The East site has a redundant HSRP gateway, and failover was tested."
+    },
+    "redes-smartcity": {
+      "es": "Campus jerárquico (núcleo, distribución y acceso) para un parque tecnológico: 5 VLANs creadas una sola vez en el núcleo y propagadas por VTP con contraseña, VLAN nativa 99, EtherChannel PAgP, Rapid PVST+ y una malla completa en el área de I+D para que la caída de un switch no aísle a los demás.",
+      "en": "A hierarchical campus (core, distribution and access) for a tech park: 5 VLANs created once at the core and propagated by password-protected VTP, native VLAN 99, PAgP EtherChannel, Rapid PVST+ and a full mesh in the R&D area so no single switch failure isolates the rest."
+    },
+    "redes-cayala": {
+      "es": "Red de servicios comunes de Ciudad Cayalá (Wi-Fi público, cámaras, señalización y accesos) con 15 switches: un triángulo redundante en el núcleo y zonas en estrella, VLANs por zona, EtherChannel, root bridges planificados con Rapid PVST+ y una VLAN blackhole para los puertos sin uso.",
+      "en": "Shared-services network for Ciudad Cayalá (public Wi-Fi, cameras, signage and access control) with 15 switches: a redundant core triangle with star zones, per-zone VLANs, EtherChannel, planned root bridges with Rapid PVST+ and a blackhole VLAN for unused ports."
+    },
+    "redes-cableado": {
+      "es": "Diseño de cableado estructurado para un edificio de 48 hosts: el cuarto de telecomunicaciones se ubicó con un centroide ponderado por hosts, las distancias se midieron como Manhattan con 20 % de holgura, y se eligió Cat6 en los departamentos y fibra OM3 en el Data Center, con presupuesto y planos según TIA/EIA-568.",
+      "en": "Structured cabling design for a 48-host building: the telecom room was placed with a host-weighted centroid, runs were measured as Manhattan distances plus 20% slack, and Cat6 was chosen for departments with OM3 fiber in the Data Center, with budget and plans per TIA/EIA-568."
+    }
   },
   "featured": {
     "super-estrella-bd1": {
@@ -145,6 +378,91 @@
         "Vite",
         "Deployment & publishing"
       ]
+    },
+    "so1-mumnk8s": {
+      "es": [
+        "Kubernetes (GKE)",
+        "Microservicios",
+        "gRPC",
+        "Mensajería con RabbitMQ",
+        "Operator propio",
+        "Autoescalado (HPA)",
+        "Gateway API",
+        "Registro privado Zot",
+        "Pruebas de carga",
+        "Google Cloud"
+      ],
+      "en": [
+        "Kubernetes (GKE)",
+        "Microservices",
+        "gRPC",
+        "RabbitMQ messaging",
+        "Custom Operator",
+        "Autoscaling (HPA)",
+        "Gateway API",
+        "Private Zot registry",
+        "Load testing",
+        "Google Cloud"
+      ]
+    },
+    "Proyecto3_Redes1_2S_2026_202101149": {
+      "es": [
+        "Coordinación del grupo",
+        "Diseño del backbone",
+        "OSPF",
+        "EIGRP",
+        "RIPv2",
+        "Redistribución",
+        "EtherChannel L3",
+        "HSRP",
+        "Alta disponibilidad"
+      ],
+      "en": [
+        "Team coordination",
+        "Backbone design",
+        "OSPF",
+        "EIGRP",
+        "RIPv2",
+        "Route redistribution",
+        "Layer-3 EtherChannel",
+        "HSRP",
+        "High availability"
+      ]
     }
+  },
+  "window": {
+    "so1-mumnk8s": {
+      "kind": "browser",
+      "title": "localhost:3000/d/mumnk8s"
+    },
+    "so1-continfo": {
+      "kind": "browser",
+      "title": "localhost:3001/d/panel-de-contenedores"
+    },
+    "so1-runtimes": {
+      "kind": "terminal",
+      "title": "mariano@vm1-containerd: ~"
+    },
+    "Proyecto3_Redes1_2S_2026_202101149": {
+      "kind": "app",
+      "title": "BanTech_GT_v1.pkt — Cisco Packet Tracer"
+    },
+    "redes-smartcity": {
+      "kind": "app",
+      "title": "SmartCity.pkt — Cisco Packet Tracer"
+    },
+    "redes-cayala": {
+      "kind": "app",
+      "title": "Cayala.pkt — Cisco Packet Tracer"
+    },
+    "redes-cableado": {
+      "kind": "app",
+      "title": "DiagramaPractica1.pkt — Cisco Packet Tracer"
+    }
+  },
+  "caseStudy": {
+    "super-estrella-bd1": "caso-super-estrella.html",
+    "so1-mumnk8s": "caso-mumnk8s.html",
+    "Proyecto3_Redes1_2S_2026_202101149": "caso-bantech.html"
   }
 }

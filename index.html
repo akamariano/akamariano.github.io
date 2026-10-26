@@ -6,30 +6,34 @@
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Mariano Rac — Desarrollador de Software</title>
-<meta name="description" content="Mariano Roberto Rac Noguera — Estudiante de Ingeniería en Sistemas, desarrollador de software y agente de ventas en TechnoMaya." />
+<meta name="description" content="Mariano Roberto Rac Noguera — Estudiante de Ingeniería en Sistemas, desarrollador de software freelance con TechnoMaya." />
 <meta name="author" content="Mariano Roberto Rac Noguera" />
 <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f5ef" />
-<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000000" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#04090b" />
 <meta name="color-scheme" content="light dark" />
 <link rel="canonical" href="https://akamariano.github.io/" />
+<link rel="alternate" hreflang="es" href="https://akamariano.github.io/" />
+<link rel="alternate" hreflang="en" href="https://akamariano.github.io/en/" />
+<link rel="alternate" hreflang="x-default" href="https://akamariano.github.io/" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 <link rel="manifest" href="manifest.json" />
 <link rel="stylesheet" href="css/styles.css" />
+<script src="js/intro-gate.js"></script>
 <script>try{var t=localStorage.getItem("mr-theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 
 <!-- Open Graph / redes sociales -->
 <meta property="og:type" content="profile" />
 <meta property="og:site_name" content="Mariano Rac" />
 <meta property="og:title" content="Mariano Rac — Desarrollador de Software" />
-<meta property="og:description" content="Estudiante de Ingeniería en Sistemas, desarrollador de software y agente de ventas en TechnoMaya." />
+<meta property="og:description" content="Estudiante de Ingeniería en Sistemas, desarrollador de software freelance con TechnoMaya." />
 <meta property="og:url" content="https://akamariano.github.io/" />
 <meta property="og:image" content="https://akamariano.github.io/assets/img/profile-formal.png" />
 <meta property="og:locale" content="es_GT" />
 
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Mariano Rac — Desarrollador de Software" />
-<meta name="twitter:description" content="Estudiante de Ingeniería en Sistemas, desarrollador de software y agente de ventas en TechnoMaya." />
+<meta name="twitter:description" content="Estudiante de Ingeniería en Sistemas, desarrollador de software freelance con TechnoMaya." />
 <meta name="twitter:image" content="https://akamariano.github.io/assets/img/profile-formal.png" />
 
 <script type="application/ld+json">
@@ -59,6 +63,12 @@
 </head>
 <body>
 
+<div id="intro" class="intro">
+  <div class="intro-log" aria-hidden="true"></div>
+  <div class="intro-name" aria-hidden="true"></div>
+  <button class="intro-skip" type="button">Saltar ↵</button>
+</div>
+
 <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
 <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -70,17 +80,16 @@
     <a class="nav-brand" href="#top">Mariano Rac</a>
 
     <ul class="nav-links">
-      <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
-      <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
-      <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
       <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
       <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
-      <li><a href="#certificaciones" data-i18n="nav.badges">Certificaciones</a></li>
-      <li><a href="#curriculum" data-i18n="nav.resume">Currículum</a></li>
+      <li><a href="bitacora.html" data-i18n="nav.notes">Bitácora</a></li>
+      <li><a href="servicios.html" data-i18n="nav.services">Servicios</a></li>
       <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
     </ul>
 
     <div class="nav-controls">
+      <a class="btn btn-secondary nav-cv" href="assets/cv/CV_Mariano_Rac_ES_Foto.pdf" data-i18n-href="cv.photoPdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 19h16"/></svg><span data-i18n="nav.cv">CV</span></a>
       <button class="icon-btn lang-btn" id="lang-toggle" type="button" aria-label="Cambiar idioma / Switch language">
         <span id="lang-toggle-label">EN</span>
       </button>
@@ -94,14 +103,13 @@
     </div>
   </div>
   <ul class="nav-links nav-links-mobile" id="nav-links-mobile" hidden>
-    <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
-    <li><a href="#servicios" data-i18n="nav.services">Servicios</a></li>
-    <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
     <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+    <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
     <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
-    <li><a href="#certificaciones" data-i18n="nav.badges">Certificaciones</a></li>
-    <li><a href="#curriculum" data-i18n="nav.resume">Currículum</a></li>
+    <li><a href="bitacora.html" data-i18n="nav.notes">Bitácora</a></li>
+    <li><a href="servicios.html" data-i18n="nav.services">Servicios</a></li>
     <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+    <li><a href="assets/cv/CV_Mariano_Rac_ES_Foto.pdf" data-i18n-href="cv.photoPdf" data-i18n="nav.cvDownload" download>Descargar CV</a></li>
   </ul>
 </header>
 
@@ -110,13 +118,10 @@
   <!-- Hero -->
   <section id="top" class="hero container">
     <div>
-      <span class="eyebrow" data-i18n="hero.eyebrow">Ingeniería en Sistemas · USAC</span>
       <h1>Mariano Roberto<br /><span class="gradient-text">Rac Noguera</span></h1>
       <p class="hero-typed" aria-hidden="true"><span class="typed-prompt">&gt;</span> <span id="typed-role"></span><span class="typed-caret"></span></p>
       <p class="hero-lede" data-i18n="hero.lede">
-        Entusiasta de la tecnología con una base académica sólida y dominio avanzado del inglés.
-        Desarrollo software y colaboro en la venta de proyectos a medida, con foco en aprender de
-        cada equipo con el que trabajo.
+        Construyo software full stack y entiendo lo que corre debajo: contenedores, Kubernetes, el kernel de Linux y las redes. Estudio Ingeniería en Ciencias y Sistemas en la USAC y trabajo como desarrollador freelance con TechnoMaya.
       </p>
 
       <div class="hero-actions">
@@ -129,16 +134,16 @@
         </a>
       </div>
 
-      <div class="hero-roles">
-        <span class="role-chip" data-i18n="hero.role1">Desarrollador &amp; Ventas — TechnoMaya</span>
-        <span class="role-chip" data-i18n="hero.role2">Mentor — The Church of Jesus Christ of Latter-day Saints</span>
-        <span class="role-chip" data-i18n="hero.role3">Estudiante de Ingeniería en Sistemas — USAC</span>
-      </div>
+      <nav class="hero-tracks" aria-label="Áreas de proyectos" data-i18n-attr="aria-label:hero.tracksLabel">
+        <a class="hero-track" href="#proyectos" data-filter-link="software"><span class="hero-track-name" data-i18n="hero.trackSoftware">Software full stack</span><span class="hero-track-stack">React · Node.js · SQL Server</span></a>
+        <a class="hero-track" href="#proyectos" data-filter-link="infra"><span class="hero-track-name" data-i18n="hero.trackInfra">Cloud y sistemas</span><span class="hero-track-stack">GKE · Rust · eBPF</span></a>
+        <a class="hero-track" href="#proyectos" data-filter-link="redes"><span class="hero-track-name" data-i18n="hero.trackRedes">Redes</span><span class="hero-track-stack">OSPF · EIGRP · HSRP</span></a>
+      </nav>
     </div>
 
     <div class="hero-portrait-wrap">
       <button class="hero-portrait" id="terminal-open" type="button" aria-haspopup="dialog" aria-label="Abrir terminal: conoce más sobre mí">
-        <img src="assets/img/profile-formal.png" alt="Mariano Roberto Rac Noguera" width="220" height="220" />
+        <img src="assets/img/profile-formal.webp" fetchpriority="high" decoding="async" alt="Mariano Roberto Rac Noguera" width="220" height="220" />
       </button>
       <span class="terminal-hint" aria-hidden="true">&gt;_</span>
       <span class="click-bubble" aria-hidden="true" data-i18n="hero.bubble">Abre la terminal</span>
@@ -146,140 +151,24 @@
     </div>
   </section>
 
-  <!-- Sobre mí -->
-  <section id="sobre-mi" class="container reveal">
-    <div class="section-head">
-      <span class="eyebrow eyebrow-2" data-i18n="about.eyebrow">Sobre mí</span>
-      <h2 data-i18n="about.title">Un poco de contexto</h2>
-      <p data-i18n="about.body">
-        Soy estudiante de Ingeniería en Ciencias y Sistemas en la Universidad de San Carlos de Guatemala,
-        con fluidez avanzada en inglés y una fuerte ética de trabajo. Disfruto colaborar en entornos
-        diversos y multiculturales, y mi meta es aportar conocimiento técnico a equipos de desarrollo
-        donde pueda aprender de mentores experimentados y crecer junto a nuevos retos.
-      </p>
-    </div>
-
-    <div class="about-grid">
-      <div class="card role-card">
-        <div class="role-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        </div>
-        <div class="role-meta" data-i18n="about.technomayaMeta">Marzo 2026 — Actualidad</div>
-        <h3 data-i18n="about.technomayaTitle">Desarrollador &amp; Agente de Ventas</h3>
-        <p data-i18n-html="about.technomayaBody">
-          En <a class="inline-link" href="https://technomaya.dev/" target="_blank" rel="noopener">TechnoMaya</a>
-          combino dos roles: desarrollo software a medida, aplicaciones web y móviles, y también participo
-          como agente de ventas ayudando a clientes en Guatemala a encontrar la solución tecnológica
-          adecuada para su negocio.
-        </p>
-        <a class="inline-link" href="https://technomaya.dev/" target="_blank" rel="noopener" data-i18n="about.technomayaLink">technomaya.dev →</a>
-      </div>
-
-      <div class="card role-card">
-        <div class="role-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="role-meta" data-i18n="about.churchMeta">Mayo 2026 — Actualidad</div>
-        <h3 data-i18n="about.churchTitle">Mentor</h3>
-        <p data-i18n="about.churchBody">
-          En The Church of Jesus Christ of Latter-day Saints acompaño a misioneros nuevos aplicando
-          los principios de Preach My Gospel, en coordinación con el liderazgo de misión. Enfoco cada
-          sesión en habilidades prácticas de enseñanza, el seguimiento de indicadores clave de
-          conversión, y el crecimiento espiritual y profesional de cada misionero.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <section id="servicios" class="container reveal">
-    <div class="section-head">
-      <span class="eyebrow eyebrow-3" data-i18n="services.eyebrow">Servicios</span>
-      <h2 data-i18n="services.title">¿En qué te puedo ayudar?</h2>
-      <p data-i18n="services.subtitle">
-        Soluciones a medida para negocios en Guatemala: desde tu primera página web hasta el sistema que organiza tu día a día.
-      </p>
-    </div>
-
-    <div class="services-grid">
-      <div class="card service-card">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-        <h3 data-i18n="services.webTitle">Sitios web para negocios</h3>
-        <p data-i18n="services.webBody">Páginas modernas, rápidas y adaptadas a celular para que tus clientes te encuentren y te escriban.</p>
-        <ul class="service-tags"><li data-i18n="services.webTag1">Diseño a medida</li><li data-i18n="services.webTag2">Optimizado para Google</li><li data-i18n="services.webTag3">Botón de WhatsApp</li></ul>
-        <a class="btn btn-primary service-btn" href="https://wa.me/50247264846?text=Hola%20Mariano%2C%20me%20interesa%20cotizar%20un%20sitio%20web%20para%20mi%20negocio." target="_blank" rel="noopener">
-          <span data-i18n="services.quote">Cotizar por WhatsApp</span>
-        </a>
-      </div>
-
-      <div class="card service-card">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg></div>
-        <h3 data-i18n="services.sysTitle">Sistemas a medida</h3>
-        <p data-i18n="services.sysBody">Registro, inventario, citas o control de asistencia: software que automatiza el trabajo repetitivo de tu negocio.</p>
-        <ul class="service-tags"><li data-i18n="services.sysTag1">Base de datos</li><li data-i18n="services.sysTag2">Panel de administración</li><li data-i18n="services.sysTag3">Reportes</li></ul>
-        <a class="btn btn-primary service-btn" href="https://wa.me/50247264846?text=Hola%20Mariano%2C%20me%20interesa%20cotizar%20un%20sistema%20a%20medida." target="_blank" rel="noopener">
-          <span data-i18n="services.quote">Cotizar por WhatsApp</span>
-        </a>
-      </div>
-
-      <div class="card service-card">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></svg></div>
-        <h3 data-i18n="services.appTitle">Apps móviles</h3>
-        <p data-i18n="services.appBody">Aplicaciones para Android e iOS conectadas a tu sistema, pensadas para tus clientes o para tu equipo.</p>
-        <ul class="service-tags"><li data-i18n="services.appTag1">Android e iOS</li><li data-i18n="services.appTag2">Notificaciones</li><li data-i18n="services.appTag3">Conectada a tu sistema</li></ul>
-        <a class="btn btn-primary service-btn" href="https://wa.me/50247264846?text=Hola%20Mariano%2C%20me%20interesa%20cotizar%20una%20app%20m%C3%B3vil." target="_blank" rel="noopener">
-          <span data-i18n="services.quote">Cotizar por WhatsApp</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experiencia -->
-  <section id="experiencia" class="container reveal">
-    <div class="section-head">
-      <span class="eyebrow eyebrow-3" data-i18n="experience.eyebrow">Trayectoria</span>
-      <h2 data-i18n="experience.title">Experiencia</h2>
-    </div>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="card timeline-card">
-          <div class="meta" data-i18n="experience.item2Meta">Enero 2024 — Febrero 2026</div>
-          <h3 data-i18n="experience.item2Title">Executive Assistant, Team Lead &amp; Volunteer Mentor</h3>
-          <div class="org">The Church of Jesus Christ of Latter-day Saints</div>
-          <p data-i18n="experience.item2Body">
-            Liderazgo de operaciones para más de 150 colaboradores, mentoría e instrucción en talleres
-            de desarrollo profesional, resolución de conflictos y comunicación intercultural.
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="card timeline-card">
-          <div class="meta" data-i18n="experience.item3Meta">2023</div>
-          <h3 data-i18n="experience.item3Title">Educador de Matemática y Física</h3>
-          <div class="org">El Castaño Bilingual School</div>
-          <p data-i18n="experience.item3Body">
-            Instrucción académica para estudiantes de 6to grado a diversificado, diseñando currículos
-            enfocados en razonamiento lógico y resolución de problemas complejos.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Proyectos -->
   <section id="proyectos" class="container reveal">
     <div class="section-head">
-      <span class="eyebrow eyebrow-2" data-i18n="projects.eyebrow">GitHub</span>
       <h2 data-i18n="projects.title">Proyectos</h2>
       <p data-i18n="projects.subtitle">
-        Se generan automáticamente desde mis repositorios públicos en cada despliegue.
+        Lo que he construido en la universidad y para clientes, de la interfaz al kernel y a la red. Cada proyecto enlaza a su código y explica cómo probarlo.
       </p>
     </div>
 
+    <div class="projects-filter" id="projects-filter" role="tablist" aria-label="Filtrar proyectos" data-i18n-attr="aria-label:projects.filterLabel">
+      <button type="button" role="tab" aria-selected="true" aria-controls="projects-grid" data-filter="all"><span data-i18n="projects.cat.all">Todos</span><span class="filter-count"></span></button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="software" tabindex="-1"><span data-i18n="projects.cat.software">Software</span><span class="filter-count"></span></button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="infra" tabindex="-1"><span data-i18n="projects.cat.infra">Cloud y sistemas</span><span class="filter-count"></span></button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="redes" tabindex="-1"><span data-i18n="projects.cat.redes">Redes</span><span class="filter-count"></span></button>
+    </div>
+
     <div id="projects-status" class="projects-status" data-i18n="projects.loading">Cargando proyectos…</div>
-    <div id="projects-grid" class="projects-grid" hidden></div>
+    <div id="projects-grid" class="projects-grid" role="tabpanel" hidden></div>
 
     <div class="projects-footer">
       <a class="btn btn-secondary" href="https://github.com/akamariano" target="_blank" rel="noopener">
@@ -289,13 +178,67 @@
     </div>
   </section>
 
+  <!-- Experiencia -->
+  <section id="experiencia" class="container reveal">
+    <div class="section-head">
+      <h2 data-i18n="experience.title">Experiencia</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="xp-when" data-i18n="experience.item1Meta">Marzo 2026 — Actualidad</div>
+          <div class="xp-what">
+            <h3 data-i18n="experience.item1Title">Desarrollador freelance &amp; Agente de Ventas</h3>
+            <div class="org" data-i18n="experience.item1Org">TechnoMaya · Freelance</div>
+            <p data-i18n="experience.item1Body">Como freelancer con TechnoMaya desarrollo software a medida y aplicaciones web y móviles para clientes en Guatemala, y acompaño la venta consultiva de esos proyectos.</p>
+            <ul class="xp-tags"><li data-i18n="xp.tagWeb">Desarrollo web</li><li data-i18n="xp.tagApps">Apps móviles</li><li data-i18n="xp.tagSales">Ventas consultivas</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="xp-when" data-i18n="experience.item0Meta">Mayo 2026 — Actualidad</div>
+          <div class="xp-what">
+            <h3 data-i18n="experience.item0Title">Mentor</h3>
+            <div class="org">The Church of Jesus Christ of Latter-day Saints</div>
+            <p data-i18n="experience.item0Body">Acompaño a misioneros nuevos aplicando los principios de Preach My Gospel, en coordinación con el liderazgo de misión. Enfoco las sesiones en habilidades prácticas de enseñanza, indicadores clave de conversión, y el desarrollo espiritual y profesional de cada misionero.</p>
+            <ul class="xp-tags"><li data-i18n="xp.tagMentoring">Mentoría</li><li data-i18n="xp.tagFacilitation">Facilitación</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="xp-when" data-i18n="experience.item2Meta">Enero 2024 — Febrero 2026</div>
+          <div class="xp-what">
+            <h3 data-i18n="experience.item2Title">Executive Assistant, Team Lead &amp; Volunteer Mentor</h3>
+            <div class="org">The Church of Jesus Christ of Latter-day Saints</div>
+            <p data-i18n="experience.item2Body">Liderazgo de operaciones para más de 150 colaboradores, mentoría e instrucción en talleres de desarrollo profesional, resolución de conflictos y comunicación intercultural.</p>
+            <ul class="xp-tags"><li data-i18n="xp.tagLeadership">Liderazgo</li><li data-i18n="xp.tagOps">Operaciones</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="xp-when" data-i18n="experience.item3Meta">2023</div>
+          <div class="xp-what">
+            <h3 data-i18n="experience.item3Title">Educador de Matemática y Física</h3>
+            <div class="org">El Castaño Bilingual School</div>
+            <p data-i18n="experience.item3Body">Instrucción académica para estudiantes de 6to grado a diversificado, diseñando currículos enfocados en razonamiento lógico y resolución de problemas complejos.</p>
+            <ul class="xp-tags"><li data-i18n="xp.tagTeaching">Docencia</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Habilidades -->
   <section id="habilidades" class="container reveal">
     <!-- Laptop 3D decorativa: hace zoom al llegar y de su pantalla salen las skills (js/skills-storm.js) -->
     <div class="skills-laptop" aria-hidden="true">
       <div class="laptop-zoom">
         <div class="laptop">
-          <div class="laptop-base"><div class="laptop-shadow"></div><div class="laptop-deck"><span class="laptop-speaker"></span><div class="laptop-keys"><span class="laptop-space"></span></div><span class="laptop-speaker"></span></div><div class="laptop-pad"></div><div class="laptop-base-front"></div></div>
+          <div class="laptop-base"><div class="laptop-shadow"></div><div class="laptop-deck"><span class="laptop-spill"></span><span class="laptop-speaker"></span><div class="laptop-keys"><span class="laptop-space"></span><span class="laptop-backlight"></span></div><span class="laptop-speaker"></span></div><div class="laptop-pad"></div><div class="laptop-base-front"></div></div>
           <div class="laptop-lid"><div class="laptop-lid-back">
             <svg class="lid-tux" viewBox="0 0 100 120"><ellipse cx="50" cy="70" rx="34" ry="44" fill="#16161a"/><ellipse cx="50" cy="32" rx="24" ry="27" fill="#16161a"/><ellipse cx="19" cy="74" rx="8" ry="24" transform="rotate(18 19 74)" fill="#16161a"/><ellipse cx="81" cy="74" rx="8" ry="24" transform="rotate(-18 81 74)" fill="#16161a"/><ellipse cx="50" cy="78" rx="23" ry="32" fill="#f5f5f2"/><ellipse cx="42" cy="29" rx="7" ry="9.5" fill="#fff"/><ellipse cx="58" cy="29" rx="7" ry="9.5" fill="#fff"/><ellipse cx="43.5" cy="31" rx="3" ry="4.2" fill="#111"/><ellipse cx="56.5" cy="31" rx="3" ry="4.2" fill="#111"/><path d="M37 41 Q50 33 63 41 Q57 51 50 52 Q43 51 37 41Z" fill="#f6b70b"/><path d="M41 45 Q50 49 59 45" stroke="#c98a00" stroke-width="1.5" fill="none"/><ellipse cx="33" cy="111" rx="17" ry="7.5" fill="#f6b70b"/><ellipse cx="67" cy="111" rx="17" ry="7.5" fill="#f6b70b"/></svg>
             <span class="sticker sticker-github"><svg viewBox="0 0 24 24"><path fill="#181717" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></span>
@@ -304,12 +247,11 @@
             <span class="sticker sticker-sudo">sudo !!</span>
             <span class="sticker sticker-ubuntu"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#e95420"/><circle cx="50" cy="50" r="21" stroke="#fff" stroke-width="9" fill="none"/><circle cx="76" cy="50" r="9" fill="#fff" stroke="#e95420" stroke-width="4"/><circle cx="37" cy="27.5" r="9" fill="#fff" stroke="#e95420" stroke-width="4"/><circle cx="37" cy="72.5" r="9" fill="#fff" stroke="#e95420" stroke-width="4"/></svg></span>
             <span class="sticker sticker-code">&lt;/&gt;</span>
-          </div><div class="laptop-screen"><div class="screen-bar"><i></i><i></i><i></i><span class="screen-tab"></span><span class="screen-tab is-active"></span></div><div class="screen-body"><div class="screen-side"><b></b><b></b><b></b><b></b><b></b></div><div class="screen-code"><i class="code-line" style="--w:46%;--c:#ff2bd6;--i:0"></i><i class="code-line" style="--w:72%;--c:#4fc8ff;--i:1"></i><i class="code-line" style="--w:58%;--c:#3ee8cf;--i:2"></i><i class="code-line" style="--w:34%;--c:#3dd332;--i:3"></i><i class="code-line" style="--w:80%;--c:#4fc8ff;--i:4"></i><i class="code-line" style="--w:52%;--c:#fff27a;--i:5"></i><i class="code-line" style="--w:66%;--c:#ff2bd6;--i:6"></i><i class="code-line" style="--w:40%;--c:#3ee8cf;--i:7"></i></div></div></div></div>
+          </div><div class="laptop-screen"><span class="screen-notch"></span><div class="term"><div class="term-bar"><i></i><i></i><i></i><span>mariano — zsh — 80×24</span></div><div class="term-body"><p class="term-line term-cmd"><b>~</b> $ whoami</p><p class="term-line term-out">mariano · systems engineering · usac</p><p class="term-line term-cmd"><b>~</b> $ ls skills/</p><p class="term-line term-out">languages/ cloud/ networking/ databases/ soft-skills/</p><p class="term-line term-cmd"><b>~</b> $ ./deploy --all</p><p class="term-line term-out term-ok">✓ <span class="term-count">72</span> skills ready</p><p class="term-line term-cmd"><b>~</b> $ <span class="term-cursor"></span></p></div></div><span class="screen-glare"></span></div></div>
         </div>
       </div>
     </div>
     <div class="section-head">
-      <span class="eyebrow" data-i18n="skills.eyebrow">Habilidades</span>
       <h2 data-i18n="skills.title">Lo que aporto</h2>
     </div>
 
@@ -319,31 +261,71 @@
         <span class="chip chip-logo"><img src="assets/img/skills/python.svg" alt="" width="18" height="18" loading="lazy" />Python</span>
         <span class="chip chip-logo"><img src="assets/img/skills/java.svg" alt="" width="18" height="18" loading="lazy" />Java</span>
         <span class="chip chip-logo"><img src="assets/img/skills/go.svg" alt="" width="18" height="18" loading="lazy" />Go</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/rust.svg" alt="" width="18" height="18" loading="lazy" class="logo-mono" />Rust</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/c.svg" alt="" width="18" height="18" loading="lazy" />C</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/cplusplus.svg" alt="" width="18" height="18" loading="lazy" />C++</span>
         <span class="chip chip-logo"><img src="assets/img/skills/javascript.svg" alt="" width="18" height="18" loading="lazy" /><img src="assets/img/skills/typescript.svg" alt="" width="18" height="18" loading="lazy" />JavaScript / TypeScript</span>
         <span class="chip chip-logo"><img src="assets/img/skills/angular.svg" alt="" width="18" height="18" loading="lazy" />Angular</span>
-        <span class="chip chip-logo"><img src="assets/img/skills/cplusplus.svg" alt="" width="18" height="18" loading="lazy" />C++</span>
         <span class="chip chip-logo"><img src="assets/img/skills/php.svg" alt="" width="18" height="18" loading="lazy" />PHP</span>
         <span class="chip" data-i18n="skills.assembly">Ensamblador (x86)</span>
         <span class="chip chip-logo"><img src="assets/img/skills/html5.svg" alt="" width="18" height="18" loading="lazy" /><img src="assets/img/skills/css3.svg" alt="" width="18" height="18" loading="lazy" />HTML &amp; CSS</span>
         <span class="chip chip-logo"><img src="assets/img/skills/git.svg" alt="" width="18" height="18" loading="lazy" />Git &amp; GitHub</span>
-        <span class="chip chip-logo"><img src="assets/img/skills/docker.svg" alt="" width="18" height="18" loading="lazy" />Docker</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <h3 data-i18n="skills.cloudTitle">Cloud e infraestructura</h3>
+      <div class="chip-row">
+        <span class="chip chip-logo"><img src="assets/img/skills/googlecloud.svg" alt="" width="18" height="18" loading="lazy" />Google Cloud (GKE, Compute Engine)</span>
         <span class="chip chip-logo"><img src="assets/img/skills/kubernetes.svg" alt="" width="18" height="18" loading="lazy" />Kubernetes</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/docker.svg" alt="" width="18" height="18" loading="lazy" />Docker</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/helm.svg" alt="" width="18" height="18" loading="lazy" />Helm</span>
+        <span class="chip">Operator SDK</span>
+        <span class="chip">Gateway API</span>
+        <span class="chip" data-i18n="skills.hpa">Autoescalado (HPA)</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/grpc.svg" alt="" width="18" height="18" loading="lazy" />gRPC &amp; Protobuf</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/rabbitmq.svg" alt="" width="18" height="18" loading="lazy" />RabbitMQ</span>
+        <span class="chip" data-i18n="skills.zot">Registros OCI (Zot)</span>
+        <span class="chip" data-i18n="skills.loadTesting">Pruebas de carga (Locust)</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/grafana.svg" alt="" width="18" height="18" loading="lazy" />Grafana</span>
+        <span class="chip">Dapr</span>
+        <span class="chip">Falco</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/amazonwebservices.svg" alt="" width="18" height="18" loading="lazy" class="logo-mono" />AWS (EC2, S3)</span>
+        <span class="chip">eBPF</span>
+        <span class="chip" data-i18n="skills.kernel">Módulos de kernel de Linux</span>
+        <span class="chip">cgroups v2</span>
+        <span class="chip">KVM / libvirt &amp; cloud-init</span>
+        <span class="chip">containerd &amp; podman</span>
         <span class="chip" data-i18n="skills.deploy">Despliegue de aplicaciones</span>
       </div>
     </div>
 
     <div class="skills-group">
-      <h3 data-i18n="skills.sysTitle">Sistemas &amp; redes</h3>
+      <h3 data-i18n="skills.netTitle">Redes</h3>
+      <div class="chip-row">
+        <span class="chip">OSPF</span>
+        <span class="chip">EIGRP</span>
+        <span class="chip">RIPv2</span>
+        <span class="chip" data-i18n="skills.redistribution">Redistribución de rutas</span>
+        <span class="chip">HSRP</span>
+        <span class="chip">VLANs</span>
+        <span class="chip">VTP</span>
+        <span class="chip">Trunking 802.1Q</span>
+        <span class="chip">EtherChannel (LACP, PAgP)</span>
+        <span class="chip">Rapid PVST+</span>
+        <span class="chip" data-i18n="skills.cabling">Cableado estructurado</span>
+        <span class="chip" data-i18n="skills.topologies">Topologías de red</span>
+        <span class="chip">Cisco Packet Tracer</span>
+      </div>
+    </div>
+
+    <div class="skills-group">
+      <h3 data-i18n="skills.csTitle">Fundamentos</h3>
       <div class="chip-row">
         <span class="chip" data-i18n="skills.dataStructures">Estructuras de datos</span>
         <span class="chip" data-i18n="skills.compilers">Compiladores</span>
         <span class="chip" data-i18n="skills.computerArch">Arquitectura de computadoras</span>
         <span class="chip" data-i18n="skills.os">Sistemas operativos (Linux)</span>
-        <span class="chip" data-i18n="skills.networks">Redes y protocolos</span>
-        <span class="chip">VLANs</span>
-        <span class="chip">Routing</span>
-        <span class="chip">Trunking</span>
-        <span class="chip" data-i18n="skills.topologies">Topologías de red</span>
         <span class="chip" data-i18n="skills.webDev">Desarrollo Web</span>
         <span class="chip" data-i18n="skills.mobileDev">Desarrollo Móvil</span>
       </div>
@@ -358,7 +340,8 @@
         <span class="chip chip-logo"><img src="assets/img/skills/microsoftsqlserver.svg" alt="" width="18" height="18" loading="lazy" />Microsoft SQL Server</span>
         <span class="chip">Triggers</span>
         <span class="chip" data-i18n="skills.views">Vistas (views)</span>
-        <span class="chip">Oracle SQL Developer</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/oracle.svg" alt="" width="18" height="18" loading="lazy" />Oracle SQL Developer</span>
+        <span class="chip chip-logo"><img src="assets/img/skills/redis.svg" alt="" width="18" height="18" loading="lazy" />Valkey / Redis</span>
         <span class="chip chip-logo"><img src="assets/img/skills/dbeaver.svg" alt="" width="18" height="18" loading="lazy" />DBeaver</span>
       </div>
     </div>
@@ -381,10 +364,56 @@
     </div>
   </section>
 
+  <!-- Bitácora -->
+  <section id="bitacora" class="container reveal">
+    <div class="section-head">
+      <h2 data-i18n="notes.title">Bitácora</h2>
+      <p data-i18n="notes.subtitle">Notas cortas sobre problemas reales que encontré en mis proyectos: qué falló, cómo lo encontré y qué cambié.</p>
+    </div>
+    <div class="notes-list">
+    <a class="card note-card" href="nota-oomkill.html">
+      <time datetime="2026-10-20"><span class="lang-es">Octubre 2026</span><span class="lang-en">October 2026</span></time>
+      <div>
+        <h3><span class="lang-es">El OOMKill que no venía de las peticiones</span><span class="lang-en">The OOMKill that didn't come from requests</span></h3>
+        <p><span class="lang-es">A 1 250 peticiones por segundo mis pods de Rust morían por memoria. La causa estaba en conexiones que nadie estaba usando.</span><span class="lang-en">At 1,250 requests per second my Rust pods were dying from memory. The cause was connections nobody was using.</span></p>
+      </div>
+    </a>
+    <a class="card note-card" href="nota-zot-oci.html">
+      <time datetime="2026-10-06"><span class="lang-es">Octubre 2026</span><span class="lang-en">October 2026</span></time>
+      <div>
+        <h3><span class="lang-es">Zot rechazaba mis imágenes: Docker v2 contra OCI</span><span class="lang-en">Zot kept rejecting my images: Docker v2 vs. OCI</span></h3>
+        <p><span class="lang-es">Un 415 al subir imágenes a un registro privado, dos veces en dos proyectos, y la diferencia entre dos formatos de manifiesto que parecen iguales.</span><span class="lang-en">A 415 when pushing images to a private registry, twice in two projects, and the difference between two manifest formats that look the same.</span></p>
+      </div>
+    </a>
+    <a class="card note-card" href="nota-ebpf-pidfd.html">
+      <time datetime="2026-09-09"><span class="lang-es">Septiembre 2026</span><span class="lang-en">September 2026</span></time>
+      <div>
+        <h3><span class="lang-es">Buscando la syscall con la que Docker mata un contenedor</span><span class="lang-en">Hunting for the syscall Docker uses to kill a container</span></h3>
+        <p><span class="lang-es">Mi sonda eBPF sobre kill() capturaba eventos todo el tiempo, pero ninguno era de Docker. Así encontré pidfd_send_signal.</span><span class="lang-en">My eBPF probe on kill() captured events all the time, but none of them came from Docker. This is how I found pidfd_send_signal.</span></p>
+      </div>
+    </a>
+    </div>
+    <div class="projects-footer">
+      <a class="btn btn-secondary" href="bitacora.html"><span data-i18n="notes.all">Ver todas las notas</span></a>
+    </div>
+  </section>
+
+  <!-- Sobre mí -->
+  <section id="sobre-mi" class="container reveal">
+    <div class="section-head">
+      <h2 data-i18n="about.title">Un poco de contexto</h2>
+      <p data-i18n="about.body">
+        Soy estudiante de Ingeniería en Ciencias y Sistemas en la Universidad de San Carlos de Guatemala,
+        con fluidez avanzada en inglés y una fuerte ética de trabajo. Disfruto colaborar en entornos
+        diversos y multiculturales, y mi meta es aportar conocimiento técnico a equipos de desarrollo
+        donde pueda aprender de mentores experimentados y crecer junto a nuevos retos.
+      </p>
+    </div>
+  </section>
+
   <!-- Certificaciones -->
   <section id="certificaciones" class="container reveal">
     <div class="section-head">
-      <span class="eyebrow eyebrow-2" data-i18n="badges.eyebrow">Credenciales</span>
       <h2 data-i18n="badges.title">Certificaciones e insignias</h2>
       <p data-i18n="badges.subtitle">
         Insignias digitales verificadas (Open Badges), emitidas por Missionary Training (MTC) como
@@ -433,24 +462,24 @@
 
     <h3 class="certs-subtitle" data-i18n="badges.certsTitle">Certificados</h3>
     <div class="certs-grid">
-      <a class="card cert-card" href="assets/img/certs/mos1.jpg" target="_blank" rel="noopener">
-        <img class="cert-image" src="assets/img/certs/mos1.jpg" alt="Microsoft Office Specialist — PowerPoint 2019" loading="lazy" />
+      <a class="card cert-card" href="assets/img/certs/mos1.webp" target="_blank" rel="noopener">
+        <div class="cert-paper"><img class="cert-image" src="assets/img/certs/mos1.webp" alt="Microsoft Office Specialist — PowerPoint 2019" loading="lazy" /></div>
         <div class="cert-body">
           <h4>Microsoft Office Specialist</h4>
           <div class="cert-meta" data-i18n="badges.mos1Meta">PowerPoint 2019 Associate · Microsoft · Agosto 2020</div>
         </div>
       </a>
 
-      <a class="card cert-card" href="assets/img/certs/mos2.jpg" target="_blank" rel="noopener">
-        <img class="cert-image" src="assets/img/certs/mos2.jpg" alt="Microsoft Office Specialist — Word 2016" loading="lazy" />
+      <a class="card cert-card" href="assets/img/certs/mos2.webp" target="_blank" rel="noopener">
+        <div class="cert-paper"><img class="cert-image" src="assets/img/certs/mos2.webp" alt="Microsoft Office Specialist — Word 2016" loading="lazy" /></div>
         <div class="cert-body">
           <h4>Microsoft Office Specialist</h4>
           <div class="cert-meta" data-i18n="badges.mos2Meta">Word 2016 · Microsoft · Septiembre 2019</div>
         </div>
       </a>
 
-      <a class="card cert-card" href="assets/img/certs/ingles.jpg" target="_blank" rel="noopener">
-        <img class="cert-image" src="assets/img/certs/ingles.jpg" alt="Certificate of Language Ability — English B2-C1" loading="lazy" />
+      <a class="card cert-card" href="assets/img/certs/ingles.webp" target="_blank" rel="noopener">
+        <div class="cert-paper"><img class="cert-image" src="assets/img/certs/ingles.webp" alt="Certificate of Language Ability — English B2-C1" loading="lazy" /></div>
         <div class="cert-body">
           <h4 data-i18n="badges.englishTitle">Certificate of Language Ability — Inglés</h4>
           <div class="cert-meta" data-i18n="badges.englishMeta">Nivel B2–C1 (TrueNorth 8.0) · Rosetta Stone · Febrero 2025</div>
@@ -462,7 +491,6 @@
   <!-- Currículum -->
   <section id="curriculum" class="container reveal">
     <div class="section-head">
-      <span class="eyebrow eyebrow-3" data-i18n="resume.eyebrow">Currículum</span>
       <h2 data-i18n="resume.title">Formación y descarga</h2>
     </div>
 
@@ -502,29 +530,29 @@
   <!-- Contacto -->
   <section id="contacto" class="container reveal">
     <div class="section-head">
-      <span class="eyebrow" data-i18n="contact.eyebrow">Hablemos</span>
       <h2 data-i18n="contact.title">Contacto y redes</h2>
     </div>
 
     <div class="contact-grid">
       <a class="card contact-card" href="mailto:marianoracnoguera@gmail.com">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
+        <div class="contact-icon brand-mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div>
         <div>
           <div class="contact-label" data-i18n="contact.email">Correo</div>
-          <div class="contact-value">marianoracnoguera@gmail.com</div>
+          <div class="contact-value contact-email">marianoracnoguera<wbr>@gmail.com</div>
         </div>
       </a>
 
-      <a class="card contact-card" href="https://wa.me/50247264846" target="_blank" rel="noopener">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.93-.3-1.6-.59-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.05.98-2.33.26-.28.56-.35.75-.35h.53c.17 0 .4-.03.62.48.24.56.81 1.94.88 2.08.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg></div>
+      <a class="card contact-card contact-whatsapp" href="https://wa.me/50247264846" target="_blank" rel="noopener">
+        <div class="contact-icon brand-whatsapp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.93-.3-1.6-.59-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.05.98-2.33.26-.28.56-.35.75-.35h.53c.17 0 .4-.03.62.48.24.56.81 1.94.88 2.08.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg></div>
         <div>
           <div class="contact-label">WhatsApp</div>
           <div class="contact-value">+502 4726 4846</div>
+          <span class="contact-chat" data-i18n="contact.openChat">Abrir chat</span>
         </div>
       </a>
 
       <a class="card contact-card" href="https://www.linkedin.com/in/mariano-roberto-rac-noguera-ab4b123b3/" target="_blank" rel="noopener">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></div>
+        <div class="contact-icon brand-linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></div>
         <div>
           <div class="contact-label">LinkedIn</div>
           <div class="contact-value">Mariano Rac Noguera</div>
@@ -532,13 +560,20 @@
       </a>
 
       <a class="card contact-card" href="https://github.com/akamariano" target="_blank" rel="noopener">
-        <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.35-3.87-1.35-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></div>
+        <div class="contact-icon brand-github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.35-3.87-1.35-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></div>
         <div>
           <div class="contact-label">GitHub</div>
           <div class="contact-value">akamariano</div>
         </div>
       </a>
     </div>
+    <a class="card biz-card" href="servicios.html">
+      <div>
+        <h3 data-i18n="contact.bizTitle">¿Tienes un negocio?</h3>
+        <p data-i18n="contact.bizBody">Sitios web, sistemas a medida y apps móviles para negocios en Guatemala.</p>
+      </div>
+      <span class="biz-link"><span data-i18n="contact.bizLink">Ver servicios</span> <span aria-hidden="true">→</span></span>
+    </a>
   </section>
 
   <!-- Llamado a la acción final -->
@@ -561,10 +596,33 @@
 
 </main>
 
-<footer>
-  <div class="container">
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="nav-brand" href="#top">Mariano Rac</a>
+      <p data-i18n="footer.tagline">Software full stack, nube, kernel y redes. Desde Guatemala.</p>
+      <span class="footer-status"><span class="status-dot" aria-hidden="true"></span><span data-i18n="hero.available">Disponible para proyectos</span></span>
+    </div>
+    <nav class="footer-nav" aria-label="Pie de página" data-i18n-attr="aria-label:footer.navLabel">
+      <ul>
+        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
+        <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+        <li><a href="bitacora.html" data-i18n="nav.notes">Bitácora</a></li>
+        <li><a href="servicios.html" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+    </nav>
+    <ul class="footer-social" aria-label="Redes" data-i18n-attr="aria-label:footer.socialLabel">
+      <li><a href="https://github.com/akamariano" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.1 3.29 9.4 7.86 10.93.58.1.79-.25.79-.56v-2.17c-3.2.7-3.87-1.35-3.87-1.35-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.8 1.18 1.82 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a></li>
+      <li><a href="https://www.linkedin.com/in/mariano-roberto-rac-noguera-ab4b123b3/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg></a></li>
+      <li><a href="https://wa.me/50247264846" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.3-1.93 1.37-.49.07-1.1.1-1.78-.11-.41-.13-.93-.3-1.6-.59-2.82-1.22-4.66-4.06-4.8-4.25-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.05.98-2.33.26-.28.56-.35.75-.35h.53c.17 0 .4-.03.62.48.24.56.81 1.94.88 2.08.07.14.11.3.02.49-.09.19-.14.3-.28.46-.14.16-.29.36-.42.48-.14.13-.28.28-.12.55.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.91.91.28.14.47.21.53.33.07.12.07.68-.17 1.36Z"/></svg></a></li>
+      <li><a href="mailto:marianoracnoguera@gmail.com" aria-label="Correo" data-i18n-attr="aria-label:contact.email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></a></li>
+    </ul>
+  </div>
+  <div class="container footer-bottom">
     <p>&copy; <span id="year">2026</span> Mariano Roberto Rac Noguera</p>
-    <p class="footer-links"><a href="privacidad.html" data-i18n="footer.privacy">Privacidad y cookies</a> · <a href="privacidad.html#es-seguridad" data-i18n="footer.security">Seguridad</a></p>
+    <p class="footer-links"><a href="privacidad.html" data-i18n="footer.privacy">Privacidad y cookies</a> · <a href="privacidad.html#es-seguridad" data-i18n="footer.security">Seguridad</a> · <a href="#top" data-i18n="footer.top">Volver arriba ↑</a></p>
   </div>
 </footer>
 
@@ -587,6 +645,7 @@
   <span class="whatsapp-fab-pulse" aria-hidden="true"></span>
 </a>
 
+<script src="js/intro.js"></script>
 <script src="js/i18n.js"></script>
 <script src="js/main.js"></script>
 <script src="js/cursor-trail.js"></script>

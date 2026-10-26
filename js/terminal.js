@@ -4,6 +4,7 @@
   /* Terminal interactiva que se abre al presionar la foto del hero.
      Todo el texto se inserta con textContent (nunca innerHTML) para que lo que
      escribe el visitante no pueda inyectar HTML. */
+  const ROOT = document.documentElement.dataset.root || ""; // "../" en /en/
   const dialog = document.getElementById("terminal");
   const openBtn = document.getElementById("terminal-open");
   if (!dialog || !openBtn || typeof dialog.showModal !== "function") return;
@@ -54,7 +55,7 @@
       about: [
         [hl("Mariano Roberto Rac Noguera")],
         ["🎓 Estudiante de Ingeniería en Ciencias y Sistemas — USAC (7mo semestre)"],
-        ["💼 Desarrollador y agente de ventas en ", link("TechnoMaya", "https://technomaya.dev/")],
+        ["💼 Desarrollador freelance y agente de ventas con ", link("TechnoMaya", "https://technomaya.dev/")],
         ["🤝 Mentor — The Church of Jesus Christ of Latter-day Saints"],
         ["🌎 Español nativo · Inglés avanzado (B2–C1) · Miskitu intermedio"],
         ["🏅 Reconocimiento a la excelencia académica — USAC (2 veces)"],
@@ -70,10 +71,11 @@
         [dim("   Android e iOS conectadas a tu sistema")],
         [""],
         ["¿Tienes un proyecto? ", link("Cotiza por WhatsApp →", WHATSAPP)],
+        [dim("Más detalles: "), link("servicios.html", ROOT + "servicios.html")],
       ],
       experience: [
         [hl("Experiencia")],
-        ["2026 — hoy   Desarrollador & Agente de Ventas · TechnoMaya"],
+        ["2026 — hoy   Desarrollador freelance & Agente de Ventas · TechnoMaya"],
         ["2026 — hoy   Mentor · The Church of Jesus Christ of Latter-day Saints"],
         ["2024 — 2026  Executive Assistant, Team Lead & Volunteer Mentor"],
         [dim("             liderazgo de operaciones para más de 150 colaboradores")],
@@ -81,11 +83,11 @@
       ],
       skills: [
         [hl("Habilidades")],
-        ["Lenguajes    ", dim("Python · Java · Go · JavaScript/TypeScript · C++ · PHP · x86")],
+        ["Lenguajes    ", dim("Python · Java · Go · Rust · C · C++ · JavaScript/TypeScript · PHP · x86")],
         ["Web          ", dim("HTML & CSS · React · Angular · Express · Tailwind")],
         ["Datos        ", dim("SQL · SQL Server · triggers · vistas · PostgreSQL · MongoDB · Oracle")],
-        ["Herramientas ", dim("Git & GitHub · Docker · Kubernetes · despliegue · Linux · AWS EC2/S3")],
-        ["Redes        ", dim("VLANs · routing · trunking · topologías")],
+        ["Cloud        ", dim("Google Cloud (GKE) · Kubernetes · Helm · gRPC · RabbitMQ · eBPF · módulos de kernel · AWS")],
+        ["Redes        ", dim("OSPF · EIGRP · RIPv2 · HSRP · VLANs · VTP · EtherChannel · Rapid PVST+")],
         ["Blandas      ", dim("ventas consultivas · liderazgo · mentoría · trabajo en equipo")],
       ],
       contact: [
@@ -96,8 +98,8 @@
         ["🐙 ", link("GitHub · akamariano", GITHUB)],
       ],
       cv: [
-        ["📄 ", link("Descargar mi CV (PDF)", "assets/cv/CV_Mariano_Rac_ES_Foto.pdf")],
-        ["🤖 ", link("CV ATS (PDF)", "assets/cv/CV_Mariano_Rac_ES_ATS.pdf")],
+        ["📄 ", link("Descargar mi CV (PDF)", ROOT + "assets/cv/CV_Mariano_Rac_ES_Foto.pdf")],
+        ["🤖 ", link("CV ATS (PDF)", ROOT + "assets/cv/CV_Mariano_Rac_ES_ATS.pdf")],
       ],
       projectsTitle: "Proyectos destacados",
       sudo: [["🔒 Buen intento. Aquí el único con permisos de root es Mariano 😄"]],
@@ -128,7 +130,7 @@
       about: [
         [hl("Mariano Roberto Rac Noguera")],
         ["🎓 Systems Engineering student — USAC (7th semester)"],
-        ["💼 Developer & sales agent at ", link("TechnoMaya", "https://technomaya.dev/")],
+        ["💼 Freelance developer & sales agent with ", link("TechnoMaya", "https://technomaya.dev/")],
         ["🤝 Mentor — The Church of Jesus Christ of Latter-day Saints"],
         ["🌎 Native Spanish · Advanced English (B2–C1) · Intermediate Miskitu"],
         ["🏅 Academic excellence award — USAC (twice)"],
@@ -144,10 +146,11 @@
         [dim("   Android & iOS connected to your system")],
         [""],
         ["Have a project? ", link("Get a quote on WhatsApp →", WHATSAPP)],
+        [dim("More details: "), link("servicios.html", ROOT + "servicios.html")],
       ],
       experience: [
         [hl("Experience")],
-        ["2026 — now   Developer & Sales Agent · TechnoMaya"],
+        ["2026 — now   Freelance Developer & Sales Agent · TechnoMaya"],
         ["2026 — now   Mentor · The Church of Jesus Christ of Latter-day Saints"],
         ["2024 — 2026  Executive Assistant, Team Lead & Volunteer Mentor"],
         [dim("             led operations for 150+ collaborators")],
@@ -155,11 +158,11 @@
       ],
       skills: [
         [hl("Skills")],
-        ["Languages  ", dim("Python · Java · Go · JavaScript/TypeScript · C++ · PHP · x86")],
+        ["Languages  ", dim("Python · Java · Go · Rust · C · C++ · JavaScript/TypeScript · PHP · x86")],
         ["Web        ", dim("HTML & CSS · React · Angular · Express · Tailwind")],
         ["Data       ", dim("SQL · SQL Server · triggers · views · PostgreSQL · MongoDB · Oracle")],
-        ["Tools      ", dim("Git & GitHub · Docker · Kubernetes · deployment · Linux · AWS EC2/S3")],
-        ["Networking ", dim("VLANs · routing · trunking · topologies")],
+        ["Cloud      ", dim("Google Cloud (GKE) · Kubernetes · Helm · gRPC · RabbitMQ · eBPF · kernel modules · AWS")],
+        ["Networking ", dim("OSPF · EIGRP · RIPv2 · HSRP · VLANs · VTP · EtherChannel · Rapid PVST+")],
         ["Soft       ", dim("consultative sales · leadership · mentoring · teamwork")],
       ],
       contact: [
@@ -170,8 +173,8 @@
         ["🐙 ", link("GitHub · akamariano", GITHUB)],
       ],
       cv: [
-        ["📄 ", link("Download my CV (PDF)", "assets/cv/CV_Mariano_Rac_EN_Foto.pdf")],
-        ["🤖 ", link("ATS résumé (PDF)", "assets/cv/CV_Mariano_Rac_EN_ATS.pdf")],
+        ["📄 ", link("Download my CV (PDF)", ROOT + "assets/cv/CV_Mariano_Rac_EN_Foto.pdf")],
+        ["🤖 ", link("ATS résumé (PDF)", ROOT + "assets/cv/CV_Mariano_Rac_EN_ATS.pdf")],
       ],
       projectsTitle: "Featured projects",
       sudo: [["🔒 Nice try. Only Mariano has root access here 😄"]],

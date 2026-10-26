@@ -92,6 +92,16 @@
     }));
   }
 
+  // Las letras se atenúan detrás de la columna de contenido (~1120px al centro) para no competir
+  // con el texto, y conservan su intensidad en los bordes. En celular todo es contenido: 0.3.
+  const CONTENT_HALF = 560;
+  const EDGE = 140;
+  function glyphFade(x) {
+    const d = Math.abs(x - width / 2);
+    if (d <= CONTENT_HALF) return 0.3;
+    return Math.min(1, 0.3 + ((d - CONTENT_HALF) / EDGE) * 0.7);
+  }
+
   function spawnSpark() {
     sparks.push({
       x: Math.random() * width,
@@ -118,7 +128,7 @@
 
     const dark = isDark();
     if (dark) {
-      ctx.fillStyle = "rgba(0,0,0,0.16)";
+      ctx.fillStyle = "rgba(4,9,11,0.16)"; // casi negro con un toque verde agua (igual que --bg)
       ctx.fillRect(0, 0, width, height);
     } else {
       paintLightWash(false);
@@ -134,7 +144,9 @@
         col.glyphChangeAt = timestamp + 120 + Math.random() * 300;
       }
       ctx.fillStyle = dark ? `${col.hue}55` : `${col.hue}33`;
+      ctx.globalAlpha = glyphFade(x);
       ctx.fillText(col.glyph, x, col.y);
+      ctx.globalAlpha = 1;
       col.y += col.speed * fontSize * 0.35;
       if (col.y > height + fontSize) {
         col.y = -fontSize - Math.random() * height * 0.5;
@@ -165,7 +177,7 @@
     // Un solo pase del gradiente translúcido queda casi blanco; en estático se
     // pinta directo el color al que converge la animación.
     if (dark) {
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = "#04090b";
       ctx.fillRect(0, 0, width, height);
     } else {
       paintLightWash(true);
@@ -174,7 +186,9 @@
     ctx.textBaseline = "top";
     columns.forEach((col, i) => {
       ctx.fillStyle = dark ? `${col.hue}30` : `${col.hue}22`;
+      ctx.globalAlpha = glyphFade(i * fontSize);
       ctx.fillText(col.glyph, i * fontSize, (col.y % height + height) % height);
+      ctx.globalAlpha = 1;
     });
   }
 

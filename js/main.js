@@ -33,7 +33,7 @@
     moonIcon.style.display = isDark ? "block" : "none";
     // La barra de estado del celular sigue el tema elegido, no solo el del sistema
     document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-      meta.setAttribute("content", isDark ? "#000000" : "#f2f5ef");
+      meta.setAttribute("content", isDark ? "#04090b" : "#f2f5ef");
     });
   }
 
@@ -87,7 +87,8 @@
     document.dispatchEvent(new CustomEvent("langchange", { detail: { lang } }));
   }
 
-  const initialLang = getStoredLang() || (navigator.language || "es").slice(0, 2);
+  // En /en/ (data-lang="en") la página llega traducida desde el HTML: arranca en inglés
+  const initialLang = document.documentElement.dataset.lang || getStoredLang() || (navigator.language || "es").slice(0, 2);
   setLang(initialLang === "en" ? "en" : "es");
 
   langToggle.addEventListener("click", () => {

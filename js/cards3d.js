@@ -161,12 +161,20 @@
   const clamp01 = (v) => Math.min(1, Math.max(0, v));
   const easeOut = (t) => 1 - Math.pow(1 - t, 3);
 
+  // Perfil tranquilo para tarjetas altas o apiladas (proyectos, y cualquier grid de una columna):
+  // con la entrada completa (26° de inclinación, 90 px hacia abajo, 15 % de opacidad) una tarjeta
+  // a medio entrar se montaba sobre la de abajo y, translúcida, el texto de ambas se mezclaba
+  function isCalm(c) {
+    return c.grid.classList.contains("projects-grid") || Number(c.grid.dataset.cols) === 1;
+  }
+
   function enterTarget(c) {
     if (c.solo) return 1;
     const vh = window.innerHeight;
     const top = c.grid.getBoundingClientRect().top + c.rowOffset;
     // 0 cuando la fila asoma por abajo, 1 cuando su borde superior llega al ~40% de la pantalla
-    const raw = (vh - top) / (vh * 0.6);
+    // (en el perfil tranquilo termina antes, al ~70%, para no seguir moviéndose mientras se lee)
+    const raw = (vh - top) / (vh * (isCalm(c) ? 0.3 : 0.6));
     const cols = Number(c.grid.dataset.cols) || 1;
     const span = 1 - STAGGER * (cols - 1);
     return easeOut(clamp01((raw - c.col * STAGGER) / span));
@@ -201,14 +209,19 @@
         }
       }
       const away = 1 - c.enter;
-      const rx = away * ENTER_RX + c.tiltX;
-      const ry = away * ENTER_RY * c.side + c.tiltY;
-      const ty = away * 90 - c.lift * 6 * c.depth;
-      const tz = away * -240 + c.lift * 24 * c.depth;
-      const s = 0.88 + 0.12 * c.enter;
+      const calm = isCalm(c);
+      // Tranquilo: poca inclinación, sin desplazamiento hacia abajo (no invade a la vecina)
+      const rx = away * (calm ? 8 : ENTER_RX) + c.tiltX;
+      const ry = away * (calm ? 0 : ENTER_RY) * c.side + c.tiltY;
+      const ty = away * (calm ? 0 : 90) - c.lift * 6 * c.depth;
+      const tz = away * (calm ? -60 : -240) + c.lift * 24 * c.depth;
+      const s = calm ? 0.96 + 0.04 * c.enter : 0.88 + 0.12 * c.enter;
+      // En el perfil tranquilo cada tarjeta lleva su propia perspectiva, centrada en ella. Con la
+      // perspectiva del grid (un solo punto de fuga para un grid de miles de px de alto), alejar
+      // una tarjeta en Z también la arrastraba hacia ese punto y se montaba sobre su vecina.
       c.el.style.transform =
-        `translate3d(0, ${ty.toFixed(2)}px, ${tz.toFixed(2)}px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) scale(${s.toFixed(4)})`;
-      c.el.style.opacity = (0.15 + 0.85 * c.enter).toFixed(3);
+        `${calm ? "perspective(1400px) " : ""}translate3d(0, ${ty.toFixed(2)}px, ${tz.toFixed(2)}px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) scale(${s.toFixed(4)})`;
+      c.el.style.opacity = (calm ? 0.4 + 0.6 * c.enter : 0.15 + 0.85 * c.enter).toFixed(3);
       c.el.style.setProperty("--lift", c.lift.toFixed(3));
 
       // El ícono hace su animación al llegar la tarjeta; se rearma si la tarjeta vuelve a salir

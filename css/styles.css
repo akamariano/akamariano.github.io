@@ -4841,3 +4841,10 @@ body {
   right: 24px;
   border-top: 1px solid var(--border);
 }
+
+/* Los grids altos o de una columna no comparten un punto de fuga: cada tarjeta trae su propia
+   perspectiva (js/cards3d.js), así al alejarse en Z se encoge en su sitio en vez de desplazarse */
+.projects-grid.stage-3d,
+.stage-3d[data-cols="1"] {
+  perspective: none;
+}

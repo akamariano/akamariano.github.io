@@ -58,6 +58,7 @@
     }
   ],
   "pinned": [
+    "piletazo",
     "super-estrella-bd1",
     "so1-mumnk8s",
     "Proyecto3_Redes1_2S_2026_202101149",
@@ -75,6 +76,7 @@
     "P1_OLCA_202101149"
   ],
   "category": {
+    "piletazo": "software",
     "super-estrella-bd1": "software",
     "centro-jas-naranjo": "software",
     "OLC2_1S2026_P1_202101149": "software",
@@ -92,6 +94,14 @@
     "redes-cableado": "redes"
   },
   "extraTech": {
+    "piletazo": [
+      "Angular",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "Vercel",
+      "pytest"
+    ],
     "super-estrella-bd1": [
       "React",
       "Vite",
@@ -171,11 +181,16 @@
     ]
   },
   "demoUrl": {
+    "piletazo": "https://piletazogt.vercel.app",
     "super-estrella-bd1": "https://akamariano.github.io/super-estrella-bd1/",
     "EDD_1S2023_PY_202101149": "demos/edd-estructuras/index.html",
     "centro-jas-naranjo": "https://akamariano.github.io/centro-jas-naranjo/"
   },
   "howTo": {
+    "piletazo": {
+      "es": "Entra al demo y pulsa «Probar con un ejemplo»: carga un estudiante de 5.º semestre y muestra créditos, recomendación del próximo semestre y rutas hasta el cierre. No guarda nada.",
+      "en": "Open the demo and press “Probar con un ejemplo”: it loads a 5th-semester student and shows credits, the next-semester recommendation and the routes to graduation. Nothing is saved."
+    },
     "super-estrella-bd1": {
       "es": "Entra al demo y registra una venta en «Nueva venta»: los triggers validan el stock y cambian el estado de la venta. En «Escenarios» puedes ejecutar los casos de prueba del API.",
       "en": "Open the demo and record a sale under “Nueva venta”: the triggers validate stock and update the sale status. Under “Escenarios” you can run the API test cases."
@@ -214,6 +229,7 @@
     }
   },
   "screenshot": {
+    "piletazo": "assets/img/projects/piletazo.webp",
     "super-estrella-bd1": "assets/img/projects/super-estrella.webp",
     "centro-jas-naranjo": "assets/img/projects/centro-jas-naranjo.webp",
     "OLC2_1S2026_P1_202101149": "assets/img/projects/olc2.webp",
@@ -229,6 +245,10 @@
     "redes-cableado": "assets/img/projects/redes-cableado.webp"
   },
   "titles": {
+    "piletazo": {
+      "es": "Piletazo: tu camino al cierre de pensum (USAC)",
+      "en": "Piletazo: your path to finishing the degree (USAC)"
+    },
     "super-estrella-bd1": {
       "es": "Super La Estrella: ventas, pagos e inventario",
       "en": "Super La Estrella: sales, payments & inventory"
@@ -291,6 +311,10 @@
     }
   },
   "descriptions": {
+    "piletazo": {
+      "es": "App web en producción para estudiantes de Ingeniería en Ciencias y Sistemas de la USAC. Pegas tus cursos aprobados del portal y te dice cuántos créditos llevas en el pensum CLAR 2022 o 2025, qué te conviene asignarte el próximo semestre, tu ruta crítica y en qué semestre cerrarías, con o sin escuelas de vacaciones. Para quienes fueron trasladados del pensum anterior, calcula la equivalencia curso por curso. Nació como proyecto personal para revisar mi propio cierre y hoy la usan mis compañeros. Interfaz en Angular y API en FastAPI, publicadas en Vercel.",
+      "en": "Live web app for Computer Science and Systems Engineering students at USAC. You paste your passed courses from the student portal and it tells you how many credits you have under the CLAR 2022 or 2025 curriculum, what to enroll in next semester, your critical path and the semester you would graduate in, with or without summer courses. For students moved from the old curriculum, it computes the equivalence course by course. It started as a personal project to check my own path and now my classmates use it. Angular frontend and FastAPI backend, deployed on Vercel."
+    },
     "super-estrella-bd1": {
       "es": "Aplicación full stack para un supermercado: base de datos relacional en Microsoft SQL Server 2022 (migrada desde Oracle SQL) con 19 tablas, triggers y vistas; API REST en Node.js + Express como única puerta de entrada a los datos; y panel en React + Vite con reportes y gráficas. Todo se levanta con Docker y docker-compose, y el frontend está publicado con un demo en vivo.",
       "en": "Full-stack app for a supermarket: a relational database in Microsoft SQL Server 2022 (migrated from Oracle SQL) with 19 tables, triggers and views; a Node.js + Express REST API as the only door to the data; and a React + Vite dashboard with reports and charts. Everything runs with Docker and docker-compose, and the frontend is published as a live demo."
@@ -353,6 +377,28 @@
     }
   },
   "featured": {
+    "piletazo": {
+      "es": [
+        "Para estudiantes USAC",
+        "En producción",
+        "Proyecto personal",
+        "Full stack",
+        "API REST",
+        "Angular",
+        "FastAPI",
+        "Pruebas automatizadas"
+      ],
+      "en": [
+        "For USAC students",
+        "Live in production",
+        "Personal project",
+        "Full stack",
+        "REST API",
+        "Angular",
+        "FastAPI",
+        "Automated tests"
+      ]
+    },
     "super-estrella-bd1": {
       "es": [
         "Full stack",
@@ -431,6 +477,10 @@
     }
   },
   "window": {
+    "piletazo": {
+      "kind": "browser",
+      "title": "piletazogt.vercel.app"
+    },
     "so1-mumnk8s": {
       "kind": "browser",
       "title": "localhost:3000/d/mumnk8s"

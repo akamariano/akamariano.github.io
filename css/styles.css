@@ -4848,3 +4848,562 @@ body {
 .stage-3d[data-cols="1"] {
   perspective: none;
 }
+
+/* ==========================================================================
+   Profundidad (js/depth.js): capas del hero, cinta 3D, títulos que se voltean,
+   línea de experiencia que se dibuja, botones magnéticos, "ver más proyectos"
+   ========================================================================== */
+.hero-tracks {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+  max-width: 600px;
+}
+@media (max-width: 520px) {
+  .hero-tracks {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hero: el texto se aleja y se apaga al bajar; la foto baja más lento y crece (más cerca) */
+.has-depth .hero > div:first-child {
+  transform: translate3d(calc(var(--px, 0) * -10px), calc(var(--hp, 0) * -90px + var(--py, 0) * -6px), 0)
+    scale(calc(1 - var(--hp, 0) * 0.06));
+  opacity: calc(1 - var(--hp, 0) * 0.9);
+  transform-origin: 30% 0;
+  will-change: transform, opacity;
+}
+.has-depth .hero .hero-portrait-wrap {
+  transform: translate3d(calc(var(--px, 0) * 18px), calc(var(--hp, 0) * -30px + var(--py, 0) * 12px), 0)
+    scale(calc(1 + var(--hp, 0) * 0.1));
+  opacity: calc(1 - var(--hp, 0) * 0.7);
+  will-change: transform, opacity;
+}
+
+/* Cinta 3D de tecnologías: dos bandas inclinadas a distinta profundidad */
+.ribbon {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 40px;
+  perspective: 900px;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.ribbon-band {
+  width: 112%;
+  margin-left: -6%;
+  border-block: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-solid) 82%, transparent);
+  box-shadow: 0 30px 60px -40px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.ribbon-a {
+  position: relative;
+  z-index: 2;
+  transform: rotate(-2.5deg) rotateX(14deg) translateX(calc(var(--rs, 0) * -70px));
+}
+.ribbon-b {
+  margin-top: -6px;
+  opacity: 0.55;
+  transform: rotate(2deg) rotateX(-18deg) translateZ(-90px) translateX(calc(var(--rs, 0) * 70px));
+}
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: ribbon-run 46s linear infinite;
+}
+.ribbon-b .ribbon-track {
+  animation-duration: 60s;
+  animation-direction: reverse;
+}
+.ribbon-run {
+  display: flex;
+}
+.ribbon-run span {
+  display: inline-flex;
+  align-items: center;
+  gap: 26px;
+  padding: 14px 0 14px 26px;
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  white-space: nowrap;
+}
+.ribbon-run span::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: var(--fuchsia);
+  box-shadow: 0 0 10px var(--fuchsia);
+}
+.ribbon-b .ribbon-run span {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.ribbon-b .ribbon-run span::after {
+  background: var(--accent-3);
+  box-shadow: 0 0 10px var(--accent-3);
+}
+@keyframes ribbon-run {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@media (max-width: 640px) {
+  .ribbon {
+    padding: 36px 0 24px;
+  }
+  .ribbon-run span {
+    font-size: 0.9rem;
+    padding-block: 11px;
+  }
+}
+
+/* Títulos de sección: se levantan girando sobre su base al entrar */
+.has-depth .reveal .section-head h2 {
+  width: fit-content;
+  max-width: 100%;
+  opacity: 0;
+  transform: perspective(900px) rotateX(-62deg) translateY(0.3em);
+  transform-origin: 50% 100%;
+  transition: transform 1100ms var(--spring) 80ms, opacity 500ms ease 80ms;
+}
+.has-depth .reveal .section-head h2::after {
+  width: 0;
+  transition: width 900ms var(--spring) 500ms;
+}
+.has-depth .reveal.is-visible .section-head h2 {
+  opacity: 1;
+  transform: none;
+}
+.has-depth .reveal.is-visible .section-head h2::after {
+  width: 56px;
+}
+
+/* Experiencia: una línea de color recorre la línea de tiempo al bajar */
+.timeline {
+  position: relative;
+}
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent), var(--fuchsia) 55%, var(--accent-3));
+  transform-origin: 50% 0;
+  transform: scaleY(var(--tl, 1));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--fuchsia) 50%, transparent);
+  pointer-events: none;
+}
+
+/* Botones magnéticos */
+.is-magnetic {
+  transition: translate 500ms var(--spring), transform 300ms var(--spring), background-color 200ms, color 200ms, box-shadow 300ms;
+}
+
+/* Ver más proyectos */
+.projects-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+.projects-more-btn[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbon-track {
+    animation: none;
+  }
+  .timeline::after {
+    transform: none;
+  }
+}
+
+/* Cinco pestañas en celular: Todos · Software · Redes arriba, Cloud y sistemas · Datos abajo */
+@media (max-width: 520px) {
+  .projects-filter {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .projects-filter button {
+    grid-column: span 2;
+    padding-inline: 6px;
+  }
+  .projects-filter button:nth-of-type(3),
+  .projects-filter button:nth-of-type(5) {
+    order: 1;
+    grid-column: span 3;
+  }
+}
+
+/* ==========================================================================
+   Materiales: vidrio acanalado (cabecera de Proyectos) y grafito moteado (pie)
+   ========================================================================== */
+:root {
+  --flute-base: rgba(255, 255, 255, 0.42);
+  --flute-hi: rgba(255, 255, 255, 0.55);
+  --flute-lo: rgba(10, 60, 72, 0.1);
+  --flute-edge: rgba(255, 255, 255, 0.85);
+  --glow-1: #3ee8cf;
+  --glow-2: #ff7ae4;
+  --glow-3: #4fa8ff;
+  --glow-alpha: 0.42;
+  --graphite: #e4e5e1;
+  --graphite-2: #d6d8d3;
+  --speck: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .08 0 0 0 0 .1 0 0 0 0 .1 0 0 0 14 -10.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --speck-opacity: 0.55;
+  --grain-opacity: 0.18;
+}
+:root[data-theme="dark"] {
+  --flute-base: rgba(14, 22, 24, 0.5);
+  --flute-hi: rgba(255, 255, 255, 0.075);
+  --flute-lo: rgba(0, 0, 0, 0.34);
+  --flute-edge: rgba(255, 255, 255, 0.12);
+  --glow-1: #1fd6bd;
+  --glow-2: #ff2bd6;
+  --glow-3: #286cf8;
+  --glow-alpha: 0.32;
+  --graphite: #111416;
+  --graphite-2: #0b0d0e;
+  --speck: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .86 0 0 0 0 .9 0 0 0 0 .9 0 0 0 14 -10.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+  --speck-opacity: 0.4;
+  --grain-opacity: 0.22;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --flute-base: rgba(14, 22, 24, 0.5);
+    --flute-hi: rgba(255, 255, 255, 0.075);
+    --flute-lo: rgba(0, 0, 0, 0.34);
+    --flute-edge: rgba(255, 255, 255, 0.12);
+    --glow-1: #1fd6bd;
+    --glow-2: #ff2bd6;
+    --glow-3: #286cf8;
+    --glow-alpha: 0.32;
+    --graphite: #111416;
+    --graphite-2: #0b0d0e;
+    --speck: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='s'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 .86 0 0 0 0 .9 0 0 0 0 .9 0 0 0 14 -10.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23s)'/%3E%3C/svg%3E");
+    --speck-opacity: 0.4;
+    --grain-opacity: 0.22;
+  }
+}
+
+/* Vidrio acanalado: luces de la marca detrás de costillas verticales que las estiran */
+.glass-stage {
+  position: relative;
+  isolation: isolate;
+  /* sobresale del contenido hasta 36px, sin pasar nunca el borde de la pantalla */
+  --bleed: clamp(12px, calc((100vw - 1072px) / 2), 36px);
+  margin: 0 calc(var(--bleed) * -1) 36px;
+  padding: 40px var(--bleed) 30px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 var(--flute-edge), 0 30px 60px -44px rgba(0, 0, 0, 0.55);
+}
+.glass-stage .section-head {
+  margin-bottom: 28px;
+}
+.glass-stage .projects-filter {
+  margin-bottom: 0;
+}
+.fluted {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--flute-base);
+  pointer-events: none;
+}
+.fluted .glow {
+  position: absolute;
+  border-radius: 50%;
+  opacity: var(--glow-alpha);
+  filter: blur(26px);
+  will-change: transform;
+}
+.fluted .g1 {
+  width: 46%;
+  aspect-ratio: 1;
+  left: -6%;
+  top: -30%;
+  background: radial-gradient(closest-side, var(--glow-1), transparent);
+  transform: translate3d(calc(var(--gx, 0) * 40px), calc(var(--gy, 0) * 20px), 0);
+  animation: glow-drift 19s ease-in-out infinite alternate;
+}
+.fluted .g2 {
+  width: 38%;
+  aspect-ratio: 1;
+  right: 4%;
+  top: -40%;
+  background: radial-gradient(closest-side, var(--glow-2), transparent);
+  transform: translate3d(calc(var(--gx, 0) * -60px), calc(var(--gy, 0) * 24px), 0);
+  animation: glow-drift 23s ease-in-out -7s infinite alternate-reverse;
+}
+.fluted .g3 {
+  width: 34%;
+  aspect-ratio: 1;
+  left: 42%;
+  bottom: -55%;
+  background: radial-gradient(closest-side, var(--glow-3), transparent);
+  transform: translate3d(calc(var(--gx, 0) * 30px), calc(var(--gy, 0) * -26px), 0);
+  animation: glow-drift 27s ease-in-out -12s infinite alternate;
+}
+@keyframes glow-drift {
+  to {
+    translate: 18% 12%;
+    scale: 1.15;
+  }
+}
+/* Las costillas: cada una aclara un borde y oscurece el otro, y desenfoca lo de atrás */
+.fluted .ribs {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(10px) saturate(1.35);
+  -webkit-backdrop-filter: blur(10px) saturate(1.35);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--flute-hi) 0,
+      transparent 4px,
+      transparent 9px,
+      var(--flute-lo) 15px,
+      var(--flute-hi) 18px
+    );
+}
+/* Reflejo que sigue al cursor por encima del vidrio */
+.fluted .sheen {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    60% 120% at calc(50% + var(--gx, 0) * 40%) -10%,
+    rgba(255, 255, 255, 0.16),
+    transparent 60%
+  );
+  mix-blend-mode: soft-light;
+}
+@media (max-width: 640px) {
+  .glass-stage {
+    --bleed: 12px;
+    padding-top: 28px;
+    padding-bottom: 14px;
+    border-radius: 24px;
+  }
+  .fluted .ribs {
+    background: repeating-linear-gradient(
+      90deg,
+      var(--flute-hi) 0,
+      transparent 3px,
+      transparent 7px,
+      var(--flute-lo) 11px,
+      var(--flute-hi) 13px
+    );
+  }
+  .fluted .g1 { width: 80%; }
+  .fluted .g2 { width: 70%; top: -20%; }
+  .fluted .g3 { width: 70%; bottom: -30%; }
+}
+
+/* Grafito moteado: el pie de página como una losa de piedra con motas y grano */
+.site-footer {
+  position: relative;
+  isolation: isolate;
+  border-top: 1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 120px),
+    linear-gradient(180deg, var(--graphite), var(--graphite-2));
+}
+.site-footer::before,
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.site-footer::before {
+  background-image: var(--speck);
+  background-size: 240px 240px;
+  opacity: var(--speck-opacity);
+}
+.site-footer::after {
+  background-image: var(--grain);
+  background-size: 160px 160px;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluted .glow {
+    animation: none;
+  }
+}
+
+/* Degradado granulado: "¿Tienes un proyecto en mente?" (y el mismo bloque en Servicios).
+   Malla de azul, verde agua y fucsia oscurecidos (texto blanco ≥4.5:1 en cada zona),
+   grano visible encima y una luz que sigue al cursor dentro de la tarjeta. */
+.cta-card {
+  isolation: isolate;
+  background:
+    radial-gradient(60% 90% at 0% 100%, #0a7470 0%, transparent 70%),
+    radial-gradient(55% 80% at 100% 0%, #9c1588 0%, transparent 72%),
+    radial-gradient(70% 70% at 70% 110%, #0b3f9e 0%, transparent 70%),
+    linear-gradient(135deg, #1747c9 0%, #123a8f 55%, #0b5566 100%);
+}
+.cta-card::before {
+  width: 520px;
+  height: 520px;
+  top: calc(var(--cy, 30%) - 260px);
+  left: calc(var(--cx, 78%) - 260px);
+  right: auto;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(62, 232, 207, 0.55), rgba(255, 43, 214, 0.18) 42%, transparent 68%);
+  transition: top 900ms var(--spring), left 900ms var(--spring);
+  animation: cta-drift 16s ease-in-out infinite alternate;
+}
+.cta-card.is-lit::before {
+  animation: none;
+}
+.cta-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: 140px 140px;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+}
+@keyframes cta-drift {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: -42vw 22%;
+  }
+}
+@media (max-width: 640px) {
+  @keyframes cta-drift {
+    to {
+      translate: -60vw 30%;
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-card::before {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* "¿Tienes un proyecto en mente?" en la portada: degradado punteado interactivo
+   (js/cta-stipple.js). Verde profundo, texto a la izquierda, puntos a la derecha,
+   inclinación leve con el cursor y capas que se mueven a distinta profundidad. */
+.cta-section {
+  perspective: 1400px;
+}
+.cta-card.cta-stipple {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  min-height: 400px;
+  padding: 64px 56px;
+  text-align: left;
+  background:
+    radial-gradient(70% 90% at 85% 70%, #0b4a35 0%, transparent 70%),
+    radial-gradient(60% 80% at 0% 0%, #06312b 0%, transparent 70%),
+    linear-gradient(160deg, #04201b 0%, #031612 60%, #020d0b 100%);
+  border: 1px solid rgba(94, 240, 218, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(203, 255, 61, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.25),
+    0 34px 70px -30px rgba(18, 140, 90, 0.55),
+    0 60px 120px -60px rgba(0, 0, 0, 0.7);
+  transform: rotateX(calc(var(--ty, 0) * -2.2deg)) rotateY(calc(var(--tx, 0) * 3deg));
+  transition: transform 900ms var(--spring), box-shadow 900ms var(--spring);
+}
+.cta-card.cta-stipple.is-tilting {
+  transition: transform 160ms linear, box-shadow 600ms var(--spring);
+}
+.cta-card.cta-stipple::before {
+  display: none;
+}
+.cta-card.cta-stipple::after {
+  opacity: 0.22;
+}
+.stipple-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  cursor: crosshair;
+  transform: translate3d(calc(var(--tx, 0) * 10px), calc(var(--ty, 0) * 8px), 0);
+  transition: transform 900ms var(--spring);
+}
+.cta-stipple.is-tilting .stipple-canvas {
+  transition: transform 200ms linear;
+}
+.cta-copy {
+  position: relative;
+  max-width: 34rem;
+  transform: translate3d(calc(var(--tx, 0) * -6px), calc(var(--ty, 0) * -4px), 0);
+  transition: transform 900ms var(--spring);
+}
+.cta-stipple.is-tilting .cta-copy {
+  transition: transform 200ms linear;
+}
+.cta-stipple h2 {
+  margin: 0 0 18px;
+  font-size: clamp(2.25rem, 4.6vw, 3.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+  text-shadow: 0 2px 24px rgba(2, 13, 11, 0.6);
+}
+.cta-stipple .cta-copy p {
+  margin: 0 0 30px;
+  max-width: 30ch;
+  color: #d7f5ea;
+  text-shadow: 0 1px 12px rgba(2, 13, 11, 0.7);
+}
+.cta-stipple .cta-actions {
+  justify-content: flex-start;
+}
+.cta-stipple .btn-light {
+  background: #cbff3d;
+  color: #0f1a00;
+  box-shadow: 0 10px 30px -10px rgba(203, 255, 61, 0.6);
+}
+.cta-stipple .btn-outline-light {
+  background: rgba(2, 13, 11, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .cta-stipple .btn-light:hover {
+    background: #3dd332;
+    color: #0f1a00;
+  }
+}
+@media (max-width: 760px) {
+  .cta-card.cta-stipple {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    min-height: 520px;
+    padding: 40px 24px 220px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-card.cta-stipple,
+  .stipple-canvas,
+  .cta-copy {
+    transform: none;
+    transition: none;
+  }
+}

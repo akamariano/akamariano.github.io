@@ -59,6 +59,7 @@
   ],
   "pinned": [
     "piletazo",
+    "workforce-hours-analytics",
     "super-estrella-bd1",
     "so1-mumnk8s",
     "Proyecto3_Redes1_2S_2026_202101149",
@@ -83,15 +84,25 @@
     "EDD_1S2023_PY_202101149": "software",
     "ACE2_2S23_G2": "software",
     "P1_OLCA_202101149": "software",
-    "so1-mumnk8s": "infra",
-    "so1-continfo": "infra",
+    "so1-mumnk8s": [
+      "infra",
+      "datos"
+    ],
+    "so1-continfo": [
+      "infra",
+      "datos"
+    ],
     "so1-runtimes": "infra",
     "MIA_1S2026_P2_2022101149": "infra",
     "MIA_1S2026_P1_202101149": "infra",
     "Proyecto3_Redes1_2S_2026_202101149": "redes",
     "redes-smartcity": "redes",
     "redes-cayala": "redes",
-    "redes-cableado": "redes"
+    "redes-cableado": "redes",
+    "workforce-hours-analytics": [
+      "datos",
+      "infra"
+    ]
   },
   "extraTech": {
     "piletazo": [
@@ -178,13 +189,21 @@
       "TIA/EIA-568",
       "Cat6",
       "OM3"
+    ],
+    "workforce-hours-analytics": [
+      "BigQuery",
+      "Looker Studio",
+      "SQL",
+      "DuckDB",
+      "Python"
     ]
   },
   "demoUrl": {
     "piletazo": "https://piletazogt.vercel.app",
     "super-estrella-bd1": "https://akamariano.github.io/super-estrella-bd1/",
     "EDD_1S2023_PY_202101149": "demos/edd-estructuras/index.html",
-    "centro-jas-naranjo": "https://akamariano.github.io/centro-jas-naranjo/"
+    "centro-jas-naranjo": "https://akamariano.github.io/centro-jas-naranjo/",
+    "workforce-hours-analytics": "demos/workforce-analytics/"
   },
   "howTo": {
     "piletazo": {
@@ -226,6 +245,10 @@
     "redes-cayala": {
       "es": "Abre Cayala.pkt en Packet Tracer 8.2+: show vlan brief y show spanning-tree en SW_CC, y ping entre PCs de la misma zona.",
       "en": "Open Cayala.pkt in Packet Tracer 8.2+: show vlan brief and show spanning-tree on SW_CC, then ping between PCs in the same zone."
+    },
+    "workforce-hours-analytics": {
+      "es": "Abre el demo y cambia «Medianoche en» de Local del agente a UTC: las horas totales no se mueven, pero las horas por agente-día bajan y el turno de ejemplo se parte en dos días. En el repo: pip install -r requirements.txt, python generator/generate.py y python pipeline/run.py.",
+      "en": "Open the demo and switch “Midnight in” from Agent local to UTC: total hours stay put, hours per agent-day drop and the sample shift splits across two days. In the repo: pip install -r requirements.txt, python generator/generate.py and python pipeline/run.py."
     }
   },
   "screenshot": {
@@ -242,7 +265,8 @@
     "Proyecto3_Redes1_2S_2026_202101149": "assets/img/projects/bantech.webp",
     "redes-smartcity": "assets/img/projects/redes-smartcity.webp",
     "redes-cayala": "assets/img/projects/redes-cayala.webp",
-    "redes-cableado": "assets/img/projects/redes-cableado.webp"
+    "redes-cableado": "assets/img/projects/redes-cableado.webp",
+    "workforce-hours-analytics": "assets/img/projects/workforce-analytics.webp"
   },
   "titles": {
     "piletazo": {
@@ -308,6 +332,10 @@
     "redes-cableado": {
       "es": "Cableado estructurado de un edificio de oficinas",
       "en": "Structured cabling for an office building"
+    },
+    "workforce-hours-analytics": {
+      "es": "Horas de trabajo por agente: BigQuery + Looker Studio",
+      "en": "Workforce hours analytics: BigQuery + Looker Studio"
     }
   },
   "descriptions": {
@@ -374,6 +402,10 @@
     "redes-cableado": {
       "es": "Diseño de cableado estructurado para un edificio de 48 hosts: el cuarto de telecomunicaciones se ubicó con un centroide ponderado por hosts, las distancias se midieron como Manhattan con 20 % de holgura, y se eligió Cat6 en los departamentos y fibra OM3 en el Data Center, con presupuesto y planos según TIA/EIA-568.",
       "en": "Structured cabling design for a 48-host building: the telecom room was placed with a host-weighted centroid, runs were measured as Manhattan distances plus 20% slack, and Cat6 was chosen for departments with OM3 fiber in the Data Center, with budget and plans per TIA/EIA-568."
+    },
+    "workforce-hours-analytics": {
+      "es": "Caso de estudio de analista de datos en la nube. Lo construí primero en BigQuery con un dashboard de 7 páginas en Looker Studio sobre datos reales de una empresa; como esa información es sensible, publiqué esta versión aparte con datos sintéticos y el mismo SQL. Carga en capas (raw, staging, core), limpieza de duplicados y filas rotas, esquema estrella particionado y una consulta por fases (CTE) que corta cada turno en la medianoche de la zona horaria que elijas, con horario de verano incluido. Corre completo en local con DuckDB y se valida solo: las horas cortadas suman lo mismo en cada zona.",
+      "en": "Cloud data analyst case study. I first built it in BigQuery with a 7-page Looker Studio dashboard on a company's real data; since that information is sensitive, I published this separate version on synthetic data with the same SQL. Layered load (raw, staging, core), cleaning of duplicates and broken rows, a partitioned star schema and a phased CTE query that cuts every shift at midnight in whichever timezone you pick, daylight saving included. It runs end to end locally with DuckDB and checks itself: split hours add up to the same total in every zone."
     }
   },
   "featured": {
@@ -474,6 +506,26 @@
         "HSRP",
         "High availability"
       ]
+    },
+    "workforce-hours-analytics": {
+      "es": [
+        "Analista de datos",
+        "BigQuery",
+        "Looker Studio",
+        "Calidad de datos",
+        "Modelado dimensional",
+        "SQL avanzado",
+        "Datos sintéticos"
+      ],
+      "en": [
+        "Data analyst",
+        "BigQuery",
+        "Looker Studio",
+        "Data quality",
+        "Dimensional modeling",
+        "Advanced SQL",
+        "Synthetic data"
+      ]
     }
   },
   "window": {
@@ -508,6 +560,10 @@
     "redes-cableado": {
       "kind": "app",
       "title": "DiagramaPractica1.pkt — Cisco Packet Tracer"
+    },
+    "workforce-hours-analytics": {
+      "kind": "browser",
+      "title": "akamariano.github.io/demos/workforce-analytics"
     }
   },
   "caseStudy": {

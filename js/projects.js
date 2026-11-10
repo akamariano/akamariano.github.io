@@ -9,6 +9,10 @@
   let loadFailed = false;
   let activeFilter = "all";
   let lastFilter = null;
+  // En "Todos" se ven los primeros 7 (el destacado ancho + dos filas de 3); el resto, tras un botón
+  const COLLAPSED = 7;
+  let expanded = false;
+  const moreBtn = document.getElementById("projects-more");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   // En /en/ las rutas locales suben un nivel (data-root="../"); las absolutas quedan igual
   const SITE_ROOT = document.documentElement.dataset.root || "";
@@ -58,6 +62,13 @@
   }
 
   // descriptions/howTo pueden venir como texto (solo español) o como { es, en }
+  // Un proyecto puede estar en varias pestañas: "category" es texto o lista (la primera es la principal)
+  function cats(p) {
+    const c = p.category || "software";
+    return Array.isArray(c) ? c : [c];
+  }
+  const inFilter = (p, f) => f === "all" || cats(p).includes(f);
+
   function localized(value, lang) {
     if (!value || typeof value === "string") return value;
     return value[lang] || value.es;
@@ -107,7 +118,7 @@
       <div class="project-card-body">
         <div class="project-kicker">
           ${project.featured ? `<span class="project-featured-badge">${starIconSvg()}${t("projects.featured")}</span>` : ""}
-          <span class="project-category">${t("projects.cat." + (project.category || "software"))}</span>
+          ${cats(project).map((c) => `<span class="project-category">${t("projects.cat." + c)}</span>`).join("")}
         </div>
         <a class="project-name" href="${project.url}" target="_blank" rel="noopener">${titleWithIcon(title)}</a>
         <div class="project-desc-wrap">
@@ -185,14 +196,27 @@
     statusEl.hidden = true;
     gridEl.hidden = false;
     gridEl.innerHTML = "";
-    const shown = cachedProjects.filter((p) => activeFilter === "all" || (p.category || "software") === activeFilter);
+    const shown = cachedProjects.filter((p) => inFilter(p, activeFilter));
+    // En una pestaña, primero los proyectos cuya área principal es esa; los anexados van después
+    if (activeFilter !== "all") {
+      shown.sort((a, b) => (cats(a)[0] === activeFilter ? 0 : 1) - (cats(b)[0] === activeFilter ? 0 : 1));
+    }
     // Al cambiar de pestaña, la cuadrícula entra con un fundido corto en vez de aparecer de golpe
     if (lastFilter !== null && lastFilter !== activeFilter && !reduceMotion) {
       gridEl.animate([{ opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)" }], { duration: 360, easing: "cubic-bezier(0.16, 1, 0.3, 1)" });
     }
     lastFilter = activeFilter;
     const lead = shown.find((p) => p.featured);
-    shown.forEach((project) => gridEl.appendChild(renderProject(project, project === lead)));
+    const collapsible = activeFilter === "all" && shown.length > COLLAPSED + 2;
+    const visible = collapsible && !expanded ? shown.slice(0, COLLAPSED) : shown;
+    visible.forEach((project) => gridEl.appendChild(renderProject(project, project === lead)));
+    if (moreBtn) {
+      moreBtn.hidden = !collapsible;
+      moreBtn.textContent = expanded
+        ? t("projects.showLess")
+        : t("projects.showMore").replace("{n}", shown.length - COLLAPSED);
+      moreBtn.setAttribute("aria-expanded", String(expanded));
+    }
     updateFilterCounts();
     updateMoreButtons();
   }
@@ -202,7 +226,7 @@
     if (!filterEl) return;
     filterEl.querySelectorAll("[data-filter]").forEach((btn) => {
       const f = btn.dataset.filter;
-      const n = cachedProjects.filter((p) => f === "all" || (p.category || "software") === f).length;
+      const n = cachedProjects.filter((p) => inFilter(p, f)).length;
       const count = btn.querySelector(".filter-count");
       if (count) count.textContent = n;
       const selected = f === activeFilter;
@@ -255,6 +279,25 @@
       next.focus();
       next.click();
       e.preventDefault();
+    });
+  }
+
+  if (moreBtn) {
+    moreBtn.addEventListener("click", () => {
+      expanded = !expanded;
+      const y = moreBtn.getBoundingClientRect().top;
+      render();
+      if (expanded) {
+        // las tarjetas nuevas suben en cascada; la página no salta
+        Array.from(gridEl.children).slice(COLLAPSED).forEach((card, i) => {
+          if (!reduceMotion) card.animate(
+            [{ opacity: 0, translate: "0 28px" }, { opacity: 1, translate: "0 0" }],
+            { duration: 700, delay: Math.min(i * 60, 480), easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "backwards" });
+        });
+      } else {
+        // al cerrar, el botón queda donde estaba el cursor
+        window.scrollBy(0, moreBtn.getBoundingClientRect().top - y);
+      }
     });
   }
 

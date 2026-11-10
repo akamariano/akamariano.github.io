@@ -138,6 +138,7 @@
         <a class="hero-track" href="#proyectos" data-filter-link="software"><span class="hero-track-name" data-i18n="hero.trackSoftware">Software full stack</span><span class="hero-track-stack">React · Node.js · SQL Server</span></a>
         <a class="hero-track" href="#proyectos" data-filter-link="infra"><span class="hero-track-name" data-i18n="hero.trackInfra">Cloud y sistemas</span><span class="hero-track-stack">GKE · Rust · eBPF</span></a>
         <a class="hero-track" href="#proyectos" data-filter-link="redes"><span class="hero-track-name" data-i18n="hero.trackRedes">Redes</span><span class="hero-track-stack">OSPF · EIGRP · HSRP</span></a>
+        <a class="hero-track" href="#proyectos" data-filter-link="datos"><span class="hero-track-name" data-i18n="hero.trackDatos">Datos y BI</span><span class="hero-track-stack">BigQuery · SQL · Looker Studio</span></a>
       </nav>
     </div>
 
@@ -151,8 +152,16 @@
     </div>
   </section>
 
+  <!-- Cinta 3D de tecnologías entre el hero y Proyectos (decorativa) -->
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon-band ribbon-a"><div class="ribbon-track"><div class="ribbon-run"><span>React</span><span>Node.js</span><span>SQL Server</span><span>BigQuery</span><span>Looker Studio</span><span>Kubernetes</span><span>Rust</span><span>Go</span><span>eBPF</span><span>Docker</span><span>Python</span><span>DuckDB</span><span>Angular</span><span>FastAPI</span><span>OSPF</span><span>HSRP</span></div><div class="ribbon-run"><span>React</span><span>Node.js</span><span>SQL Server</span><span>BigQuery</span><span>Looker Studio</span><span>Kubernetes</span><span>Rust</span><span>Go</span><span>eBPF</span><span>Docker</span><span>Python</span><span>DuckDB</span><span>Angular</span><span>FastAPI</span><span>OSPF</span><span>HSRP</span></div></div></div>
+    <div class="ribbon-band ribbon-b"><div class="ribbon-track"><div class="ribbon-run"><span>GKE</span><span>gRPC</span><span>RabbitMQ</span><span>Valkey</span><span>Grafana</span><span>PostgreSQL</span><span>TypeScript</span><span>Linux</span><span>AWS</span><span>CTE + JOIN</span><span>Star schema</span><span>Packet Tracer</span><span>C++</span><span>Java</span><span>Vercel</span><span>Locust</span></div><div class="ribbon-run"><span>GKE</span><span>gRPC</span><span>RabbitMQ</span><span>Valkey</span><span>Grafana</span><span>PostgreSQL</span><span>TypeScript</span><span>Linux</span><span>AWS</span><span>CTE + JOIN</span><span>Star schema</span><span>Packet Tracer</span><span>C++</span><span>Java</span><span>Vercel</span><span>Locust</span></div></div></div>
+  </div>
+
   <!-- Proyectos -->
   <section id="proyectos" class="container reveal">
+    <div class="glass-stage">
+    <div class="fluted" aria-hidden="true"><i class="glow g1"></i><i class="glow g2"></i><i class="glow g3"></i><span class="ribs"></span><span class="sheen"></span></div>
     <div class="section-head">
       <h2 data-i18n="projects.title">Proyectos</h2>
       <p data-i18n="projects.subtitle">
@@ -165,10 +174,13 @@
       <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="software" tabindex="-1"><span data-i18n="projects.cat.software">Software</span><span class="filter-count"></span></button>
       <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="infra" tabindex="-1"><span data-i18n="projects.cat.infra">Cloud y sistemas</span><span class="filter-count"></span></button>
       <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="redes" tabindex="-1"><span data-i18n="projects.cat.redes">Redes</span><span class="filter-count"></span></button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="projects-grid" data-filter="datos" tabindex="-1"><span data-i18n="projects.cat.datos">Datos</span><span class="filter-count"></span></button>
+    </div>
     </div>
 
     <div id="projects-status" class="projects-status" data-i18n="projects.loading">Cargando proyectos…</div>
     <div id="projects-grid" class="projects-grid" role="tabpanel" hidden></div>
+    <div class="projects-more-wrap"><button class="btn btn-secondary projects-more-btn" id="projects-more" type="button" hidden></button></div>
 
     <div class="projects-footer">
       <a class="btn btn-secondary" href="https://github.com/akamariano" target="_blank" rel="noopener">
@@ -602,7 +614,9 @@
 
   <!-- Llamado a la acción final -->
   <section class="container cta-section reveal">
-    <div class="cta-card">
+    <div class="cta-card cta-stipple">
+      <canvas class="stipple-canvas" aria-hidden="true"></canvas>
+      <div class="cta-copy">
       <h2 data-i18n="cta.title">¿Tienes un proyecto en mente?</h2>
       <p data-i18n="cta.body">Cuéntame tu idea y te ayudo a convertirla en software que funcione para tu negocio.</p>
       <div class="cta-actions">
@@ -614,6 +628,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
           <span data-i18n="cta.email">Enviar un correo</span>
         </a>
+      </div>
       </div>
     </div>
   </section>
@@ -678,5 +693,7 @@
 <script src="js/skills-storm.js"></script>
 <script src="js/terminal.js"></script>
 <script src="js/background.js"></script>
+<script src="js/depth.js"></script>
+<script src="js/cta-stipple.js"></script>
 </body>
 </html>

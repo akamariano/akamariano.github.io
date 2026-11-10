@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#04090b" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f4f6f3" media="(prefers-color-scheme: light)" />
+<meta name="description" content="Interactive workforce hours dashboard: exact hours per agent and local day, cut at midnight in any timezone. Synthetic contact-center data, BigQuery and DuckDB pipeline." />
+<title>Workforce Hours Analytics</title>
+<link rel="stylesheet" href="app.css" />
+<script src="theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#main" data-t="skip">Skip to content</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="back" id="backLink" href="../../index.html#proyectos" data-t="back">← Portfolio</a>
+    <div class="top-actions">
+      <button class="icon-btn" id="langBtn" type="button" aria-label="Español / English">ES</button>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Toggle theme" data-t-aria="theme">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+      </button>
+      <a class="icon-btn wide" href="https://github.com/akamariano/workforce-hours-analytics" target="_blank" rel="noopener" data-t="code">Code</a>
+    </div>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+  <section class="hero">
+    <p class="kicker" data-t="kicker">Case study · Cloud data analyst</p>
+    <h1 data-t="title">Workforce hours, cut at the right midnight</h1>
+    <p class="lede" data-t="lede">A contact center needs the exact hours each agent worked on each day, in whichever timezone the viewer picks. Evening shifts cross midnight, five sites sit in five zones, and the raw export has duplicates and broken rows. This dashboard runs on the output of a BigQuery-style pipeline, rebuilt locally with DuckDB.</p>
+    <p class="synthetic"><span class="dot" aria-hidden="true"></span><span data-t="synthetic">I first built this in BigQuery and Looker Studio on a company's real data. That data is confidential, so this public version runs the same SQL on synthetic data: invented people, sites and timestamps with the same shape and the same data problems.</span></p>
+  </section>
+
+  <div class="controls" id="controls" role="group" aria-label="Filters" data-t-aria="filters">
+    <div class="ctrl">
+      <span class="ctrl-label" id="tzLabel" data-t="tz">Midnight in</span>
+      <div class="seg" id="tzSeg" role="radiogroup" aria-labelledby="tzLabel"></div>
+    </div>
+    <div class="ctrl">
+      <label class="ctrl-label" for="siteSel" data-t="site">Site</label>
+      <select id="siteSel"></select>
+    </div>
+    <div class="ctrl">
+      <span class="ctrl-label" id="grainLabel" data-t="grain">Grain</span>
+      <div class="seg" id="grainSeg" role="radiogroup" aria-labelledby="grainLabel"></div>
+    </div>
+  </div>
+
+  <section class="kpis" id="kpis" aria-label="Key metrics"></section>
+  <p class="note" id="tzNote"></p>
+
+  <section class="panel span-2" aria-labelledby="h-trend">
+    <div class="panel-head">
+      <h2 id="h-trend" data-t="trendTitle">Hours logged</h2>
+      <p class="sub" id="trendSub"></p>
+    </div>
+    <div class="chart" id="trend"></div>
+  </section>
+
+  <section class="panel span-2 cutter" aria-labelledby="h-cut">
+    <div class="panel-head">
+      <h2 id="h-cut" data-t="cutTitle">The midnight problem</h2>
+      <p class="sub" data-t="cutSub">Real shifts from the data. Pick where midnight falls and watch the same work land on different days.</p>
+    </div>
+    <div class="cut-pick" id="cutPick" role="radiogroup" aria-label="Shift"></div>
+    <div class="cut-stage" id="cutStage"></div>
+    <div class="cut-days" id="cutDays" aria-live="polite"></div>
+  </section>
+
+  <div class="grid">
+    <section class="panel" aria-labelledby="h-site">
+      <div class="panel-head">
+        <h2 id="h-site" data-t="siteTitle">Productivity by site</h2>
+        <p class="sub" data-t="siteSub">Productive hours / total hours. Bar length starts at zero.</p>
+      </div>
+      <div class="chart" id="sites"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-tenure">
+      <div class="panel-head">
+        <h2 id="h-tenure" data-t="tenureTitle">New-hire ramp</h2>
+        <p class="sub" data-t="tenureSub">Productivity by tenure on the day worked.</p>
+      </div>
+      <div class="chart" id="tenure"></div>
+    </section>
+
+    <section class="panel span-2" aria-labelledby="h-mix">
+      <div class="panel-head">
+        <h2 id="h-mix" data-t="mixTitle">Where the hours go</h2>
+        <p class="sub" data-t="mixSub">Share of total hours by status category.</p>
+      </div>
+      <div id="mix"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-pnb">
+      <div class="panel-head">
+        <h2 id="h-pnb" data-t="pnbTitle">Paid but not billable</h2>
+        <p class="sub" data-t="pnbSub">Hours the company pays and cannot invoice, by status.</p>
+      </div>
+      <div class="chart" id="pnb"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-dq">
+      <div class="panel-head">
+        <h2 id="h-dq" data-t="dqTitle">What cleaning removed</h2>
+        <p class="sub" data-t="dqSub">Rows flagged in staging, never silently deleted.</p>
+      </div>
+      <div id="dq"></div>
+    </section>
+
+    <section class="panel span-2" aria-labelledby="h-heat">
+      <div class="panel-head">
+        <h2 id="h-heat" data-t="heatTitle">Productivity by site and week</h2>
+        <p class="sub" data-t="heatSub">Darker is more productive. Hover a cell for the value.</p>
+      </div>
+      <div class="heat-wrap" id="heat"></div>
+    </section>
+
+    <section class="panel span-2" aria-labelledby="h-agents">
+      <div class="panel-head row">
+        <div>
+          <h2 id="h-agents" data-t="agentsTitle">Agent scorecard</h2>
+          <p class="sub" data-t="agentsSub">Compare agents doing similar work: two internal-support agents sit near 0% by design.</p>
+        </div>
+        <input type="search" id="agentSearch" placeholder="Search agent or lead" data-t-ph="search" aria-label="Search agents" />
+      </div>
+      <div class="table-wrap"><table class="tbl" id="agents"></table></div>
+      <button class="more" id="agentsMore" type="button"></button>
+    </section>
+  </div>
+
+  <section class="panel span-2 how" aria-labelledby="h-how">
+    <h2 id="h-how" data-t="howTitle">How it works</h2>
+    <ol class="steps">
+      <li><b>raw</b><span data-t="s1">CSV loaded as text. A bad value can never break the load.</span></li>
+      <li><b>stg</b><span data-t="s2">Typed, deduplicated twice (by ID and by content), every unusable row flagged with a reason.</span></li>
+      <li><b>core</b><span data-t="s3">Star schema with valid rows only, partitioned by day and clustered by agent and status.</span></li>
+      <li><b>report</b><span data-t="s4">One query with CTE phases splits each entry at local midnight with GENERATE_DATE_ARRAY + UNNEST. DST days come out as 23 or 25 hours.</span></li>
+      <li><b>checks</b><span data-t="s5">Split hours equal unsplit hours in every timezone, and one agent-day is recomputed in plain Python.</span></li>
+    </ol>
+  </section>
+</main>
+
+<footer class="foot">
+  <p data-t="foot">Built by Mariano Rac · SQL (BigQuery, DuckDB) · Python · hand-drawn SVG charts</p>
+</footer>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+<script src="app.js" defer></script>
+</body>
+</html>

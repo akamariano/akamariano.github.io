@@ -384,7 +384,7 @@ const translations = {
     "badges.mos2Meta": "Word 2016 · Microsoft · September 2019",
     "badges.englishTitle": "Certificate of Language Ability — English",
     "badges.englishMeta": "Level B2–C1 (TrueNorth 8.0) · Rosetta Stone · February 2025",
-    "badges.professionalismMeta": "Missionary Training (MTC) · Issued november 2026",
+    "badges.professionalismMeta": "Missionary Training (MTC) · Issued November 2026",
     "badges.professionalismDesc": "Recognizes consistent professionalism, including punctuality and preparation, dignified and effective communication, openness to receiving and applying feedback, active participation in meetings, alignment with leadership direction, and relationships of trust and respect with colleagues and students, while prioritizing team growth over personal recognition.",
     "skills.eyebrow": "Skills",
     "skills.title": "What I bring",
